@@ -149,8 +149,10 @@ input {
 
   <button class="btn link-btn">Lupa Password?</button>
 
-  <button class="btn google-btn">Login dengan Google</button>
-
+  <button class="btn google-btn" onclick="loginGoogle()">
+  Login dengan Google
+  </button>
+  
   <button class="btn link-btn">Ganti Password</button>
 
   <button class="btn link-btn">Registrasi</button>
@@ -160,6 +162,49 @@ input {
   </div>
 
 </div>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+<!-- Firebase Config -->
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyAXPtaQS38yacP1e1O5aeizcDaZN8RZxnI",
+  authDomain: "rexmarket-3c106.firebaseapp.com",
+  projectId: "rexmarket-3c106",
+  storageBucket: "rexmarket-3c106.firebasestorage.app",
+  messagingSenderId: "834700434615",
+  appId: "1:834700434615:web:af36ceeca7fc8dec010132",
+  measurementId: "G-G8WJK3MK7S"
+};
+
+firebase.initializeApp(firebaseConfig);
+  
+function loginGoogle() {
+
+  const provider = new firebase.auth.GoogleAuthProvider();
+
+  firebase.auth()
+    .signInWithPopup(provider)
+    .then((result) => {
+
+      localStorage.setItem("activeUser", JSON.stringify({
+        name: result.user.displayName,
+        email: result.user.email,
+        photo: result.user.photoURL
+      }));
+
+      window.location.href = "index.html";
+
+    })
+    .catch((error) => {
+      alert(error.message);
+    });
+
+}
+
+</script>
 
 </body>
 </html>
