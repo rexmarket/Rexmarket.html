@@ -223,6 +223,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 /* GOOGLE LOGIN */
+/* GOOGLE LOGIN */
 function loginGoogle() {
 
   const provider = new firebase.auth.GoogleAuthProvider();
@@ -236,12 +237,17 @@ function loginGoogle() {
         photo: result.user.photoURL
       }));
 
+      localStorage.setItem("lastLoginUser", JSON.stringify({
+        username: result.user.displayName
+      }));
+
       document.getElementById("loginPage").style.display = "none";
       document.getElementById("homePage").style.display = "block";
 
     })
     .catch(err => alert(err.message));
 }
+
 
 /* TOGGLE PASSWORD */
 function togglePassword() {
@@ -254,6 +260,7 @@ function toggleRegisterPassword() {
   pw.type = pw.type === "password" ? "text" : "password";
 }
 
+
 /* PAGE SWITCH */
 function showRegister() {
   document.getElementById("loginPage").style.display = "none";
@@ -264,6 +271,7 @@ function backToLogin() {
   document.getElementById("registerPage").style.display = "none";
   document.getElementById("loginPage").style.display = "block";
 }
+
 
 /* REGISTER */
 function registerUser() {
@@ -282,9 +290,9 @@ function registerUser() {
   }));
 
   alert("Registrasi berhasil!");
-
   backToLogin();
 }
+
 
 /* LOGIN */
 function loginUser() {
@@ -294,26 +302,100 @@ function loginUser() {
 
   const data = localStorage.getItem("user_" + username);
 
-  if (!data) return alert("Username tidak ditemukan!");
+  if (!data) {
+    alert("Username tidak ditemukan!");
+    return;
+  }
 
   const user = JSON.parse(data);
 
   if (user.password !== password) {
-    return alert("Password salah!");
+    alert("Password salah!");
+    return;
   }
+
+  localStorage.setItem("lastLoginUser", JSON.stringify({
+    username: username
+  }));
 
   document.getElementById("loginPage").style.display = "none";
   document.getElementById("homePage").style.display = "block";
 }
 
-  function forgotPassword() {
-  alert("Fitur lupa password belum aktif (nanti kita sambungkan ke Firebase/OTP)");
+
+/* FORGOT PASSWORD */
+function forgotPassword() {
+
+  const username = prompt("Masukkan username kamu:");
+
+  const data = localStorage.getItem("user_" + username);
+
+  if (!data) {
+    alert("Username tidak ditemukan!");
+    return;
+  }
+
+  const confirmReset = confirm("Yakin mau reset password?");
+  if (!confirmReset) return;
+
+  const newPassword = prompt("Masukkan password baru:");
+
+  if (!newPassword) {
+    alert("Password tidak boleh kosong!");
+    return;
+  }
+
+  const user = JSON.parse(data);
+  user.password = newPassword;
+
+  localStorage.setItem("user_" + username, JSON.stringify(user));
+
+  alert("Password berhasil direset!");
 }
 
+
+/* CHANGE PASSWORD */
 function changePassword() {
-  alert("Fitur ganti password belum aktif (nanti kita buat di sistem akun)");
+
+  const currentUser = localStorage.getItem("lastLoginUser");
+
+  if (!currentUser) {
+    alert("Kamu belum login!");
+    return;
+  }
+
+  const user = JSON.parse(currentUser);
+
+  const data = localStorage.getItem("user_" + user.username);
+
+  if (!data) {
+    alert("User tidak ditemukan!");
+    return;
+  }
+
+  const realUser = JSON.parse(data);
+
+  const oldPass = prompt("Masukkan password lama:");
+
+  if (realUser.password !== oldPass) {
+    alert("Password lama salah!");
+    return;
+  }
+
+  const newPass = prompt("Masukkan password baru:");
+
+  if (!newPass) {
+    alert("Password tidak boleh kosong!");
+    return;
+  }
+
+  realUser.password = newPass;
+
+  localStorage.setItem("user_" + user.username, JSON.stringify(realUser));
+
+  alert("Password berhasil diganti!");
     }
-  
+
 </script>
 
 </body>
