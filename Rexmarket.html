@@ -133,6 +133,26 @@ input {
   margin-top: 10px;
 }
 
+  .password-box{
+  position: relative;
+}
+
+.password-box input{
+  width: 100%;
+  box-sizing: border-box;
+  padding-right: 45px;
+}
+
+.eye{
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+  user-select: none;
+}
+
 </style>
 </head>
 
@@ -144,26 +164,32 @@ input {
 
   <h2>LOGIN</h2>
 
-  <input type="text" placeholder="Username">
-  <input type="password" placeholder="Password">
+  <input id="username" type="text" placeholder="Username">
 
-  <button class="btn login-btn">Login</button>
+  <div class="password-box">
+    <input id="password" type="password" placeholder="Password">
+    <span class="eye" onclick="togglePassword()">👁️</span>
+  </div>
 
+  <button class="btn login-btn" onclick="loginUser()">Login</button>
   <button class="btn link-btn">Lupa Password?</button>
 
   <button class="btn google-btn" onclick="loginGoogle()">
-  Login dengan Google
+    Login dengan Google
   </button>
-  
+
   <button class="btn link-btn">Ganti Password</button>
 
-  <button class="btn link-btn">Registrasi</button>
+  <button class="btn link-btn" onclick="registerUser()">
+  Registrasi
+  </button>
 
-  <div
-    class="small">
+  <div class="small">
     Rexmarket Secure Login
   </div>
+
 </div>
+
 </div>
 
 <div id="homePage" style="display:none;">
@@ -217,6 +243,62 @@ document.getElementById("homePage").style.display = "block";
     });
 
 }
+
+  function togglePassword() {
+  const pw = document.getElementById("password");
+
+  if (pw.type === "password") {
+    pw.type = "text";
+  } else {
+    pw.type = "password";
+  }
+  }
+
+
+  function registerUser() {
+
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+
+  if(username === "" || password === ""){
+    alert("Isi Username dan Password dulu!");
+    return;
+  }
+
+  localStorage.setItem(
+    "user_" + username,
+    JSON.stringify({
+      username: username,
+      password: password
+    })
+  );
+
+  alert("Registrasi berhasil!");
+  }
+
+  function loginUser() {
+
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+
+  const userData = localStorage.getItem("user_" + username);
+
+  if(!userData){
+    alert("Username tidak ditemukan!");
+    return;
+  }
+
+  const user = JSON.parse(userData);
+
+  if(user.password !== password){
+    alert("Password salah!");
+    return;
+  }
+
+  document.getElementById("loginPage").style.display = "none";
+  document.getElementById("homePage").style.display = "block";
+
+  }
 
 </script>
 
