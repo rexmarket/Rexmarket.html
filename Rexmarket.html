@@ -8,13 +8,11 @@
 
 <style>
 
-/* 🔥 IMPORT FONT E-MUSE */
 @font-face {
   font-family: "EMuseBold";
   src: url("fonts/E-Muse-Bold.otf") format("opentype");
 }
 
-/* BODY */
 body {
   margin: 0;
   font-family: "EMuseBold", Arial, sans-serif;
@@ -24,7 +22,7 @@ body {
   overflow-x: hidden;
 }
 
-/* 💠 FUTURISTIC BACKGROUND */
+/* BACKGROUND */
 body::before {
   content: "";
   position: fixed;
@@ -35,19 +33,11 @@ body::before {
     radial-gradient(circle at 20% 20%, rgba(255,255,255,0.10), transparent 25%),
     radial-gradient(circle at 80% 40%, rgba(255,255,255,0.08), transparent 30%),
     radial-gradient(circle at 50% 80%, rgba(255,255,255,0.06), transparent 35%),
-
     linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
     linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
 
-  background-size:
-    auto,
-    auto,
-    auto,
-    40px 40px,
-    40px 40px;
-
+  background-size: auto, auto, auto, 40px 40px, 40px 40px;
   opacity: 0.35;
-
   animation: bgMove 12s linear infinite;
 }
 
@@ -56,44 +46,34 @@ body::before {
   100% { transform: translateY(40px); }
 }
 
-/* LOGIN BOX */
+/* BOX */
 .login-box {
   width: 90%;
   max-width: 320px;
-
   margin: auto;
   margin-top: 100px;
-
   background: rgba(255,255,255,0.08);
   backdrop-filter: blur(10px);
-
   padding: 20px;
   border-radius: 12px;
-
   box-shadow: 0 0 25px rgba(30,144,255,0.4);
 }
 
-/* JUDUL */
-.login-box h2 {
+h2 {
   text-align: center;
   margin-top: 0;
   margin-bottom: 20px;
 }
 
-/* INPUT */
 input {
   width: 100%;
   box-sizing: border-box;
-
   padding: 10px 12px;
   margin-bottom: 12px;
-
   border: none;
   border-radius: 8px;
-
   background: #1f2937;
   color: white;
-
   outline: none;
 }
 
@@ -102,29 +82,15 @@ input {
   width: 100%;
   padding: 10px;
   margin-top: 8px;
-
   border: none;
   border-radius: 8px;
-
   cursor: pointer;
   font-weight: bold;
 }
 
-.login-btn {
-  background: #2563eb;
-  color: white;
-}
-
-.link-btn {
-  background: transparent;
-  color: #93c5fd;
-  font-size: 13px;
-}
-
-.google-btn {
-  background: white;
-  color: black;
-}
+.login-btn { background: #2563eb; color: white; }
+.link-btn { background: transparent; color: #93c5fd; font-size: 13px; }
+.google-btn { background: white; color: black; }
 
 .small {
   text-align: center;
@@ -133,24 +99,26 @@ input {
   margin-top: 10px;
 }
 
-  .password-box{
+/* PASSWORD */
+.password-box {
   position: relative;
 }
 
-.password-box input{
-  width: 100%;
-  box-sizing: border-box;
+.password-box input {
   padding-right: 45px;
 }
 
-.eye{
+.eye {
   position: absolute;
   right: 12px;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
-  font-size: 18px;
-  user-select: none;
+}
+
+/* PAGE CONTROL */
+#registerPage, #homePage {
+  display: none;
 }
 
 </style>
@@ -158,8 +126,39 @@ input {
 
 <body>
 
+<!-- LOGIN PAGE -->
 <div id="loginPage">
-<div id="registerPage" style="display:none;">
+
+  <div class="login-box">
+
+    <h2>LOGIN</h2>
+
+    <input id="username" type="text" placeholder="Username">
+
+    <div class="password-box">
+      <input id="password" type="password" placeholder="Password">
+      <span class="eye" onclick="togglePassword()">👁️</span>
+    </div>
+
+    <button class="btn login-btn" onclick="loginUser()">Login</button>
+
+    <button class="btn google-btn" onclick="loginGoogle()">
+      Login dengan Google
+    </button>
+
+    <button class="btn link-btn" onclick="showRegister()">
+      Registrasi
+    </button>
+
+    <div class="small">
+      Rexmarket Secure Login
+    </div>
+
+  </div>
+</div>
+
+<!-- REGISTER PAGE -->
+<div id="registerPage">
 
   <div class="login-box">
 
@@ -183,55 +182,20 @@ input {
   </div>
 
 </div>
-<div class="login-box">
 
-  <h2>LOGIN</h2>
-
-  <input id="username" type="text" placeholder="Username">
-
-  <div class="password-box">
-    <input id="password" type="password" placeholder="Password">
-    <span class="eye" onclick="togglePassword()">👁️</span>
-  </div>
-
-  <button class="btn login-btn" onclick="loginUser()">Login</button>
-  <button class="btn link-btn">Lupa Password?</button>
-
-  <button class="btn google-btn" onclick="loginGoogle()">
-    Login dengan Google
-  </button>
-
-  <button class="btn link-btn">Ganti Password</button>
-
-  <button class="btn link-btn" onclick="showRegister()">
-  Registrasi
-  </button>
-
-  <div class="small">
-    Rexmarket Secure Login
-  </div>
-
-</div>
-
-</div>
-
-<div id="homePage" style="display:none;">
-
-  <h1 style="
-  text-align:center;
-  margin-top:100px;
-  ">
+<!-- HOME PAGE -->
+<div id="homePage">
+  <h1 style="text-align:center;margin-top:100px;">
     Login Berhasil 🔥
   </h1>
-
 </div>
 
-<!-- Firebase SDK -->
+<!-- FIREBASE -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 
-<!-- Firebase Config -->
 <script>
+
 const firebaseConfig = {
   apiKey: "AIzaSyAXPtaQS38yacP1e1O5aeizcDaZN8RZxnI",
   authDomain: "rexmarket-3c106.firebaseapp.com",
@@ -243,13 +207,13 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-  
+
+/* GOOGLE LOGIN */
 function loginGoogle() {
 
   const provider = new firebase.auth.GoogleAuthProvider();
 
-  firebase.auth()
-    .signInWithPopup(provider)
+  firebase.auth().signInWithPopup(provider)
     .then((result) => {
 
       localStorage.setItem("activeUser", JSON.stringify({
@@ -259,25 +223,25 @@ function loginGoogle() {
       }));
 
       document.getElementById("loginPage").style.display = "none";
-document.getElementById("homePage").style.display = "block";
-    })
-    .catch((error) => {
-      alert(error.message);
-    });
+      document.getElementById("homePage").style.display = "block";
 
+    })
+    .catch(err => alert(err.message));
 }
 
-  function togglePassword() {
+/* TOGGLE PASSWORD */
+function togglePassword() {
   const pw = document.getElementById("password");
+  pw.type = pw.type === "password" ? "text" : "password";
+}
 
-  if (pw.type === "password") {
-    pw.type = "text";
-  } else {
-    pw.type = "password";
-  }
-  }
+function toggleRegisterPassword() {
+  const pw = document.getElementById("regPassword");
+  pw.type = pw.type === "password" ? "text" : "password";
+}
 
-  function showRegister() {
+/* PAGE SWITCH */
+function showRegister() {
   document.getElementById("loginPage").style.display = "none";
   document.getElementById("registerPage").style.display = "block";
 }
@@ -287,64 +251,46 @@ function backToLogin() {
   document.getElementById("loginPage").style.display = "block";
 }
 
-function toggleRegisterPassword() {
-  const pw = document.getElementById("regPassword");
-
-  if (pw.type === "password") {
-    pw.type = "text";
-  } else {
-    pw.type = "password";
-  }
-}
-
-
-  function registerUser() {
+/* REGISTER */
+function registerUser() {
 
   const username = document.getElementById("regUsername").value;
   const password = document.getElementById("regPassword").value;
 
-  if(username === "" || password === ""){
+  if (!username || !password) {
     alert("Isi Username dan Password dulu!");
     return;
   }
 
-  localStorage.setItem(
-    "user_" + username,
-    JSON.stringify({
-      username: username,
-      password: password
-    })
-  );
+  localStorage.setItem("user_" + username, JSON.stringify({
+    username,
+    password
+  }));
 
   alert("Registrasi berhasil!");
 
-  document.getElementById("registerPage").style.display = "none";
-  document.getElementById("loginPage").style.display = "block";
-  }
+  backToLogin();
+}
 
-  function loginUser() {
+/* LOGIN */
+function loginUser() {
 
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
 
-  const userData = localStorage.getItem("user_" + username);
+  const data = localStorage.getItem("user_" + username);
 
-  if(!userData){
-    alert("Username tidak ditemukan!");
-    return;
-  }
+  if (!data) return alert("Username tidak ditemukan!");
 
-  const user = JSON.parse(userData);
+  const user = JSON.parse(data);
 
-  if(user.password !== password){
-    alert("Password salah!");
-    return;
+  if (user.password !== password) {
+    return alert("Password salah!");
   }
 
   document.getElementById("loginPage").style.display = "none";
   document.getElementById("homePage").style.display = "block";
-
-  }
+}
 
 </script>
 
