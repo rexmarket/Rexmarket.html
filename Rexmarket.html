@@ -36,15 +36,15 @@ header {
   letter-spacing: 3px;
   text-transform: uppercase;
 
-  /* 🔵 BLUE BASE */
-  background: #0b2a5a;
+  /* 🔵 lebih terang */
+  background: #1e90ff;
 
-  /* 💡 neon glow */
-  box-shadow: 0 0 25px rgba(37, 99, 235, 0.6);
+  /* 💡 glow lebih kuat */
+  box-shadow: 0 0 35px rgba(30, 144, 255, 0.8);
 
   z-index: 1;
 }
-
+  
 /* ⚡ GRID FUTURISTIC */
 header::before {
   content: "";
@@ -52,20 +52,20 @@ header::before {
   inset: 0;
 
   background-image:
-    linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.18) 1px, transparent 1px);
 
-  background-size: 22px 22px;
+  background-size: 18px 18px;
 
-  opacity: 0.25;
+  opacity: 0.35;
 
-  animation: gridMove 6s linear infinite;
+  animation: gridMove 5s linear infinite;
 }
 
 /* ⚡ animasi grid */
 @keyframes gridMove {
   0% { transform: translateY(0); }
-  100% { transform: translateY(22px); }
+  100% { transform: translateY(18px); }
 }
 
 /* 💡 glow pulse */
@@ -74,16 +74,20 @@ header::after {
   position: absolute;
   inset: 0;
 
-  background: radial-gradient(circle at center, rgba(59,130,246,0.25), transparent 60%);
+  background: radial-gradient(circle at center,
+    rgba(255,255,255,0.25),
+    rgba(30,144,255,0.15),
+    transparent 70%
+  );
 
-  opacity: 0.4;
+  opacity: 0.6;
   animation: pulse 2s infinite ease-in-out;
 }
 
 @keyframes pulse {
-  0% { opacity: 0.2; }
-  50% { opacity: 0.5; }
-  100% { opacity: 0.2; }
+  0% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+  100% { opacity: 0.3; }
 }
 
 /* 🔵 BADGE */
