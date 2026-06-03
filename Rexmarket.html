@@ -159,7 +159,30 @@ input {
 <body>
 
 <div id="loginPage">
+<div id="registerPage" style="display:none;">
 
+  <div class="login-box">
+
+    <h2>REGISTER</h2>
+
+    <input id="regUsername" type="text" placeholder="Username">
+
+    <div class="password-box">
+      <input id="regPassword" type="password" placeholder="Password">
+      <span class="eye" onclick="toggleRegisterPassword()">👁️</span>
+    </div>
+
+    <button class="btn login-btn" onclick="registerUser()">
+      Register
+    </button>
+
+    <button class="btn link-btn" onclick="backToLogin()">
+      Kembali ke Login
+    </button>
+
+  </div>
+
+</div>
 <div class="login-box">
 
   <h2>LOGIN</h2>
@@ -180,7 +203,7 @@ input {
 
   <button class="btn link-btn">Ganti Password</button>
 
-  <button class="btn link-btn" onclick="registerUser()">
+  <button class="btn link-btn" onclick="showRegister()">
   Registrasi
   </button>
 
@@ -254,11 +277,31 @@ document.getElementById("homePage").style.display = "block";
   }
   }
 
+  function showRegister() {
+  document.getElementById("loginPage").style.display = "none";
+  document.getElementById("registerPage").style.display = "block";
+}
+
+function backToLogin() {
+  document.getElementById("registerPage").style.display = "none";
+  document.getElementById("loginPage").style.display = "block";
+}
+
+function toggleRegisterPassword() {
+  const pw = document.getElementById("regPassword");
+
+  if (pw.type === "password") {
+    pw.type = "text";
+  } else {
+    pw.type = "password";
+  }
+}
+
 
   function registerUser() {
 
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
+  const username = document.getElementById("regUsername").value;
+  const password = document.getElementById("regPassword").value;
 
   if(username === "" || password === ""){
     alert("Isi Username dan Password dulu!");
@@ -274,6 +317,9 @@ document.getElementById("homePage").style.display = "block";
   );
 
   alert("Registrasi berhasil!");
+
+  document.getElementById("registerPage").style.display = "none";
+  document.getElementById("loginPage").style.display = "block";
   }
 
   function loginUser() {
