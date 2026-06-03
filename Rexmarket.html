@@ -20,20 +20,20 @@ body {
   font-family: "EMuseBold", Arial, sans-serif;
   color: white;
 
-  /* 🔵 biru gelap modern (tidak terlalu tua) */
+  /* 🔵 background utama */
   background: #0f2f5f;
 
   position: relative;
   overflow-x: hidden;
 }
 
-  body::before {
+/* 💠 FUTURISTIC BACKGROUND */
+body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
 
-  /* 🔷 pattern futuristik */
   background:
     radial-gradient(circle at 20% 20%, rgba(255,255,255,0.10), transparent 25%),
     radial-gradient(circle at 80% 40%, rgba(255,255,255,0.08), transparent 30%),
@@ -52,18 +52,14 @@ body {
   opacity: 0.35;
 
   animation: bgMove 12s linear infinite;
-  }
+}
 
-  @keyframes bgMove {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(40px);
-  }
-  }
+@keyframes bgMove {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(40px); }
+}
 
-/* 🔵 HEADER REXMARKET FUTURISTIC */
+/* 🔵 HEADER FUTURISTIC */
 header {
   position: relative;
   overflow: hidden;
@@ -77,16 +73,14 @@ header {
   letter-spacing: 3px;
   text-transform: uppercase;
 
-  /* 🔵 lebih terang */
   background: #1e90ff;
 
-  /* 💡 glow lebih kuat */
   box-shadow: 0 0 35px rgba(30, 144, 255, 0.8);
 
   z-index: 1;
 }
-  
-/* ⚡ GRID FUTURISTIC */
+
+/* ⚡ GRID HEADER */
 header::before {
   content: "";
   position: absolute;
@@ -103,7 +97,6 @@ header::before {
   animation: gridMove 5s linear infinite;
 }
 
-/* ⚡ animasi grid */
 @keyframes gridMove {
   0% { transform: translateY(0); }
   100% { transform: translateY(18px); }
@@ -131,11 +124,29 @@ header::after {
   100% { opacity: 0.3; }
 }
 
+/* 👤 PROFILE ICON */
+.profile-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
 
+  font-size: 20px;
+  cursor: pointer;
 
-  
+  padding: 6px 10px;
+  border-radius: 8px;
 
-  
+  background: rgba(255,255,255,0.15);
+  transition: 0.2s;
+
+  z-index: 2;
+}
+
+.profile-icon:hover {
+  background: rgba(255,255,255,0.3);
+}
+
 </style>
 </head>
 
@@ -143,8 +154,16 @@ header::after {
 
 <header>
   Rexmarket
+
+  <!-- 👤 ICON -->
+  <div class="profile-icon" onclick="goLogin()">👤</div>
 </header>
 
+<script>
+function goLogin() {
+  window.location.href = "login.html";
+}
+</script>
 
 </body>
 </html>
