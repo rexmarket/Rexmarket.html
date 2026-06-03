@@ -90,6 +90,7 @@ header::after {
   100% { opacity: 0.3; }
 }
 
+
 /* 🔵 BADGE */
 .badge {
   display: inline-block;
@@ -140,11 +141,53 @@ button:hover {
   color: #9ca3af;
 }
 
-/* CONTAINER */
+/* 💠 CONTAINER (UPDATED BLUE + FUTURISTIC PATTERN) */
 .container {
   padding: 15px;
+
+  /* 🔵 biru normal */
+  background: #4ea1ff;
+
+  border-radius: 12px;
+
+  position: relative;
+  overflow: hidden;
+
+  /* glow soft */
+  box-shadow: 0 0 25px rgba(59, 130, 246, 0.25);
 }
 
+/* 💠 CORAK FUTURISTIK (BEDA DARI HEADER) */
+.container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  /* 🔷 pattern titik + diagonal halus */
+  background:
+    radial-gradient(rgba(255,255,255,0.22) 1.5px, transparent 1.5px),
+    linear-gradient(135deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+
+  background-size: 18px 18px, 28px 28px;
+
+  opacity: 0.25;
+
+  animation: floatPattern 7s linear infinite;
+}
+
+/* ⚡ animasi corak */
+@keyframes floatPattern {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(18px); }
+}
+
+/* 💡 biar isi di atas pattern */
+.container > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* CARD */
 .card {
   background: #111827;
   padding: 12px;
@@ -152,6 +195,7 @@ button:hover {
   border-radius: 10px;
 }
 
+  
 </style>
 </head>
 
