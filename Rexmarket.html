@@ -163,6 +163,23 @@ input {
   100% { opacity:0.3; }
 }
 
+  #toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111827;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-size: 14px;
+  display: none;
+  z-index: 9999;
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+
+  transition: 0.3s ease;
+    }
+
 </style>
 </head>
 
@@ -380,30 +397,36 @@ function loginGoogle() {
   firebase.auth().signInWithPopup(provider)
     .then((result) => {
 
-      const username = result.user.displayName;
+      const username = result.user.displayName || "User";
 
-      // simpan user aktif (buat data profile)
+      // simpan data user aktif (profil lengkap)
       localStorage.setItem("activeUser", JSON.stringify({
         name: result.user.displayName,
         email: result.user.email,
         photo: result.user.photoURL
       }));
 
-      // simpan session login (dipakai fitur ganti password + logout)
+      // session login (dipakai fitur logout / menu)
       localStorage.setItem("lastLoginUser", JSON.stringify({
-        username: username
+        username: username,
+        type: "google"
       }));
 
       // tampilkan username di UI
-      document.getElementById("displayUser").innerText = username;
+      const display = document.getElementById("displayUser");
+      if (display) display.innerText = username;
 
       // pindah halaman
       document.getElementById("loginPage").style.display = "none";
       document.getElementById("homePage").style.display = "block";
 
+      showToast("Login Google berhasil!");
+
     })
-    .catch(err => alert(err.message));
-}
+    .catch(err => {
+      showToast(err.message);
+    });
+  }
 
 
 /* TOGGLE PASSWORD */
@@ -433,21 +456,43 @@ function backToLogin() {
 /* REGISTER */
 function registerUser() {
 
-  const username = document.getElementById("regUsername").value;
-  const password = document.getElementById("regPassword").value;
+  const username = document.getElementById("regUsername").value.trim();
+  const password = document.getElementById("regPassword").value.trim();
 
-  if (!username || !password) {
+  // cek input kosong
+  if (username === "" || password === "") {
     showToast("Isi Username dan Password dulu!");
     return;
   }
 
-  localStorage.setItem("user_" + username, JSON.stringify({
-    username,
-    password
-  }));
+  // cek username sudah dipakai atau belum
+  const existingUser = localStorage.getItem("user_" + username);
 
+  if (existingUser) {
+    showToast("Username sudah dipakai!");
+    return;
+  }
+
+  // simpan user baru
+  const userData = {
+    username: username,
+    password: password
+  };
+
+  localStorage.setItem("user_" + username, JSON.stringify(userData));
+
+  // notif sukses
   showToast("Registrasi berhasil!");
-  backToLogin();
+
+  // pindah balik ke login
+  setTimeout(() => {
+    document.getElementById("registerPage").style.display = "none";
+    document.getElementById("loginPage").style.display = "block";
+
+    // reset input biar bersih
+    document.getElementById("regUsername").value = "";
+    document.getElementById("regPassword").value = "";
+  }, 800);
 }
 
 
@@ -467,11 +512,22 @@ function loginUser() {
   const user = JSON.parse(data);
 
   if (user.password !== password) {
-  showToast("Password salah!");
-  return;
-  }
+    showToast("Password salah!");
+    return;
   }
 
+  // simpan session login
+  localStorage.setItem("lastLoginUser", JSON.stringify({
+    username: username
+  }));
+
+  // tampilkan username di home page
+  document.getElementById("displayUser").innerText = username;
+
+  // pindah halaman
+  document.getElementById("loginPage").style.display = "none";
+  document.getElementById("homePage").style.display = "block";
+  }
   // simpan session login (dipakai fitur ganti password & logout)
   localStorage.setItem("lastLoginUser", JSON.stringify({
     username: username
@@ -491,6 +547,11 @@ function forgotPassword() {
 
   const username = prompt("Masukkan username kamu:");
 
+  if (!username) {
+    showToast("Username tidak boleh kosong!");
+    return;
+  }
+
   const data = localStorage.getItem("user_" + username);
 
   if (!data) {
@@ -503,18 +564,23 @@ function forgotPassword() {
 
   const newPassword = prompt("Masukkan password baru:");
 
-  if (!newPassword) {
+  if (!newPassword || newPassword.trim() === "") {
     showToast("Password tidak boleh kosong!");
     return;
   }
 
+  // ambil user lama
   const user = JSON.parse(data);
-  user.password = newPassword;
 
+  // update password
+  user.password = newPassword.trim();
+
+  // simpan ulang ke localStorage
   localStorage.setItem("user_" + username, JSON.stringify(user));
 
   showToast("Password berhasil direset!");
 }
+  
 
 
 /* CHANGE PASSWORD */
@@ -538,26 +604,34 @@ function changePassword() {
 
   const realUser = JSON.parse(data);
 
+  // input password lama
   const oldPass = prompt("Masukkan password lama:");
+
+  if (!oldPass) {
+    showToast("Password lama wajib diisi!");
+    return;
+  }
 
   if (realUser.password !== oldPass) {
     showToast("Password lama salah!");
     return;
   }
 
+  // input password baru
   const newPass = prompt("Masukkan password baru:");
 
-  if (!newPass) {
+  if (!newPass || newPass.trim() === "") {
     showToast("Password tidak boleh kosong!");
     return;
   }
 
-  realUser.password = newPass;
+  // update password
+  realUser.password = newPass.trim();
 
   localStorage.setItem("user_" + user.username, JSON.stringify(realUser));
 
   showToast("Password berhasil diganti!");
-    }
+}
 
   function toggleMenu() {
   const menu = document.getElementById("menuBox");
@@ -575,9 +649,20 @@ function logout() {
 
   toast.innerText = message;
   toast.style.display = "block";
+  toast.style.opacity = "1";
+  toast.style.transform = "translateX(-50%) translateY(0px)";
 
-  setTimeout(() => {
-    toast.style.display = "none";
+  // reset timer biar gak numpuk
+  clearTimeout(toast._timeout);
+
+  toast._timeout = setTimeout(() => {
+    toast.style.opacity = "0";
+    toast.style.transform = "translateX(-50%) translateY(-10px)";
+
+    setTimeout(() => {
+      toast.style.display = "none";
+    }, 300);
+
   }, 2000);
   }
 
