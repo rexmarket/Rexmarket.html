@@ -1,802 +1,598 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html>  <html lang="id">  
+<head>  <meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>Login - Rexmarket</title>  <style>  
+  
+@font-face {  
+  font-family: "EMuseBold";  
+  src: url("fonts/E-Muse-Bold.otf") format("opentype");  
+}  
+  
+body {  
+  margin: 0;  
+  font-family: "EMuseBold", Arial, sans-serif;  
+  color: white;  
+  background: #0f2f5f;  
+  position: relative;  
+  overflow-x: hidden;  
+}  
+  
+/* BACKGROUND */  
+body::before {  
+  content: "";  
+  position: fixed;  
+  inset: 0;  
+  z-index: -1;  
+  
+  background:  
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.10), transparent 25%),  
+    radial-gradient(circle at 80% 40%, rgba(255,255,255,0.08), transparent 30%),  
+    radial-gradient(circle at 50% 80%, rgba(255,255,255,0.06), transparent 35%),  
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),  
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);  
+  
+  background-size: auto, auto, auto, 40px 40px, 40px 40px;  
+  opacity: 0.35;  
+  animation: bgMove 12s linear infinite;  
+}  
+  
+@keyframes bgMove {  
+  0% { transform: translateY(0); }  
+  100% { transform: translateY(40px); }  
+}  
+  
+/* BOX */  
+.login-box {  
+  width: 90%;  
+  max-width: 320px;  
+  margin: auto;  
+  margin-top: 100px;  
+  background: rgba(255,255,255,0.08);  
+  backdrop-filter: blur(10px);  
+  padding: 20px;  
+  border-radius: 12px;  
+  box-shadow: 0 0 25px rgba(30,144,255,0.4);  
+}  
+  
+h2 {  
+  text-align: center;  
+  margin-top: 0;  
+  margin-bottom: 20px;  
+}  
+  
+input {  
+  width: 100%;  
+  box-sizing: border-box;  
+  padding: 10px 12px;  
+  margin-bottom: 12px;  
+  border: none;  
+  border-radius: 8px;  
+  background: #1f2937;  
+  color: white;  
+  outline: none;  
+}  
+  
+/* BUTTON */  
+.btn {  
+  width: 100%;  
+  padding: 10px;  
+  margin-top: 8px;  
+  border: none;  
+  border-radius: 8px;  
+  cursor: pointer;  
+  font-weight: bold;  
+}  
+  
+.login-btn { background: #2563eb; color: white; }  
+.link-btn { background: transparent; color: #93c5fd; font-size: 13px; }  
+.google-btn { background: white; color: black; }  
+  
+.small {  
+  text-align: center;  
+  font-size: 12px;  
+  color: #cbd5e1;  
+  margin-top: 10px;  
+}  
+  
+/* PASSWORD */  
+.password-box {  
+  position: relative;  
+}  
+  
+.password-box input {  
+  padding-right: 45px;  
+}  
+  
+.eye {  
+  position: absolute;  
+  right: 12px;  
+  top: 50%;  
+  transform: translateY(-50%);  
+  cursor: pointer;  
+}  
+  
+/* PAGE CONTROL */  
+#registerPage, #homePage {  
+  display: none;  
+}  
+  
+  .profile-icon{  
+  position:absolute;  
+  top:15px;  
+  right:15px;  
+  font-size:22px;  
+  cursor:pointer;  
+}  
+  
+.menu-box{  
+  display:none;  
+  position:absolute;  
+  top:50px;  
+  right:15px;  
+  background:#1f2937;  
+  padding:10px;  
+  border-radius:10px;  
+  box-shadow:0 0 10px rgba(0,0,0,0.4);  
+}  
+  
+.menu-box button{  
+  display:block;  
+  width:150px;  
+  margin:5px 0;  
+  padding:8px;  
+  border:none;  
+  border-radius:6px;  
+  cursor:pointer;  
+  background:#2563eb;  
+  color:white;  
+}  
+  
+  @keyframes gridMove {  
+  0% { transform: translateY(0); }  
+  100% { transform: translateY(18px); }  
+}  
+  
+@keyframes pulse {  
+  0% { opacity:0.3; }  
+  50% { opacity:0.7; }  
+  100% { opacity:0.3; }  
+}  
+  
+  #toast {  
+  position: fixed;  
+  top: 20px;  
+  left: 50%;  
+  transform: translateX(-50%);  
+  background: #111827;  
+  color: white;  
+  padding: 10px 15px;  
+  border-radius: 10px;  
+  font-size: 14px;  
+  display: none;  
+  z-index: 9999;  
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);  
+  
+  transition: 0.3s ease;  
+    }  
+  
+</style>  </head>  <body>  <!-- LOGIN PAGE -->  <div id="loginPage">    <div class="login-box">  <h2>LOGIN</h2>  
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login - Rexmarket</title>
+<input id="username" type="text" placeholder="Username">  
 
-<style>
+<div class="password-box">  
+  <input id="password" type="password" placeholder="Password">  
+  <span class="eye" onclick="togglePassword()">👁️</span>  
+</div>  
 
-@font-face {
-  font-family: "EMuseBold";
-  src: url("fonts/E-Muse-Bold.otf") format("opentype");
-}
+<button class="btn login-btn" onclick="loginUser()">Login</button>  
 
-body {
-  margin: 0;
-  font-family: "EMuseBold", Arial, sans-serif;
-  color: white;
-  background: #0f2f5f;
-  position: relative;
-  overflow-x: hidden;
-}
+<button class="btn google-btn" onclick="loginGoogle()">  
+  Login dengan Google  
+</button>  
 
-/* BACKGROUND */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
+<button class="btn link-btn" onclick="forgotPassword()">
 
-  background:
-    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.10), transparent 25%),
-    radial-gradient(circle at 80% 40%, rgba(255,255,255,0.08), transparent 30%),
-    radial-gradient(circle at 50% 80%, rgba(255,255,255,0.06), transparent 35%),
-    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
-    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
-
-  background-size: auto, auto, auto, 40px 40px, 40px 40px;
-  opacity: 0.35;
-  animation: bgMove 12s linear infinite;
-}
-
-@keyframes bgMove {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(40px); }
-}
-
-/* BOX */
-.login-box {
-  width: 90%;
-  max-width: 320px;
-  margin: auto;
-  margin-top: 100px;
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(10px);
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 25px rgba(30,144,255,0.4);
-}
-
-h2 {
-  text-align: center;
-  margin-top: 0;
-  margin-bottom: 20px;
-}
-
-input {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 10px 12px;
-  margin-bottom: 12px;
-  border: none;
-  border-radius: 8px;
-  background: #1f2937;
-  color: white;
-  outline: none;
-}
-
-/* BUTTON */
-.btn {
-  width: 100%;
-  padding: 10px;
-  margin-top: 8px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.login-btn { background: #2563eb; color: white; }
-.link-btn { background: transparent; color: #93c5fd; font-size: 13px; }
-.google-btn { background: white; color: black; }
-
-.small {
-  text-align: center;
-  font-size: 12px;
-  color: #cbd5e1;
-  margin-top: 10px;
-}
-
-/* PASSWORD */
-.password-box {
-  position: relative;
-}
-
-.password-box input {
-  padding-right: 45px;
-}
-
-.eye {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-}
-
-/* PAGE CONTROL */
-#registerPage, #homePage {
-  display: none;
-}
-
-  .profile-icon{
-  position:absolute;
-  top:15px;
-  right:15px;
-  font-size:22px;
-  cursor:pointer;
-}
-
-.menu-box{
-  display:none;
-  position:absolute;
-  top:50px;
-  right:15px;
-  background:#1f2937;
-  padding:10px;
-  border-radius:10px;
-  box-shadow:0 0 10px rgba(0,0,0,0.4);
-}
-
-.menu-box button{
-  display:block;
-  width:150px;
-  margin:5px 0;
-  padding:8px;
-  border:none;
-  border-radius:6px;
-  cursor:pointer;
-  background:#2563eb;
-  color:white;
-}
-
-  @keyframes gridMove {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(18px); }
-}
-
-@keyframes pulse {
-  0% { opacity:0.3; }
-  50% { opacity:0.7; }
-  100% { opacity:0.3; }
-}
-
-  #toast {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #111827;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 10px;
-  font-size: 14px;
-  display: none;
-  z-index: 9999;
-  box-shadow: 0 0 15px rgba(0,0,0,0.4);
-
-  transition: 0.3s ease;
-    }
-
-</style>
-</head>
-
-<body>
-
-<!-- LOGIN PAGE -->
-<div id="loginPage">
-
-  <div class="login-box">
-
-    <h2>LOGIN</h2>
-
-    <div style="position:relative;">
-  <input id="username" type="text" placeholder="Username" autocomplete="off">
-
-  <div id="suggestBox" style="
-    position:absolute;
-    top:100%;
-    left:0;
-    right:0;
-    background:#111827;
-    color:white;
-    border-radius:8px;
-    margin-top:4px;
-    display:none;
-    max-height:120px;
-    overflow:auto;
-    font-size:14px;
-    z-index:9999;
-  "></div>
-    </div>
-    
-    <div class="password-box">
-      <input id="password" type="password" placeholder="Password">
-      <span class="eye" onclick="togglePassword()">👁️</span>
-    </div>
-
-    <button class="btn login-btn" onclick="loginUser()">Login</button>
-
-    <button class="btn google-btn" onclick="loginGoogle()">
-      Login dengan Google
-    </button>
-
-    <button class="btn link-btn" onclick="forgotPassword()">
-  Lupa Password?
+Lupa Password?
 </button>
 
+<button class="btn link-btn" onclick="showRegister()">  
+  Registrasi  
+</button>  
 
-    <button class="btn link-btn" onclick="showRegister()">
-      Registrasi
-    </button>
+  
 
+<div class="small">  
+  Rexmarket Secure Login  
+</div>
+
+  </div>  
+</div>  <!-- REGISTER PAGE -->  <div id="registerPage">    <div class="login-box">  <h2>REGISTER</h2>  
+
+<input id="regUsername" type="text" placeholder="Username">  
+
+<div class="password-box">  
+  <input id="regPassword" type="password" placeholder="Password">  
+  <span class="eye" onclick="toggleRegisterPassword()">👁️</span>  
+</div>  
+  
+
+<button class="btn login-btn" onclick="registerUser()">  
+  Register  
+</button>  
+
+
+<button class="btn link-btn" onclick="backToLogin()">  
+  Kembali ke Login  
+</button>
+
+  </div>  </div>  <!-- HOME PAGE -->  <div id="homePage" style="display:none;">  
+<!-- 🔵 FUTURISTIC HEADER -->  
+<header style="  
+  position:fixed;  
+  top:0;  
+  left:0;  
+  right:0;  
+  height:60px;  
+  padding:0 15px;  
+  display:flex;  
+  align-items:center;  
+  justify-content:space-between;  
+  color:white;  
+  background:#1e90ff;  
+  box-shadow:0 0 25px rgba(30,144,255,0.7);  
+  overflow:hidden;  
+  z-index:999;  
+">    <!-- GRID EFFECT -->    <div style="  
+    position:absolute;  
+    inset:0;  
+    background-image:  
+      linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px),  
+      linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px);  
+    background-size:18px 18px;  
+    opacity:0.25;  
+    animation:gridMove 6s linear infinite;  
+  "></div>    <!-- GLOW -->    <div style="  
+    position:absolute;  
+    inset:0;  
+    background:radial-gradient(circle, rgba(255,255,255,0.25), transparent 70%);  
+    animation:pulse 2s infinite;  
+  "></div>    <!-- LEFT USER -->    <div style="position:relative; font-size:14px;">  
+    👤 <span id="displayUser"></span>  
+  </div>    <!-- TITLE -->    <div style="position:relative; font-weight:bold; letter-spacing:2px;">  
+    REXMARKET  
+  </div>    <!-- RIGHT ICON BADGE -->    <div onclick="toggleMenu()" style="  
+    position:relative;  
+    width:38px;  
+    height:38px;  
+    border-radius:50%;  
+    background:rgba(255,255,255,0.2);  
+    display:flex;  
+    align-items:center;  
+    justify-content:center;  
+    cursor:pointer;  
+    transition:0.2s;  
+  ">  
+    <span style="  
+      font-size:18px;  
+      display:flex;  
+      align-items:center;  
+      justify-content:center;  
+      width:100%;  
+      height:100%;  
+    ">👤</span>  
+  </div>  </header>  <!-- DROPDOWN -->  <div id="menuBox" style="  
+  display:none;  
+  position:fixed;  
+  top:70px;  
+  right:15px;  
+  background:#111827;  
+  padding:10px;  
+  border-radius:10px;  
+  z-index:999;  
+  min-width:140px;  
+">  <button onclick="changePassword()" class="btn link-btn">Ganti Password</button>
+<button onclick="logout()" class="btn link-btn">Logout</button>
+
+</div>  <!-- CONTENT -->  <div style="text-align:center;margin-top:120px;">  
+  Login Berhasil 🔥  
+</div>    <div id="toast" style="  
+  position:fixed;  
+  top:20px;  
+  left:50%;  
+  transform:translateX(-50%);  
+  background:#111827;  
+  color:white;  
+  padding:10px 15px;  
+  border-radius:10px;  
+  font-size:14px;  
+  display:none;  
+  z-index:9999;  
+  box-shadow:0 0 15px rgba(0,0,0,0.4);  
+">  
+  
+  <!-- FIREBASE -->  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>  <script>  
+  
+const firebaseConfig = {  
+  apiKey: "AIzaSyAXPtaQS38yacP1e1O5aeizcDaZN8RZxnI",  
+  authDomain: "rexmarket-3c106.firebaseapp.com",  
+  projectId: "rexmarket-3c106",  
+  storageBucket: "rexmarket-3c106.firebasestorage.app",  
+  messagingSenderId: "834700434615",  
+  appId: "1:834700434615:web:af36ceeca7fc8dec010132",  
+  measurementId: "G-G8WJK3MK7S"  
+};  
+  
+firebase.initializeApp(firebaseConfig);  
+  
+/* GOOGLE LOGIN */  
+/* GOOGLE LOGIN */  
+function loginGoogle() {  
+  
+  const provider = new firebase.auth.GoogleAuthProvider();  
+  
+  firebase.auth().signInWithPopup(provider)  
+    .then((result) => {  
+  
+      const username = result.user.displayName || "User";  
+  
+      // simpan data user aktif (profil lengkap)  
+      localStorage.setItem("activeUser", JSON.stringify({  
+        name: result.user.displayName,  
+        email: result.user.email,  
+        photo: result.user.photoURL  
+      }));  
+  
+      // session login (dipakai fitur logout / menu)  
+      localStorage.setItem("lastLoginUser", JSON.stringify({  
+        username: username,  
+        type: "google"  
+      }));  
+  
+      // tampilkan username di UI  
+      const display = document.getElementById("displayUser");  
+      if (display) display.innerText = username;  
+  
+      // pindah halaman  
+      document.getElementById("loginPage").style.display = "none";  
+      document.getElementById("homePage").style.display = "block";  
+  
+      showToast("Login Google berhasil!");  
+  
+    })  
+    .catch(err => {  
+      showToast(err.message);  
+    });  
+  }  
+  
+  
+/* TOGGLE PASSWORD */  
+function togglePassword() {  
+  const pw = document.getElementById("password");  
+  pw.type = pw.type === "password" ? "text" : "password";  
+}  
+  
+function toggleRegisterPassword() {  
+  const pw = document.getElementById("regPassword");  
+  pw.type = pw.type === "password" ? "text" : "password";  
+}  
+  
+  
+/* PAGE SWITCH */  
+function showRegister() {  
+  document.getElementById("loginPage").style.display = "none";  
+  document.getElementById("registerPage").style.display = "block";  
+}  
+  
+function backToLogin() {  
+  document.getElementById("registerPage").style.display = "none";  
+  document.getElementById("loginPage").style.display = "block";  
+}  
+  
+  
+/* REGISTER */  
+function registerUser() {  
+  
+  const username = document.getElementById("regUsername").value.trim();  
+  const password = document.getElementById("regPassword").value.trim();  
+  
+  // cek input kosong  
+  if (username === "" || password === "") {  
+    showToast("Isi Username dan Password dulu!");  
+    return;  
+  }  
+  
+  // cek username sudah dipakai atau belum  
+  const existingUser = localStorage.getItem("user_" + username);  
+  
+  if (existingUser) {  
+    showToast("Username sudah dipakai!");  
+    return;  
+  }  
+  
+  // simpan user baru  
+  const userData = {  
+    username: username,  
+    password: password  
+  };  
+  
+  localStorage.setItem("user_" + username, JSON.stringify(userData));  
+  
+  // notif sukses  
+  showToast("Registrasi berhasil!");  
+  
+  // pindah balik ke login  
+  setTimeout(() => {  
+    document.getElementById("registerPage").style.display = "none";  
+    document.getElementById("loginPage").style.display = "block";  
+  
+    // reset input biar bersih  
+    document.getElementById("regUsername").value = "";  
+    document.getElementById("regPassword").value = "";  
+  }, 800);  
+}  
+  
+  
+/* LOGIN */  
+function loginUser() {  
+  
+  const username = document.getElementById("username").value.trim();  
+  const password = document.getElementById("password").value.trim();  
+  
+  const data = localStorage.getItem("user_" + username);  
+  
+  if (!data) {  
+    showToast("Username tidak ditemukan!");  
+    return;  
+  }  
+  
+  const user = JSON.parse(data);  
+  
+  if (user.password !== password) {  
+    showToast("Password salah!");  
+    return;  
+  }  
+  
+  // simpan session login  
+  localStorage.setItem("lastLoginUser", JSON.stringify({  
+    username: username  
+  }));  
+  
+  // tampilkan username di header  
+  const display = document.getElementById("displayUser");  
+  if (display) display.innerText = username;  
+  
+  // pindah halaman  
+  document.getElementById("loginPage").style.display = "none";  
+  document.getElementById("homePage").style.display = "block";  
+  
+  showToast("Login berhasil!");  
+}  
+  
+  
+/* FORGOT PASSWORD */  
+function forgotPassword() {  
+  
+  const username = prompt("Masukkan username kamu:");  
+  
+  if (!username) {  
+    showToast("Username tidak boleh kosong!");  
+    return;  
+  }  
+  
+  const data = localStorage.getItem("user_" + username);  
+  
+  if (!data) {  
+    showToast("Username tidak ditemukan!");  
+    return;  
+  }  
+  
+  const confirmReset = confirm("Yakin mau reset password?");  
+  if (!confirmReset) return;  
+  
+  const newPassword = prompt("Masukkan password baru:");  
+  
+  if (!newPassword || newPassword.trim() === "") {  
+    showToast("Password tidak boleh kosong!");  
+    return;  
+  }  
+  
+  // ambil user lama  
+  const user = JSON.parse(data);  
+  
+  // update password  
+  user.password = newPassword.trim();  
+  
+  // simpan ulang ke localStorage  
+  localStorage.setItem("user_" + username, JSON.stringify(user));  
+  
+  showToast("Password berhasil direset!");  
+}  
     
-
-    <div class="small">
-      Rexmarket Secure Login
-    </div>
-
-  </div>
-</div>
-
-<!-- REGISTER PAGE -->
-<div id="registerPage">
-
-  <div class="login-box">
-
-    <h2>REGISTER</h2>
-
-    <input id="regUsername" type="text" placeholder="Username">
-
-    <div class="password-box">
-      <input id="regPassword" type="password" placeholder="Password">
-      <span class="eye" onclick="toggleRegisterPassword()">👁️</span>
-    </div>
-    
-
-    <button class="btn login-btn" onclick="registerUser()">
-      Register
-    </button>
-
-
-    <button class="btn link-btn" onclick="backToLogin()">
-      Kembali ke Login
-    </button>
-
   
-
-  </div>
-
-</div>
-
-<!-- HOME PAGE -->
-<div id="homePage" style="display:none;">
-<!-- 🔵 FUTURISTIC HEADER -->
-<header style="
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  height:60px;
-  padding:0 15px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  color:white;
-  background:#1e90ff;
-  box-shadow:0 0 25px rgba(30,144,255,0.7);
-  overflow:hidden;
-  z-index:999;
-">
-
-  <!-- GRID EFFECT -->
-  <div style="
-    position:absolute;
-    inset:0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px);
-    background-size:18px 18px;
-    opacity:0.25;
-    animation:gridMove 6s linear infinite;
-  "></div>
-
-  <!-- GLOW -->
-  <div style="
-    position:absolute;
-    inset:0;
-    background:radial-gradient(circle, rgba(255,255,255,0.25), transparent 70%);
-    animation:pulse 2s infinite;
-  "></div>
-
-  <!-- LEFT USER -->
-  <div style="position:relative; font-size:14px;">
-    👤 <span id="displayUser"></span>
-  </div>
-
-  <!-- TITLE -->
-  <div style="position:relative; font-weight:bold; letter-spacing:2px;">
-    REXMARKET
-  </div>
-
-  <!-- RIGHT ICON BADGE -->
-  <div onclick="toggleMenu()" style="
-    position:relative;
-    width:38px;
-    height:38px;
-    border-radius:50%;
-    background:rgba(255,255,255,0.2);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    transition:0.2s;
-  ">
-    <span style="
-      font-size:18px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      width:100%;
-      height:100%;
-    ">👤</span>
-  </div>
-
-</header>
-
-<!-- DROPDOWN -->
-<div id="menuBox" style="
-  display:none;
-  position:fixed;
-  top:70px;
-  right:15px;
-  background:#111827;
-  padding:10px;
-  border-radius:10px;
-  z-index:999;
-  min-width:140px;
-">
-
-  <button onclick="changePassword()" class="btn link-btn">Ganti Password</button>
-  <button onclick="logout()" class="btn link-btn">Logout</button>
-
-</div>
-
-<!-- CONTENT -->
-<div style="text-align:center;margin-top:120px;">
-  Login Berhasil 🔥
-</div>
-
-  <div id="toast" style="
-  position:fixed;
-  top:20px;
-  left:50%;
-  transform:translateX(-50%);
-  background:#111827;
-  color:white;
-  padding:10px 15px;
-  border-radius:10px;
-  font-size:14px;
-  display:none;
-  z-index:9999;
-  box-shadow:0 0 15px rgba(0,0,0,0.4);
-">
-  </div>
-
   
-
-<!-- FIREBASE -->
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-
-<script>
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAXPtaQS38yacP1e1O5aeizcDaZN8RZxnI",
-  authDomain: "rexmarket-3c106.firebaseapp.com",
-  projectId: "rexmarket-3c106",
-  storageBucket: "rexmarket-3c106.firebasestorage.app",
-  messagingSenderId: "834700434615",
-  appId: "1:834700434615:web:af36ceeca7fc8dec010132",
-  measurementId: "G-G8WJK3MK7S"
-};
-
-firebase.initializeApp(firebaseConfig);
-
-/* GOOGLE LOGIN */
-/* GOOGLE LOGIN */
-function loginGoogle() {
-
-  const provider = new firebase.auth.GoogleAuthProvider();
-
-  firebase.auth().signInWithPopup(provider)
-    .then((result) => {
-
-      const username = result.user.displayName || "User";
-
-      // simpan data user aktif (profil lengkap)
-      localStorage.setItem("activeUser", JSON.stringify({
-        name: result.user.displayName,
-        email: result.user.email,
-        photo: result.user.photoURL
-      }));
-
-      // session login (dipakai fitur logout / menu)
-      localStorage.setItem("lastLoginUser", JSON.stringify({
-        username: username,
-        type: "google"
-      }));
-
-      // tampilkan username di UI
-      const display = document.getElementById("displayUser");
-      if (display) display.innerText = username;
-
-      // pindah halaman
-      document.getElementById("loginPage").style.display = "none";
-      document.getElementById("homePage").style.display = "block";
-
-      showToast("Login Google berhasil!");
-
-    })
-    .catch(err => {
-      showToast(err.message);
-    });
-  }
-
-
-/* TOGGLE PASSWORD */
-function togglePassword() {
-  const pw = document.getElementById("password");
-  pw.type = pw.type === "password" ? "text" : "password";
-}
-
-function toggleRegisterPassword() {
-  const pw = document.getElementById("regPassword");
-  pw.type = pw.type === "password" ? "text" : "password";
-}
-
-
-/* PAGE SWITCH */
-function showRegister() {
-  document.getElementById("loginPage").style.display = "none";
-  document.getElementById("registerPage").style.display = "block";
-}
-
-function backToLogin() {
-  document.getElementById("registerPage").style.display = "none";
-  document.getElementById("loginPage").style.display = "block";
-}
-
-
-/* REGISTER */
-function registerUser() {
-
-  const username = document.getElementById("regUsername").value.trim();
-  const password = document.getElementById("regPassword").value.trim();
-
-  // cek input kosong
-  if (username === "" || password === "") {
-    showToast("Isi Username dan Password dulu!");
-    return;
-  }
-
-  // cek username sudah dipakai atau belum
-  const existingUser = localStorage.getItem("user_" + username);
-
-  if (existingUser) {
-    showToast("Username sudah dipakai!");
-    return;
-  }
-
-  // simpan user baru
-  const userData = {
-    username: username,
-    password: password
-  };
-
-  localStorage.setItem("user_" + username, JSON.stringify(userData));
-
-  // notif sukses
-  showToast("Registrasi berhasil!");
-
-  // pindah balik ke login
-  setTimeout(() => {
-    document.getElementById("registerPage").style.display = "none";
-    document.getElementById("loginPage").style.display = "block";
-
-    // reset input biar bersih
-    document.getElementById("regUsername").value = "";
-    document.getElementById("regPassword").value = "";
-  }, 800);
-}
-
-
-/* LOGIN */
-function loginUser() {
-
-  const username = document.getElementById("username").value.trim();
-  const password = document.getElementById("password").value.trim();
-
-  const data = localStorage.getItem("user_" + username);
-
-  if (!data) {
-    showToast("Username tidak ditemukan!");
-    return;
-  }
-
-  const user = JSON.parse(data);
-
-  if (user.password !== password) {
-    showToast("Password salah!");
-    return;
-  }
-
-  // simpan session login
-  localStorage.setItem("lastLoginUser", JSON.stringify({
-    username: username
-  }));
-
-  // tampilkan username di header
-  const display = document.getElementById("displayUser");
-  if (display) display.innerText = username;
-
-  // pindah halaman
-  document.getElementById("loginPage").style.display = "none";
-  document.getElementById("homePage").style.display = "block";
-
-  showToast("Login berhasil!");
-}
-
-
-/* FORGOT PASSWORD */
-function forgotPassword() {
-
-  const username = prompt("Masukkan username kamu:");
-
-  if (!username) {
-    showToast("Username tidak boleh kosong!");
-    return;
-  }
-
-  const data = localStorage.getItem("user_" + username);
-
-  if (!data) {
-    showToast("Username tidak ditemukan!");
-    return;
-  }
-
-  const confirmReset = confirm("Yakin mau reset password?");
-  if (!confirmReset) return;
-
-  const newPassword = prompt("Masukkan password baru:");
-
-  if (!newPassword || newPassword.trim() === "") {
-    showToast("Password tidak boleh kosong!");
-    return;
-  }
-
-  // ambil user lama
-  const user = JSON.parse(data);
-
-  // update password
-  user.password = newPassword.trim();
-
-  // simpan ulang ke localStorage
-  localStorage.setItem("user_" + username, JSON.stringify(user));
-
-  showToast("Password berhasil direset!");
-}
+/* CHANGE PASSWORD */  
+function changePassword() {  
   
-
-
-/* CHANGE PASSWORD */
-function changePassword() {
-
-  const currentUser = localStorage.getItem("lastLoginUser");
-
-  if (!currentUser) {
-    showToast("Kamu belum login!");
-    return;
-  }
-
-  const user = JSON.parse(currentUser);
-
-  const data = localStorage.getItem("user_" + user.username);
-
-  if (!data) {
-    showToast("User tidak ditemukan!");
-    return;
-  }
-
-  const realUser = JSON.parse(data);
-
-  // input password lama
-  const oldPass = prompt("Masukkan password lama:");
-
-  if (!oldPass) {
-    showToast("Password lama wajib diisi!");
-    return;
-  }
-
-  if (realUser.password !== oldPass) {
-    showToast("Password lama salah!");
-    return;
-  }
-
-  // input password baru
-  const newPass = prompt("Masukkan password baru:");
-
-  if (!newPass || newPass.trim() === "") {
-    showToast("Password tidak boleh kosong!");
-    return;
-  }
-
-  // update password
-  realUser.password = newPass.trim();
-
-  localStorage.setItem("user_" + user.username, JSON.stringify(realUser));
-
-  showToast("Password berhasil diganti!");
-}
-
-  function toggleMenu() {
-  const menu = document.getElementById("menuBox");
-  menu.style.display = menu.style.display === "block" ? "none" : "block";
-}
-
-function logout() {
-  localStorage.removeItem("lastLoginUser");
-  document.getElementById("homePage").style.display = "none";
-  document.getElementById("loginPage").style.display = "block";
-}
-
-  function showToast(message) {
-  const toast = document.getElementById("toast");
-
-  toast.innerText = message;
-  toast.style.display = "block";
-  toast.style.opacity = "1";
-  toast.style.transform = "translateX(-50%) translateY(0px)";
-
-  // reset timer biar gak numpuk
-  clearTimeout(toast._timeout);
-
-  toast._timeout = setTimeout(() => {
-    toast.style.opacity = "0";
-    toast.style.transform = "translateX(-50%) translateY(-10px)";
-
-    setTimeout(() => {
-      toast.style.display = "none";
-    }, 300);
-
-  }, 2000);
-  }
-
-  const usernameInput = document.getElementById("username");
-const suggestBox = document.getElementById("suggestBox");
-
-// tampilkan suggestion saat ngetik
-usernameInput.addEventListener("input", function () {
-  const value = this.value.trim().toLowerCase();
-
-  if (value === "") {
-    suggestBox.style.display = "none";
-    return;
-  }
-
-  let found = [];
-
-  // cari semua user di localStorage
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-
-    if (key.startsWith("user_")) {
-      const username = key.replace("user_", "");
-
-      if (username.toLowerCase().includes(value)) {
-        found.push(username);
-      }
-    }
-  }
-
-  if (found.length === 0) {
-    suggestBox.style.display = "none";
-    return;
-  }
-
-  suggestBox.innerHTML = "";
-
-  found.forEach(name => {
-    const div = document.createElement("div");
-
-    div.innerHTML = "👤 " + name;
-    div.style.padding = "8px";
-    div.style.cursor = "pointer";
-
-    div.onclick = () => {
-      usernameInput.value = name;
-      suggestBox.style.display = "none";
-    };
-
-    suggestBox.appendChild(div);
-  });
-
-  suggestBox.style.display = "block";
-});
-
-// klik di luar → hilang
-document.addEventListener("click", function (e) {
-  if (!suggestBox.contains(e.target) && e.target !== usernameInput) {
-    suggestBox.style.display = "none";
-  }
-});
-
-  window.addEventListener("DOMContentLoaded", () => {
-
-  const usernameInput = document.getElementById("username");
-  const suggestBox = document.getElementById("suggestBox");
-
-  if (!usernameInput || !suggestBox) return;
-
-  usernameInput.addEventListener("input", function () {
-
-    const value = this.value.trim().toLowerCase();
-
-    if (value === "") {
-      suggestBox.style.display = "none";
-      return;
-    }
-
-    let found = [];
-
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-
-      if (key.startsWith("user_")) {
-        const username = key.replace("user_", "");
-
-        if (username.toLowerCase().includes(value)) {
-          found.push(username);
-        }
-      }
-    }
-
-    if (found.length === 0) {
-      suggestBox.style.display = "none";
-      return;
-    }
-
-    suggestBox.innerHTML = "";
-
-    found.forEach(name => {
-      const div = document.createElement("div");
-
-      div.innerHTML = "👤 " + name;
-      div.style.padding = "8px";
-      div.style.cursor = "pointer";
-
-      div.onclick = () => {
-        usernameInput.value = name;
-        suggestBox.style.display = "none";
-      };
-
-      suggestBox.appendChild(div);
-    });
-
-    suggestBox.style.display = "block";
-  });
-
-  document.addEventListener("click", function (e) {
-    if (!suggestBox.contains(e.target) && e.target !== usernameInput) {
-      suggestBox.style.display = "none";
-    }
-  });
-
-});
-
-</script>
-
-</body>
-</html>
+  const currentUser = localStorage.getItem("lastLoginUser");  
+  
+  if (!currentUser) {  
+    showToast("Kamu belum login!");  
+    return;  
+  }  
+  
+  const user = JSON.parse(currentUser);  
+  
+  const data = localStorage.getItem("user_" + user.username);  
+  
+  if (!data) {  
+    showToast("User tidak ditemukan!");  
+    return;  
+  }  
+  
+  const realUser = JSON.parse(data);  
+  
+  // input password lama  
+  const oldPass = prompt("Masukkan password lama:");  
+  
+  if (!oldPass) {  
+    showToast("Password lama wajib diisi!");  
+    return;  
+  }  
+  
+  if (realUser.password !== oldPass) {  
+    showToast("Password lama salah!");  
+    return;  
+  }  
+  
+  // input password baru  
+  const newPass = prompt("Masukkan password baru:");  
+  
+  if (!newPass || newPass.trim() === "") {  
+    showToast("Password tidak boleh kosong!");  
+    return;  
+  }  
+  
+  // update password  
+  realUser.password = newPass.trim();  
+  
+  localStorage.setItem("user_" + user.username, JSON.stringify(realUser));  
+  
+  showToast("Password berhasil diganti!");  
+}  
+  
+  function toggleMenu() {  
+  const menu = document.getElementById("menuBox");  
+  menu.style.display = menu.style.display === "block" ? "none" : "block";  
+}  
+  
+function logout() {  
+  localStorage.removeItem("lastLoginUser");  
+  document.getElementById("homePage").style.display = "none";  
+  document.getElementById("loginPage").style.display = "block";  
+}  
+  
+  function showToast(message) {  
+  const toast = document.getElementById("toast");  
+  
+  toast.innerText = message;  
+  toast.style.display = "block";  
+  toast.style.opacity = "1";  
+  toast.style.transform = "translateX(-50%) translateY(0px)";  
+  
+  // reset timer biar gak numpuk  
+  clearTimeout(toast._timeout);  
+  
+  toast._timeout = setTimeout(() => {  
+    toast.style.opacity = "0";  
+    toast.style.transform = "translateX(-50%) translateY(-10px)";  
+  
+    setTimeout(() => {  
+      toast.style.display = "none";  
+    }, 300);  
+  
+  }, 2000);  
+  }  
+  
+  
+</script>  </body>  
+</html>  
