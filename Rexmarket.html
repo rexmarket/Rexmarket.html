@@ -431,13 +431,11 @@ function registerUser() {
   const username = document.getElementById("regUsername").value.trim();
   const password = document.getElementById("regPassword").value.trim();
 
-  // ❌ cek kosong
   if (username === "" || password === "") {
     showToast("Isi Username dan Password dulu!");
     return;
   }
 
-  // ❌ cek username sudah dipakai
   const existingUser = localStorage.getItem("user_" + username);
 
   if (existingUser) {
@@ -445,7 +443,6 @@ function registerUser() {
     return;
   }
 
-  // 💾 simpan user (PLAIN / sederhana dulu biar aman dari bug)
   const userData = {
     username: username,
     password: password
@@ -455,13 +452,8 @@ function registerUser() {
 
   showToast("Registrasi berhasil!");
 
-  // pindah halaman
   document.getElementById("registerPage").style.display = "none";
   document.getElementById("loginPage").style.display = "block";
-
-  // reset input
-  document.getElementById("regUsername").value = "";
-  document.getElementById("regPassword").value = "";
     }
   
   
@@ -472,7 +464,6 @@ function loginUser() {
   const username = document.getElementById("username").value.trim();
   const password = document.getElementById("password").value.trim();
 
-  // ❌ validasi kosong
   if (username === "" || password === "") {
     showToast("Isi username dan password!");
     return;
@@ -480,7 +471,6 @@ function loginUser() {
 
   const data = localStorage.getItem("user_" + username);
 
-  // ❌ USERNAME TIDAK ADA
   if (!data) {
     showToast("Username tidak ditemukan!");
     return;
@@ -488,20 +478,17 @@ function loginUser() {
 
   const user = JSON.parse(data);
 
-  // ❌ PASSWORD SALAH
   if (user.password !== password) {
     showToast("Password salah!");
     return;
   }
 
-  // 🔓 LOGIN BERHASIL
   localStorage.setItem("lastLoginUser", JSON.stringify({
     username: username,
     type: "manual"
   }));
 
-  const display = document.getElementById("displayUser");
-  if (display) display.innerText = username;
+  document.getElementById("displayUser").innerText = username;
 
   document.getElementById("loginPage").style.display = "none";
   document.getElementById("homePage").style.display = "block";
