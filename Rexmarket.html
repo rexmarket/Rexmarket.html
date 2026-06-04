@@ -368,12 +368,6 @@ firebase.initializeApp(firebaseConfig);
 
     let registerCooldown = false;
     
-function isStrongPassword(password) {
-  const hasUpper = /[A-Z]/.test(password);
-  const hasNumber = /[0-9]/.test(password);
-  return password.length >= 8 && hasUpper && hasNumber;
-      }
-    
 
     function hashPassword(str) {
   let hash = 0;
@@ -467,7 +461,6 @@ function backToLogin() {
 /* REGISTER */  
 function registerUser() {
 
-  // cooldown register (anti spam)
   if (!canRegister()) {
     showToast("Tunggu 5 detik sebelum register lagi!");
     return;
@@ -476,25 +469,21 @@ function registerUser() {
   const username = document.getElementById("regUsername").value.trim();
   const password = document.getElementById("regPassword").value.trim();
 
-  // ❌ cek kosong dulu
   if (username === "" || password === "") {
     showToast("Isi Username dan Password dulu!");
     return;
   }
 
-  // 🔥 VALIDASI USERNAME
   if (username.includes(" ") || username.length < 3) {
     showToast("Username tidak valid!");
     return;
   }
 
-  // 🔥 VALIDASI PASSWORD KUAT
   if (!isStrongPassword(password)) {
     showToast("Password lemah! Minimal 8 karakter + huruf besar + angka");
     return;
   }
 
-  // ❌ cek username sudah dipakai
   const existingUser = localStorage.getItem("user_" + username);
 
   if (existingUser) {
@@ -502,54 +491,13 @@ function registerUser() {
     return;
   }
 
-function registerUser() {
-
-  // cooldown register (anti spam)
-  if (!canRegister()) {
-    showToast("Tunggu 5 detik sebelum register lagi!");
-    return;
-  }
-
-  const username = document.getElementById("regUsername").value.trim();
-  const password = document.getElementById("regPassword").value.trim();
-
-  // ❌ cek kosong dulu
-  if (username === "" || password === "") {
-    showToast("Isi Username dan Password dulu!");
-    return;
-  }
-
-  // 🔥 VALIDASI USERNAME
-  if (username.includes(" ") || username.length < 3) {
-    showToast("Username tidak valid!");
-    return;
-  }
-
-  // 🔥 VALIDASI PASSWORD KUAT
-  if (!isStrongPassword(password)) {
-    showToast("Password lemah! Minimal 8 karakter + huruf besar + angka");
-    return;
-  }
-
-  // ❌ cek username sudah dipakai
-  const existingUser = localStorage.getItem("user_" + username);
-
-  if (existingUser) {
-    showToast("Username sudah dipakai!");
-    return;
-  }
-
-  // 🔐 HASH PASSWORD
   const hashedPassword = hashPassword(password);
-
-  // 🔐 SIGNATURE (ANTI EDIT LOCALSTORAGE)
   const sig = hashPassword(username + hashedPassword);
 
-  // 💾 simpan user baru
   const userData = {
-    username: username,
+    username,
     password: hashedPassword,
-    sig: sig,
+    sig,
     createdAt: Date.now()
   };
 
@@ -557,7 +505,6 @@ function registerUser() {
 
   showToast("Registrasi berhasil!");
 
-  // reset UI
   setTimeout(() => {
     document.getElementById("registerPage").style.display = "none";
     document.getElementById("loginPage").style.display = "block";
