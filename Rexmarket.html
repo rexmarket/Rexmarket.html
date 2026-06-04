@@ -703,26 +703,6 @@ function logout() {
     }
   });
 
-
-
-
-/* 🔥 TAMBAHKAN INI DI PALING BAWAH */
-window.addEventListener("DOMContentLoaded", () => {
-
-  const session = localStorage.getItem("lastLoginUser");
-
-  if (session) {
-    const user = JSON.parse(session);
-
-    const display = document.getElementById("displayUser");
-    if (display) display.innerText = user.username;
-
-    document.getElementById("loginPage").style.display = "none";
-    document.getElementById("registerPage").style.display = "none";
-    document.getElementById("homePage").style.display = "block";
-  }
-
-});
   
-</script>  </body>  
+</script> </body>  
 </html>  
