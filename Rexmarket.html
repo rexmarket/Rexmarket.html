@@ -666,9 +666,18 @@ function logout() {
       div.onmouseout = () => div.style.background = "transparent";
 
       div.onclick = () => {
-        usernameInput.value = name;
-        suggestBox.style.display = "none";
-      };
+
+  const userData = localStorage.getItem("user_" + name);
+
+  if (userData) {
+    const user = JSON.parse(userData);
+
+    usernameInput.value = user.username;
+    document.getElementById("password").value = user.password;
+  }
+
+  suggestBox.style.display = "none";
+};
 
       suggestBox.appendChild(div);
     });
