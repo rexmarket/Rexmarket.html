@@ -367,7 +367,13 @@ firebase.initializeApp(firebaseConfig);
     let lock = false;
 
     let registerCooldown = false;
-
+    
+function isStrongPassword(password) {
+  const hasUpper = /[A-Z]/.test(password);
+  const hasNumber = /[0-9]/.test(password);
+  return password.length >= 8 && hasUpper && hasNumber;
+      }
+    
 
     function hashPassword(str) {
   let hash = 0;
