@@ -359,6 +359,40 @@ const firebaseConfig = {
 };  
   
 firebase.initializeApp(firebaseConfig);  
+
+    let attempts = 0;
+    let lockTime = 0;
+
+    let attempts = 0;
+    let lock = false;
+
+    let registerCooldown = false;
+
+
+    function hashPassword(str) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = (hash << 5) - hash + str.charCodeAt(i);
+    hash |= 0;
+  }
+  return hash;
+    }
+
+    function canRegister() {
+  if (registerCooldown) return false;
+
+  registerCooldown = true;
+  setTimeout(() => {
+    registerCooldown = false;
+  }, 5000);
+
+  return true;
+    }
+
+    function makeSession(username, type) {
+  const token = btoa(username + ":" + type + ":" + Date.now());
+  return { username, type, token };
+    }
   
 /* GOOGLE LOGIN */  
 /* GOOGLE LOGIN */  
@@ -379,10 +413,9 @@ function loginGoogle() {
       }));  
   
       // session login (dipakai fitur logout / menu)  
-      localStorage.setItem("lastLoginUser", JSON.stringify({  
-        username: username,  
-        type: "google"  
-      }));  
+      localStorage.setItem("lastLoginUser", JSON.stringify(
+  makeSession(username, "google")
+));
   
       // tampilkan username di UI  
       const display = document.getElementById("displayUser");  
@@ -426,83 +459,185 @@ function backToLogin() {
   
   
 /* REGISTER */  
-function registerUser() {  
+function registerUser() {
+
+  // cooldown register (anti spam)
+  if (!canRegister()) {
+    showToast("Tunggu 5 detik sebelum register lagi!");
+    return;
+  }
+
+  const username = document.getElementById("regUsername").value.trim();
+  const password = document.getElementById("regPassword").value.trim();
+
+  // ❌ cek kosong dulu
+  if (username === "" || password === "") {
+    showToast("Isi Username dan Password dulu!");
+    return;
+  }
+
+  // 🔥 VALIDASI USERNAME
+  if (username.includes(" ") || username.length < 3) {
+    showToast("Username tidak valid!");
+    return;
+  }
+
+  // 🔥 VALIDASI PASSWORD KUAT
+  if (!isStrongPassword(password)) {
+    showToast("Password lemah! Minimal 8 karakter + huruf besar + angka");
+    return;
+  }
+
+  // ❌ cek username sudah dipakai
+  const existingUser = localStorage.getItem("user_" + username);
+
+  if (existingUser) {
+    showToast("Username sudah dipakai!");
+    return;
+  }
+
+function registerUser() {
+
+  // cooldown register (anti spam)
+  if (!canRegister()) {
+    showToast("Tunggu 5 detik sebelum register lagi!");
+    return;
+  }
+
+  const username = document.getElementById("regUsername").value.trim();
+  const password = document.getElementById("regPassword").value.trim();
+
+  // ❌ cek kosong dulu
+  if (username === "" || password === "") {
+    showToast("Isi Username dan Password dulu!");
+    return;
+  }
+
+  // 🔥 VALIDASI USERNAME
+  if (username.includes(" ") || username.length < 3) {
+    showToast("Username tidak valid!");
+    return;
+  }
+
+  // 🔥 VALIDASI PASSWORD KUAT
+  if (!isStrongPassword(password)) {
+    showToast("Password lemah! Minimal 8 karakter + huruf besar + angka");
+    return;
+  }
+
+  // ❌ cek username sudah dipakai
+  const existingUser = localStorage.getItem("user_" + username);
+
+  if (existingUser) {
+    showToast("Username sudah dipakai!");
+    return;
+  }
+
+  // 🔐 HASH PASSWORD
+  const hashedPassword = hashPassword(password);
+
+  // 🔐 SIGNATURE (ANTI EDIT LOCALSTORAGE)
+  const sig = hashPassword(username + hashedPassword);
+
+  // 💾 simpan user baru
+  const userData = {
+    username: username,
+    password: hashedPassword,
+    sig: sig,
+    createdAt: Date.now()
+  };
+
+  localStorage.setItem("user_" + username, JSON.stringify(userData));
+
+  showToast("Registrasi berhasil!");
+
+  // reset UI
+  setTimeout(() => {
+    document.getElementById("registerPage").style.display = "none";
+    document.getElementById("loginPage").style.display = "block";
+
+    document.getElementById("regUsername").value = "";
+    document.getElementById("regPassword").value = "";
+  }, 800);
+    }
   
-  const username = document.getElementById("regUsername").value.trim();  
-  const password = document.getElementById("regPassword").value.trim();  
   
-  // cek input kosong  
-  if (username === "" || password === "") {  
-    showToast("Isi Username dan Password dulu!");  
-    return;  
-  }  
-  
-  // cek username sudah dipakai atau belum  
-  const existingUser = localStorage.getItem("user_" + username);  
-  
-  if (existingUser) {  
-    showToast("Username sudah dipakai!");  
-    return;  
-  }  
-  
-  // simpan user baru  
-  const userData = {  
-    username: username,  
-    password: password  
-  };  
-  
-  localStorage.setItem("user_" + username, JSON.stringify(userData));  
-  
-  // notif sukses  
-  showToast("Registrasi berhasil!");  
-  
-  // pindah balik ke login  
-  setTimeout(() => {  
-    document.getElementById("registerPage").style.display = "none";  
-    document.getElementById("loginPage").style.display = "block";  
-  
-    // reset input biar bersih  
-    document.getElementById("regUsername").value = "";  
-    document.getElementById("regPassword").value = "";  
-  }, 800);  
-}  
-  
-  
+    
 /* LOGIN */  
-function loginUser() {  
-  
-  const username = document.getElementById("username").value.trim();  
-  const password = document.getElementById("password").value.trim();  
-  
-  const data = localStorage.getItem("user_" + username);  
-  
-  if (!data) {  
-    showToast("Username tidak ditemukan!");  
-    return;  
-  }  
-  
-  const user = JSON.parse(data);  
-  
-  if (user.password !== password) {  
-    showToast("Password salah!");  
-    return;  
-  }  
-  
-  // simpan session login  
-  localStorage.setItem("lastLoginUser", JSON.stringify({  
-    username: username  
-  }));  
-  
-  // tampilkan username di header  
-  const display = document.getElementById("displayUser");  
-  if (display) display.innerText = username;  
-  
-  // pindah halaman  
-  document.getElementById("loginPage").style.display = "none";  
-  document.getElementById("homePage").style.display = "block";  
-  
-  showToast("Login berhasil!");  
-}  
+function loginUser() {
+
+  const now = Date.now();
+
+
+  // 🔒 CEK LOCK TIME
+  if (lockTime > now) {
+    const sisa = Math.ceil((lockTime - now) / 1000);
+    showToast(`Tunggu ${sisa} detik sebelum coba lagi`);
+    return;
+  }
+
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value.trim();
+
+  // ❌ validasi kosong
+  if (username === "" || password === "") {
+    showToast("Isi username dan password!");
+    return;
+  }
+
+  const data = localStorage.getItem("user_" + username);
+
+  // ❌ USERNAME TIDAK ADA
+  if (!data) {
+    attempts++;
+    showToast("Username tidak ditemukan!");
+    checkLock();
+    return;
+  }
+
+  const user = JSON.parse(data);
+
+    // 🔐 CEK ANTI EDIT LOCALSTORAGE
+if (user.sig !== hashPassword(user.username + user.password)) {
+  showToast("Data dimodifikasi!");
+  return;
+    }
+
+  // ❌ PASSWORD SALAH
+  if (user.password !== password) {
+    attempts++;
+    showToast("Password salah!");
+    checkLock();
+    return;
+  }
+
+  // 🔓 LOGIN BERHASIL → RESET SECURITY
+  attempts = 0;
+  lockTime = 0;
+
+  localStorage.setItem("lastLoginUser", JSON.stringify({
+    username: username,
+    type: "manual"
+  }));
+
+  const display = document.getElementById("displayUser");
+  if (display) display.innerText = username;
+
+  document.getElementById("loginPage").style.display = "none";
+  document.getElementById("homePage").style.display = "block";
+
+  showToast("Login berhasil!");
+    }
+
+
+// fungsi anti brute force
+function checkLock() {
+  if (attempts >= 5) {
+    lockTime = Date.now() + 15000; // 15 detik lock
+    attempts = 0;
+    showToast("Terlalu banyak percobaan! Tunggu 15 detik");
+  }
+    }
   
   
 /* FORGOT PASSWORD */  
@@ -601,11 +736,16 @@ function changePassword() {
   menu.style.display = menu.style.display === "block" ? "none" : "block";  
 }  
   
-function logout() {  
-  localStorage.removeItem("lastLoginUser");  
-  document.getElementById("homePage").style.display = "none";  
-  document.getElementById("loginPage").style.display = "block";  
-}  
+function logout() {
+  localStorage.removeItem("lastLoginUser");
+  sessionStorage.clear();
+
+  attempts = 0;
+  lockTime = 0;
+
+  document.getElementById("homePage").style.display = "none";
+  document.getElementById("loginPage").style.display = "block";
+    }
   
   function showToast(message) {  
   const toast = document.getElementById("toast");  
@@ -628,6 +768,13 @@ function logout() {
   
   }, 2000);  
   }  
+
+    function isStrongPassword(pw) {
+  return pw.length >= 8 &&
+    /[A-Z]/.test(pw) &&
+    /[a-z]/.test(pw) &&
+    /[0-9]/.test(pw);
+    }
 
     window.addEventListener("DOMContentLoaded", () => {
 
@@ -704,6 +851,40 @@ function logout() {
   });
 
 });
+
+    window.addEventListener("DOMContentLoaded", () => {
+
+  const session = localStorage.getItem("lastLoginUser");
+
+  if (!session) return;
+
+  let user;
+
+  try {
+    user = JSON.parse(session);
+
+    if (!user.username) {
+      localStorage.removeItem("lastLoginUser");
+      return;
+    }
+
+  } catch {
+    localStorage.removeItem("lastLoginUser");
+    return;
+  }
+
+  // hanya auto login untuk Google
+  if (user.type === "google") {
+
+    const display = document.getElementById("displayUser");
+    if (display) display.innerText = user.username;
+
+    document.getElementById("loginPage").style.display = "none";
+    document.getElementById("registerPage").style.display = "none";
+    document.getElementById("homePage").style.display = "block";
+  }
+});
+
   
 </script>
 </body>  
