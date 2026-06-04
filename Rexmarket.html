@@ -175,7 +175,10 @@ input {
   transition: 0.3s ease;  
     }  
   
-</style>  </head>  <body>  <!-- LOGIN PAGE --> 
+</style>  </head>  <body>  
+  
+  <!-- LOGIN PAGE --> 
+  
   <div id="loginPage">   
     <div class="login-box">  
       <h2>LOGIN</h2>  
@@ -230,7 +233,11 @@ Lupa Password?
 </div>
 
   </div>  
-</div>  <!-- REGISTER PAGE -->  <div id="registerPage">    <div class="login-box">  <h2>REGISTER</h2>  
+</div>
+  <!-- REGISTER PAGE --> 
+  <div id="registerPage">  
+    <div class="login-box">  
+      <h2>REGISTER</h2>  
 
 <input id="regUsername" type="text" placeholder="Username">  
 
@@ -249,7 +256,11 @@ Lupa Password?
   Kembali ke Login  
 </button>
 
-  </div>  </div>  <!-- HOME PAGE -->  <div id="homePage" style="display:none;">  
+  </div>  </div> 
+  <!-- HOME PAGE -->  
+  
+  <div id="homePage" style="display:none; min-height:100vh; background:#0f2f5f;">
+    
 <!-- 🔵 FUTURISTIC HEADER -->  
 <header style="  
   position:fixed;  
@@ -691,8 +702,26 @@ function logout() {
     }
   });
 
+
+
+
+/* 🔥 TAMBAHKAN INI DI PALING BAWAH */
+window.addEventListener("DOMContentLoaded", () => {
+
+  const session = localStorage.getItem("lastLoginUser");
+
+  if (session) {
+    const user = JSON.parse(session);
+
+    const display = document.getElementById("displayUser");
+    if (display) display.innerText = user.username;
+
+    document.getElementById("loginPage").style.display = "none";
+    document.getElementById("registerPage").style.display = "none";
+    document.getElementById("homePage").style.display = "block";
+  }
+
 });
-  
   
 </script>  </body>  
 </html>  
