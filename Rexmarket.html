@@ -192,8 +192,26 @@ input {
 
     <h2>LOGIN</h2>
 
-    <input id="username" type="text" placeholder="Username">
+    <div style="position:relative;">
+  <input id="username" type="text" placeholder="Username" autocomplete="off">
 
+  <div id="suggestBox" style="
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    background:#111827;
+    color:white;
+    border-radius:8px;
+    margin-top:4px;
+    display:none;
+    max-height:120px;
+    overflow:auto;
+    font-size:14px;
+    z-index:9999;
+  "></div>
+    </div>
+    
     <div class="password-box">
       <input id="password" type="password" placeholder="Password">
       <span class="eye" onclick="togglePassword()">👁️</span>
@@ -367,16 +385,7 @@ input {
 ">
   </div>
 
-  <div id="suggestBox" style="
-  background:#111827;
-  color:white;
-  border-radius:8px;
-  margin-top:-8px;
-  display:none;
-  max-height:120px;
-  overflow:auto;
-  font-size:14px;
-"></div>
+  
 
 <!-- FIREBASE -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
@@ -722,6 +731,69 @@ document.addEventListener("click", function (e) {
   if (!suggestBox.contains(e.target) && e.target !== usernameInput) {
     suggestBox.style.display = "none";
   }
+});
+
+  window.addEventListener("DOMContentLoaded", () => {
+
+  const usernameInput = document.getElementById("username");
+  const suggestBox = document.getElementById("suggestBox");
+
+  if (!usernameInput || !suggestBox) return;
+
+  usernameInput.addEventListener("input", function () {
+
+    const value = this.value.trim().toLowerCase();
+
+    if (value === "") {
+      suggestBox.style.display = "none";
+      return;
+    }
+
+    let found = [];
+
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+
+      if (key.startsWith("user_")) {
+        const username = key.replace("user_", "");
+
+        if (username.toLowerCase().includes(value)) {
+          found.push(username);
+        }
+      }
+    }
+
+    if (found.length === 0) {
+      suggestBox.style.display = "none";
+      return;
+    }
+
+    suggestBox.innerHTML = "";
+
+    found.forEach(name => {
+      const div = document.createElement("div");
+
+      div.innerHTML = "👤 " + name;
+      div.style.padding = "8px";
+      div.style.cursor = "pointer";
+
+      div.onclick = () => {
+        usernameInput.value = name;
+        suggestBox.style.display = "none";
+      };
+
+      suggestBox.appendChild(div);
+    });
+
+    suggestBox.style.display = "block";
+  });
+
+  document.addEventListener("click", function (e) {
+    if (!suggestBox.contains(e.target) && e.target !== usernameInput) {
+      suggestBox.style.display = "none";
+    }
+  });
+
 });
 
 </script>
