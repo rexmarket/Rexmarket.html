@@ -262,101 +262,89 @@ Lupa Password?
   
   <!-- HOME PAGE -->  
    <div id="homePage" style="display:none;">
-    
-<!-- 🔵 FUTURISTIC HEADER -->  
-<header style="  
-  position:fixed;  
-  top:0;  
-  left:0;  
-  right:0;  
-  height:60px;  
-  padding:0 15px;  
-  display:flex;  
-  align-items:center;  
-  justify-content:space-between;  
-  color:white;  
-  background:#1e90ff;  
-  box-shadow:0 0 25px rgba(30,144,255,0.7);  
-  overflow:hidden;  
-  z-index:999;  
-  
-">  
-  
-  <!-- GRID EFFECT -->   
-  <div style="  
-    position:absolute;  
-    inset:0;  
-    background-image:  
-      linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px),  
-      linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px);  
-    background-size:18px 18px;  
-    opacity:0.25;  
-    animation:gridMove 6s linear infinite;  
-  "></div>  
 
-  
-  <!-- GLOW --> 
-  <div style="  
-    position:absolute;  
-    inset:0;  
-    background:radial-gradient(circle, rgba(255,255,255,0.25), transparent 70%);  
-    animation:pulse 2s infinite;  
-  "></div>   
+<header style="
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:60px;
+  padding:0 15px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  color:white;
+  background:#1e90ff;
+  box-shadow:0 0 25px rgba(30,144,255,0.7);
+  overflow:hidden;
+  z-index:999;
+  backdrop-filter: blur(6px);
+">
 
-  
-  <!-- LEFT USER -->  
-  <div style="position:relative; font-size:14px;">  
-    👤 <span id="displayUser"></span>  
-  </div>   
+  <!-- GRID -->
+  <div style="
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px);
+    background-size:18px 18px;
+    opacity:0.25;
+    animation:gridMove 6s linear infinite;
+  "></div>
 
-  
-  <!-- TITLE -->   
-  <div style="position:relative; font-weight:bold; letter-spacing:2px;">  
-    REXMARKET  
-  </div>  
+  <!-- GLOW -->
+  <div style="
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle, rgba(255,255,255,0.25), transparent 70%);
+    animation:pulse 2s infinite;
+  "></div>
 
-  
-  <!-- RIGHT ICON BADGE -->  
-  <div onclick="toggleMenu()" style="  
-    position:relative;  
-    width:38px;  
-    height:38px;  
-    border-radius:50%;  
-    background:rgba(255,255,255,0.2);  
-    display:flex;  
-    align-items:center;  
-    justify-content:center;  
-    cursor:pointer;  
-    transition:0.2s;  
-  ">  
-    <span style="  
-      font-size:18px;  
-      display:flex;  
-      align-items:center;  
-      justify-content:center;  
-      width:100%;  
-      height:100%;  
-    ">👤</span>  
-  </div>  
-</header>  
-     
-     <!-- DROPDOWN --> 
-     
-     <div id="menuBox" style="  
-  display:none;  
-  position:fixed;  
-  top:70px;  
-  right:15px;  
-  background:#111827;  
-  padding:10px;  
-  border-radius:10px;  
-  z-index:999;  
-  min-width:140px;  
-">  <button onclick="changePassword()" class="btn link-btn">Ganti Password</button>
-<button onclick="logout()" class="btn link-btn">Logout</button>
+  <!-- LEFT USER -->
+  <div style="position:relative; font-size:14px;">
+    👤 <span id="displayUser"></span>
+  </div>
 
-</div> 
+  <!-- TITLE -->
+  <div style="position:relative; font-weight:bold; letter-spacing:2px;">
+    REXMARKET
+  </div>
 
+  <!-- ICON -->
+  <div onclick="toggleMenu()" style="
+    position:relative;
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+  ">
+    👤
+  </div>
+
+</header>
+
+<!-- MENU -->
+<div id="menuBox" style="
+  display:none;
+  position:fixed;
+  top:70px;
+  right:15px;
+  background:#111827;
+  padding:10px;
+  border-radius:10px;
+  z-index:999;
+  min-width:140px;
+">
+  <button onclick="changePassword()" class="btn link-btn">Ganti Password</button>
+  <button onclick="logout()" class="btn link-btn">Logout</button>
+</div>
+
+   </div>
 
 <div id="adminPage" style="display:none;">
 
@@ -373,12 +361,38 @@ Lupa Password?
   color:white;
   background:#1e90ff;
   box-shadow:0 0 25px rgba(30,144,255,0.7);
+  overflow:hidden;
   z-index:999;
 ">
 
-  <div>👤 ADMIN</div>
+  <!-- GRID (biar sama kayak home) -->
+  <div style="
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px);
+    background-size:18px 18px;
+    opacity:0.25;
+    animation:gridMove 6s linear infinite;
+  "></div>
 
+  <!-- GLOW -->
+  <div style="
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle, rgba(255,255,255,0.25), transparent 70%);
+    animation:pulse 2s infinite;
+  "></div>
+
+  <!-- LEFT -->
+  <div style="position:relative;">
+    👤 ADMIN
+  </div>
+
+  <!-- RIGHT -->
   <div onclick="logout()" style="
+    position:relative;
     width:38px;
     height:38px;
     border-radius:50%;
@@ -393,12 +407,13 @@ Lupa Password?
 
 </header>
 
+<!-- CONTENT -->
 <div style="padding-top:90px; text-align:center;">
   <h2>ADMIN PANEL</h2>
 </div>
 
 </div>
-     
+
      <!-- CONTENT -->  
      <div id="toast" style="
   position:fixed;
