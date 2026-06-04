@@ -361,12 +361,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);  
 
     let attempts = 0;
-    let lockTime = 0;
-
-    let attempts = 0;
-    let lock = false;
-
-    let registerCooldown = false;
+let lockTime = 0;
+let registerCooldown = false;
     
 
     function hashPassword(str) {
