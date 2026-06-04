@@ -337,6 +337,22 @@ input {
   Login Berhasil 🔥
 </div>
 
+  <div id="toast" style="
+  position:fixed;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#111827;
+  color:white;
+  padding:10px 15px;
+  border-radius:10px;
+  font-size:14px;
+  display:none;
+  z-index:9999;
+  box-shadow:0 0 15px rgba(0,0,0,0.4);
+">
+  </div>
+
 <!-- FIREBASE -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
@@ -421,7 +437,7 @@ function registerUser() {
   const password = document.getElementById("regPassword").value;
 
   if (!username || !password) {
-    alert("Isi Username dan Password dulu!");
+    showToast("Isi Username dan Password dulu!");
     return;
   }
 
@@ -430,7 +446,7 @@ function registerUser() {
     password
   }));
 
-  alert("Registrasi berhasil!");
+  showToast("Registrasi berhasil!");
   backToLogin();
 }
 
@@ -444,15 +460,16 @@ function loginUser() {
   const data = localStorage.getItem("user_" + username);
 
   if (!data) {
-    alert("Username tidak ditemukan!");
+    showToast("Username tidak ditemukan!");
     return;
   }
 
   const user = JSON.parse(data);
 
   if (user.password !== password) {
-    alert("Password salah!");
-    return;
+  showToast("Password salah!");
+  return;
+  }
   }
 
   // simpan session login (dipakai fitur ganti password & logout)
@@ -477,7 +494,7 @@ function forgotPassword() {
   const data = localStorage.getItem("user_" + username);
 
   if (!data) {
-    alert("Username tidak ditemukan!");
+    showToast("Username tidak ditemukan!");
     return;
   }
 
@@ -487,7 +504,7 @@ function forgotPassword() {
   const newPassword = prompt("Masukkan password baru:");
 
   if (!newPassword) {
-    alert("Password tidak boleh kosong!");
+    showToast("Password tidak boleh kosong!");
     return;
   }
 
@@ -496,7 +513,7 @@ function forgotPassword() {
 
   localStorage.setItem("user_" + username, JSON.stringify(user));
 
-  alert("Password berhasil direset!");
+  showToast("Password berhasil direset!");
 }
 
 
@@ -506,7 +523,7 @@ function changePassword() {
   const currentUser = localStorage.getItem("lastLoginUser");
 
   if (!currentUser) {
-    alert("Kamu belum login!");
+    showToast("Kamu belum login!");
     return;
   }
 
@@ -515,7 +532,7 @@ function changePassword() {
   const data = localStorage.getItem("user_" + user.username);
 
   if (!data) {
-    alert("User tidak ditemukan!");
+    showToast("User tidak ditemukan!");
     return;
   }
 
@@ -524,14 +541,14 @@ function changePassword() {
   const oldPass = prompt("Masukkan password lama:");
 
   if (realUser.password !== oldPass) {
-    alert("Password lama salah!");
+    showToast("Password lama salah!");
     return;
   }
 
   const newPass = prompt("Masukkan password baru:");
 
   if (!newPass) {
-    alert("Password tidak boleh kosong!");
+    showToast("Password tidak boleh kosong!");
     return;
   }
 
@@ -539,7 +556,7 @@ function changePassword() {
 
   localStorage.setItem("user_" + user.username, JSON.stringify(realUser));
 
-  alert("Password berhasil diganti!");
+  showToast("Password berhasil diganti!");
     }
 
   function toggleMenu() {
@@ -552,6 +569,17 @@ function logout() {
   document.getElementById("homePage").style.display = "none";
   document.getElementById("loginPage").style.display = "block";
 }
+
+  function showToast(message) {
+  const toast = document.getElementById("toast");
+
+  toast.innerText = message;
+  toast.style.display = "block";
+
+  setTimeout(() => {
+    toast.style.display = "none";
+  }, 2000);
+  }
 
 </script>
 
