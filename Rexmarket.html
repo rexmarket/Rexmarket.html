@@ -121,6 +121,37 @@ input {
   display: none;
 }
 
+  .profile-icon{
+  position:absolute;
+  top:15px;
+  right:15px;
+  font-size:22px;
+  cursor:pointer;
+}
+
+.menu-box{
+  display:none;
+  position:absolute;
+  top:50px;
+  right:15px;
+  background:#1f2937;
+  padding:10px;
+  border-radius:10px;
+  box-shadow:0 0 10px rgba(0,0,0,0.4);
+}
+
+.menu-box button{
+  display:block;
+  width:150px;
+  margin:5px 0;
+  padding:8px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  background:#2563eb;
+  color:white;
+}
+
 </style>
 </head>
 
@@ -198,10 +229,34 @@ input {
 </div>
 
 <!-- HOME PAGE -->
-<div id="homePage">
-  <h1 style="text-align:center;margin-top:100px;">
+<div id="homePage" style="display:none; position:relative;">
+
+  <!-- USER INFO -->
+  <div style="
+    position:absolute;
+    top:15px;
+    left:15px;
+    font-size:16px;
+  ">
+    👤 <span id="displayUser"></span>
+  </div>
+
+  <!-- ICON MENU -->
+  <div class="profile-icon" onclick="toggleMenu()">
+    👤
+  </div>
+
+  <!-- DROPDOWN MENU -->
+  <div id="menuBox" class="menu-box">
+    <button onclick="changePassword()">Ganti Password</button>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <!-- CONTENT -->
+  <div style="text-align:center;margin-top:120px;">
     Login Berhasil 🔥
-  </h1>
+  </div>
+
 </div>
 
 <!-- FIREBASE -->
@@ -231,16 +286,24 @@ function loginGoogle() {
   firebase.auth().signInWithPopup(provider)
     .then((result) => {
 
+      const username = result.user.displayName;
+
+      // simpan user aktif (buat data profile)
       localStorage.setItem("activeUser", JSON.stringify({
         name: result.user.displayName,
         email: result.user.email,
         photo: result.user.photoURL
       }));
 
+      // simpan session login (dipakai fitur ganti password + logout)
       localStorage.setItem("lastLoginUser", JSON.stringify({
-        username: result.user.displayName
+        username: username
       }));
 
+      // tampilkan username di UI
+      document.getElementById("displayUser").innerText = username;
+
+      // pindah halaman
       document.getElementById("loginPage").style.display = "none";
       document.getElementById("homePage").style.display = "block";
 
@@ -314,10 +377,15 @@ function loginUser() {
     return;
   }
 
+  // simpan session login (dipakai fitur ganti password & logout)
   localStorage.setItem("lastLoginUser", JSON.stringify({
     username: username
   }));
 
+  // tampilkan username di home page
+  document.getElementById("displayUser").innerText = username;
+
+  // pindah halaman
   document.getElementById("loginPage").style.display = "none";
   document.getElementById("homePage").style.display = "block";
 }
@@ -395,6 +463,17 @@ function changePassword() {
 
   alert("Password berhasil diganti!");
     }
+
+  function toggleMenu() {
+  const menu = document.getElementById("menuBox");
+  menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+
+function logout() {
+  localStorage.removeItem("lastLoginUser");
+  document.getElementById("homePage").style.display = "none";
+  document.getElementById("loginPage").style.display = "block";
+}
 
 </script>
 
