@@ -345,8 +345,20 @@ Lupa Password?
   z-index:9999;  
   box-shadow:0 0 15px rgba(0,0,0,0.4);  
 ">  
+
+  <div id="adminPage" style="display:none; text-align:center; margin-top:120px;">
+  <h2>ADMIN PANEL</h2>
+
+  <p>📦 Transaksi Sukses</p>
+  <p>❌ Transaksi Cancel</p>
+  <p💰 Refund Transaksi</p>
+
+  <button onclick="logout()">Logout</button>
+  </div>
   
-  <!-- FIREBASE -->  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>  <script>  
+  <!-- FIREBASE --> 
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>  
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>  <script>  
   
 const firebaseConfig = {  
   apiKey: "AIzaSyAXPtaQS38yacP1e1O5aeizcDaZN8RZxnI",  
@@ -360,6 +372,10 @@ const firebaseConfig = {
   
 firebase.initializeApp(firebaseConfig);  
 
+    const ADMIN = {
+  username: "AdminD",
+  password: "4Z1LD4KHT4R"
+};
   
 /* GOOGLE LOGIN */  
 /* GOOGLE LOGIN */  
@@ -469,6 +485,25 @@ function loginUser() {
     return;
   }
 
+  // 🔥 CEK ADMIN DULU
+  if (username === ADMIN.username && password === ADMIN.password) {
+
+    localStorage.setItem("lastLoginUser", JSON.stringify({
+      username: username,
+      type: "admin"
+    }));
+
+    document.getElementById("displayUser").innerText = username;
+
+    document.getElementById("loginPage").style.display = "none";
+    document.getElementById("homePage").style.display = "none";
+    document.getElementById("adminPage").style.display = "block"; // nanti kita buat
+
+    showToast("Login Admin berhasil!");
+    return;
+  }
+
+  // 🔥 LOGIN USER BIASA
   const data = localStorage.getItem("user_" + username);
 
   if (!data) {
@@ -485,7 +520,7 @@ function loginUser() {
 
   localStorage.setItem("lastLoginUser", JSON.stringify({
     username: username,
-    type: "manual"
+    type: "user"
   }));
 
   document.getElementById("displayUser").innerText = username;
@@ -599,10 +634,8 @@ function logout() {
   localStorage.removeItem("lastLoginUser");
   sessionStorage.clear();
 
-  attempts = 0;
-  lockTime = 0;
-
   document.getElementById("homePage").style.display = "none";
+  document.getElementById("adminPage").style.display = "none";
   document.getElementById("loginPage").style.display = "block";
     }
   
