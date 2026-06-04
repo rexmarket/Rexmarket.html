@@ -499,8 +499,8 @@ function registerUser() {
 /* LOGIN */
 function loginUser() {
 
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value.trim();
 
   const data = localStorage.getItem("user_" + username);
 
@@ -521,24 +521,15 @@ function loginUser() {
     username: username
   }));
 
-  // tampilkan username di home page
-  document.getElementById("displayUser").innerText = username;
+  // tampilkan username di header
+  const display = document.getElementById("displayUser");
+  if (display) display.innerText = username;
 
   // pindah halaman
   document.getElementById("loginPage").style.display = "none";
   document.getElementById("homePage").style.display = "block";
-  }
-  // simpan session login (dipakai fitur ganti password & logout)
-  localStorage.setItem("lastLoginUser", JSON.stringify({
-    username: username
-  }));
 
-  // tampilkan username di home page
-  document.getElementById("displayUser").innerText = username;
-
-  // pindah halaman
-  document.getElementById("loginPage").style.display = "none";
-  document.getElementById("homePage").style.display = "block";
+  showToast("Login berhasil!");
 }
 
 
