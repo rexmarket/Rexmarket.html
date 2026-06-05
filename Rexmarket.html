@@ -391,33 +391,13 @@ input {
 }
 
   
-.back-btn-jb {
-  position: relative;
-  display: inline-block;
-  padding: 6px 14px;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 1;
-}
-
-.back-btn-jb::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(255,255,255,0.15);
-  border-radius: 12px;
-  z-index: -1;
-}
-  
-.back-btn-clan {
+.back-btn {
   position: relative;
   display: inline-block;
   cursor: pointer;
-  z-index: 10;
 }
 
-.back-btn-clan .back-bg {
+.back-bg {
   position: absolute;
   top: 2px;
   left: 2px;
@@ -425,15 +405,18 @@ input {
   background: rgba(255,255,255,0.15);
   border-radius: 12px;
   color: transparent;
+  z-index: 0;
   user-select: none;
 }
 
-.back-btn-clan .back-main {
+.back-main {
   position: relative;
   padding: 6px 14px;
   color: white;
   font-weight: bold;
+  z-index: 1;
 }
+
 
   
 </style>  </head>  <body>  
@@ -814,8 +797,8 @@ JOKI BLOOD STRIKE
   "></div>
 
   <!-- BACK (FIXED - NO CONFLICT) -->
-  <div class="back-btn-jb" onclick="showHome()">
-    ⬅ Back
+  <div class="back-btn" onclick="showHome()">
+  <span class="back-main">⬅ Back</span>
   </div>
 
   <!-- TITLE -->
@@ -1387,11 +1370,11 @@ track.addEventListener("touchend", e=>{
   document.getElementById("jualBeliPage").style.display = "block";
 }
 
-function showPage(page) {
-  document.getElementById("homePage").style.display = "none";
-  document.getElementById("jualBeliPage").style.display = "none";
-  document.getElementById("clanPage").style.display = "none";
+function showHome() {
+document.getElementById("jualBeliPage").style.display = "none";
+document.getElementById("homePage").style.display = "block";
 }
+
 
 
     function showClan() {
