@@ -1395,9 +1395,12 @@ track.addEventListener("touchend", e=>{
   document.getElementById("jualBeliPage").style.display = "block";
 }
 
-function showHome() {
+function showPage(page) {
+  document.getElementById("homePage").style.display = "none";
   document.getElementById("jualBeliPage").style.display = "none";
-  document.getElementById("homePage").style.display = "block";
+  document.getElementById("clanPage").style.display = "none";
+
+  document.getElementById(page).style.display = "block";
 }
 
 
@@ -1406,10 +1409,6 @@ function showHome() {
   document.getElementById("clanPage").style.display = "block";
     }
 
-    function showHome() {
-  document.getElementById("clanpage").style.display = "none";
-  document.getElementById("homePage").style.display = "block";
-    }
 
 
     function showLeaderboard(){
