@@ -207,6 +207,29 @@ input {
   font-size:22px;
 }
 
+  .menu-scroll{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  padding:10px 15px;
+  margin-top:10px;
+}
+
+.menu-scroll::-webkit-scrollbar{
+  display:none;
+}
+
+.menu-scroll button{
+  flex:none;
+  border:none;
+  border-radius:20px;
+  padding:8px 16px;
+  background:#1f2937;
+  color:white;
+  cursor:pointer;
+  white-space:nowrap;
+}
+
 /* TOP UP */
 
 .section-title{
@@ -552,8 +575,27 @@ Lupa Password?
 </div>
 
 
+     <div class="menu-scroll">
+
+  <button onclick="scrollToSection('topupSection')">Top Up</button>
+
+  <button onclick="scrollToSection('jokiSection')">Joki</button>
+
+  <button onclick="showJualBeli()">Jual/Beli Akun BS</button>
+
+  <button onclick="showClan()">Join Clan</button>
+
+  <button onclick="showLeaderboard()">Leaderboard</button>
+
+  <button onclick="scrollToSection('footerSection')">Notes</button>
+
+     </div>
+
+
 <!-- TOP UP -->
-<h2 class="section-title">TOP UP</h2>
+<h2 id="topupSection" class="section-title">
+TOP UP
+</h2>
 
 <!-- GAME LIST -->
 <div class="game-grid">
@@ -591,7 +633,9 @@ Lupa Password?
 </div>
 
 
-     <h2 class="section-title">JOKI BLOOD STRIKE</h2>
+<h2 id="jokiSection" class="section-title">
+JOKI BLOOD STRIKE
+</h2>
 
 <div class="joki-grid">
 
@@ -613,7 +657,7 @@ Lupa Password?
 </div>
      
 
-<div class="footer-info">
+<div id="footerSection" class="footer-info">
 
   <h3>REXMARKET</h3>
 
@@ -668,6 +712,31 @@ Lupa Password?
 </div>
 
    </div>
+
+
+  
+  <div id="jualBeliPage" style="display:none;">
+
+  <h2>JUAL BELI AKUN BLOOD STRIKE</h2>
+
+  <button onclick="backHome()">
+    Kembali
+  </button>
+
+  </div>
+
+
+  <div id="clanPage" style="display:none;">
+
+  <h2>JOIN CLAN</h2>
+
+  <button onclick="backHome()">
+    Kembali
+  </button>
+
+  </div>
+
+  
 
 <div id="adminPage" style="display:none;">
 
@@ -1152,7 +1221,33 @@ track.addEventListener("touchend", e=>{
 
 });
 
-  
+
+    function showJualBeli(){
+
+  document.getElementById("homePage").style.display = "none";
+  document.getElementById("jualBeliPage").style.display = "block";
+
+    }
+
+
+    function showClan(){
+
+  document.getElementById("homePage").style.display = "none";
+  document.getElementById("clanPage").style.display = "block";
+
+    }
+
+
+    function backHome(){
+
+  document.getElementById("jualBeliPage").style.display = "none";
+  document.getElementById("clanPage").style.display = "none";
+
+  document.getElementById("homePage").style.display = "block";
+
+    }
+
+    
 
     window.addEventListener("DOMContentLoaded", () => {
 
