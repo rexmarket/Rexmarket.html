@@ -989,42 +989,53 @@ firebase.initializeApp(firebaseConfig);
   
 /* GOOGLE LOGIN */  
 /* GOOGLE LOGIN */  
-function loginGoogle() {  
-  
-  const provider = new firebase.auth.GoogleAuthProvider();  
-  
-  firebase.auth().signInWithPopup(provider)  
-    .then((result) => {  
-  
-      const username = result.user.displayName || "User";  
-  
-      // simpan data user aktif (profil lengkap)  
-      localStorage.setItem("activeUser", JSON.stringify({  
-        name: result.user.displayName,  
-        email: result.user.email,  
-        photo: result.user.photoURL  
-      }));  
-  
-      // session login (dipakai fitur logout / menu)  
-      localStorage.setItem("lastLoginUser", JSON.stringify(
-  makeSession(username, "google")
-));
-  
-      // tampilkan username di UI  
-      const display = document.getElementById("displayUser");  
-      if (display) display.innerText = username;  
-  
-      // pindah halaman  
-      document.getElementById("loginPage").style.display = "none";  
-      document.getElementById("homePage").style.display = "block";  
-  
-      showToast("Login Google berhasil!");  
-  
-    })  
-    .catch(err => {  
-      showToast(err.message);  
-    });  
-  }  
+function loginGoogle() {
+
+  const provider = new firebase.auth.GoogleAuthProvider();
+
+  firebase.auth().signInWithPopup(provider)
+    .then((result) => {
+
+      try {
+
+        const username = result.user.displayName || "User";
+
+        // simpan data user aktif (profil lengkap)
+        localStorage.setItem("activeUser", JSON.stringify({
+          name: result.user.displayName,
+          email: result.user.email,
+          photo: result.user.photoURL
+        }));
+
+        // session login (dipakai fitur logout / menu)
+        localStorage.setItem("lastLoginUser", JSON.stringify({
+          name: username,
+          email: result.user.email,
+          photo: result.user.photoURL,
+          type: "google",
+          time: Date.now()
+        }));
+
+        // tampilkan username di UI
+        const display = document.getElementById("displayUser");
+        if (display) display.innerText = username;
+
+        // pindah halaman
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("homePage").style.display = "block";
+
+        showToast("Login Google berhasil!");
+
+      } catch (e) {
+        console.log(e);
+        showToast("Terjadi error: " + e.message);
+      }
+
+    })
+    .catch(err => {
+      showToast(err.message);
+    });
+}
   
   
 /* TOGGLE PASSWORD */  
