@@ -389,6 +389,32 @@ input {
 .social-icons a img:hover{
   transform:scale(1.1);
 }
+
+  .back-btn {
+  position: relative;
+  display: inline-block;
+  padding: 6px 14px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1;
+}
+
+/* ini "badge/background" di belakang teks */
+.back-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.15); /* bisa kamu ganti */
+  border-radius: 12px;
+  z-index: -1;
+  transition: 0.2s;
+}
+
+/* efek hover */
+.back-btn:hover::before {
+  background: rgba(255, 255, 255, 0.25);
+}
   
 </style>  </head>  <body>  
   
@@ -774,6 +800,10 @@ JOKI BLOOD STRIKE
     font-size:14px;
   ">
     ⬅ BACK
+  </div>
+
+  <div class="back-btn" onclick="render('home')">
+  ⬅ Back
   </div>
 
   <!-- TITLE -->
@@ -1316,12 +1346,15 @@ track.addEventListener("touchend", e=>{
 });
 
 
-    function showJualBeli(){
-
+    function showJualBeli() {
   document.getElementById("homePage").style.display = "none";
   document.getElementById("jualBeliPage").style.display = "block";
+}
 
-    }
+function showHome() {
+  document.getElementById("jualBeliPage").style.display = "none";
+  document.getElementById("homePage").style.display = "block";
+}
 
 
     function showClan(){
