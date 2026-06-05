@@ -586,7 +586,7 @@ Lupa Password?
   <button onclick="showClan()">Join Clan</button>
 
   <button onclick="showLeaderboard()">Leaderboard</button>
-
+       
   <button onclick="scrollToSection('footerSection')">Notes</button>
 
      </div>
@@ -736,6 +736,18 @@ JOKI BLOOD STRIKE
 
   </div>
 
+  
+  <div id="leaderboardPage" style="display:none;">
+
+  <h2>LEADERBOARD</h2>
+
+  <p>Coming Soon...</p>
+
+  <button onclick="backHome()">
+    Kembali
+  </button>
+
+  </div>
   
 
 <div id="adminPage" style="display:none;">
@@ -1238,10 +1250,19 @@ track.addEventListener("touchend", e=>{
     }
 
 
+    function showLeaderboard(){
+
+  document.getElementById("homePage").style.display = "none";
+  document.getElementById("leaderboardPage").style.display = "block";
+
+    }
+
+
     function backHome(){
 
   document.getElementById("jualBeliPage").style.display = "none";
   document.getElementById("clanPage").style.display = "none";
+  document.getElementById("leaderboardPage").style.display = "none";
 
   document.getElementById("homePage").style.display = "block";
 
