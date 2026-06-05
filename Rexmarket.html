@@ -391,8 +391,7 @@ input {
 }
 
   
-/* BACK JUAL BELI */
-  .back-btn {
+.back-btn-jb {
   position: relative;
   display: inline-block;
   padding: 6px 14px;
@@ -402,31 +401,23 @@ input {
   z-index: 1;
 }
 
-/* ini "badge/background" di belakang teks */
-.back-btn::before {
+.back-btn-jb::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.15); /* bisa kamu ganti */
+  background: rgba(255,255,255,0.15);
   border-radius: 12px;
   z-index: -1;
-  transition: 0.2s;
 }
-
-/* efek hover */
-.back-btn:hover::before {
-  background: rgba(255, 255, 255, 0.25);
-
-
-/* BACK Join Clan */
-  .back-btn {
+  
+.back-btn-clan {
   position: relative;
   display: inline-block;
   cursor: pointer;
   z-index: 10;
 }
 
-.back-bg {
+.back-btn-clan .back-bg {
   position: absolute;
   top: 2px;
   left: 2px;
@@ -437,12 +428,13 @@ input {
   user-select: none;
 }
 
-.back-main {
+.back-btn-clan .back-main {
   position: relative;
   padding: 6px 14px;
   color: white;
   font-weight: bold;
 }
+
   
 </style>  </head>  <body>  
   
@@ -821,9 +813,9 @@ JOKI BLOOD STRIKE
     animation:pulse 2s infinite;
   "></div>
 
-  <!-- BACK -->
-  <div class="back-btn" onclick="showHome()">
-  <span class="back-main">⬅ Back</span>
+  <!-- BACK (FIXED - NO CONFLICT) -->
+  <div class="back-btn-jb" onclick="showHome()">
+    ⬅ Back
   </div>
 
   <!-- TITLE -->
@@ -852,6 +844,7 @@ JOKI BLOOD STRIKE
 
 </header>
 
+<!-- CONTENT SPACE -->
 <div style="padding-top:90px;">
 </div>
 
@@ -871,7 +864,7 @@ JOKI BLOOD STRIKE
   ">
 
     <!-- BACK -->
-    <div class="back-btn" onclick="showHome()">
+    <div class="back-btn-clan" onclick="showHome()">
       <span class="back-main">⬅ Back</span>
     </div>
 
@@ -880,14 +873,13 @@ JOKI BLOOD STRIKE
       Join Clan
     </div>
 
-    <!-- EMPTY (search dihapus) -->
+    <!-- EMPTY -->
     <div style="width:60px;"></div>
 
   </header>
 
   <!-- CONTENT -->
   <div style="padding:12px; color:white;">
-    <!-- isi clan nanti di sini -->
   </div>
 
   </div>
