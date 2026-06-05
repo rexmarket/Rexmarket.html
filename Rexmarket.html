@@ -390,6 +390,8 @@ input {
   transform:scale(1.1);
 }
 
+  
+/* BACK JUAL BELI */
   .back-btn {
   position: relative;
   display: inline-block;
@@ -414,6 +416,32 @@ input {
 /* efek hover */
 .back-btn:hover::before {
   background: rgba(255, 255, 255, 0.25);
+
+
+/* BACK Join Clan */
+  .back-btn {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.back-bg {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  padding: 6px 14px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 12px;
+  color: transparent;
+  user-select: none;
+}
+
+.back-main {
+  position: relative;
+  padding: 6px 14px;
+  color: white;
+  font-weight: bold;
 }
   
 </style>  </head>  <body>  
@@ -832,11 +860,35 @@ JOKI BLOOD STRIKE
 
   <div id="clanPage" style="display:none;">
 
-  <h2>JOIN CLAN</h2>
+  <!-- HEADER -->
+  <header style="
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px 12px;
+    background:#0f172a;
+    color:white;
+  ">
 
-  <button onclick="backHome()">
-    Kembali
-  </button>
+    <!-- BACK -->
+    <div class="back-btn" onclick="showHome()">
+      <span class="back-main">⬅ Back</span>
+    </div>
+
+    <!-- TITLE -->
+    <div style="font-weight:bold; font-size:16px;">
+      Join Clan
+    </div>
+
+    <!-- EMPTY (search dihapus) -->
+    <div style="width:60px;"></div>
+
+  </header>
+
+  <!-- CONTENT -->
+  <div style="padding:12px; color:white;">
+    <!-- isi clan nanti di sini -->
+  </div>
 
   </div>
 
@@ -1349,11 +1401,14 @@ function showHome() {
 }
 
 
-    function showClan(){
-
+    function showClan() {
   document.getElementById("homePage").style.display = "none";
   document.getElementById("clanPage").style.display = "block";
+    }
 
+    function showHome() {
+  document.getElementById("clanpage").style.display = "none";
+  document.getElementById("homePage").style.display = "block";
     }
 
 
