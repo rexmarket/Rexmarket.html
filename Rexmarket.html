@@ -289,29 +289,38 @@ input {
   display:flex;
   flex-direction:column;
   gap:15px;
+  }
+  
+
+  .joki-grid{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+  padding:0 15px 30px;
 }
 
 .joki-card{
-  width:100%;
-  height:240px;
+  width:calc(50% - 6px);
   background:#1f2937;
-  border-radius:15px;
+  border-radius:12px;
   overflow:hidden;
-  box-shadow:0 0 10px rgba(30,144,255,.15);
+}
+
+.center-card{
+  width:calc(50% - 6px);
 }
 
 .joki-image{
   width:100%;
-  height:190px;
+  height:150px; /* samakan dengan game-card img */
+  object-fit:cover;
   background:rgba(255,255,255,.08);
 }
 
 .joki-name{
-  height:50px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:15px;
+  text-align:center;
+  padding:10px;
 }
   
 </style>  </head>  <body>  
@@ -553,7 +562,7 @@ Lupa Password?
 
      <h2 class="section-title">JOKI BLOOD STRIKE</h2>
 
-<div class="joki-list">
+<div class="joki-grid">
 
   <div class="joki-card">
     <div class="joki-image"></div>
@@ -565,7 +574,7 @@ Lupa Password?
     <div class="joki-name">Stars Rank SF</div>
   </div>
 
-  <div class="joki-card">
+  <div class="joki-card center-card">
     <div class="joki-image"></div>
     <div class="joki-name">Level Up Weapon</div>
   </div>
