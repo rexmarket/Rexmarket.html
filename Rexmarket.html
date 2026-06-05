@@ -197,7 +197,7 @@ input {
   display:flex;
   align-items:center;
   justify-content:center;
-  box-shadow:0 0 20px rgba(30,144,255,.4);
+  box-shadow:0 0 5px rgba(30,144,255,.12);
 }
 
 .banner h3{
@@ -242,6 +242,27 @@ input {
   display:block;
   padding:10px;
   font-size:14px;
+}
+
+  .banner-dots{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  margin-top:10px;
+  margin-bottom:15px;
+}
+
+.dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:rgba(255,255,255,.3);
+  transition:.3s;
+}
+
+.dot.active{
+  background:#1e90ff;
+  transform:scale(1.3);
 }
   
 </style>  </head>  <body>  
@@ -413,7 +434,7 @@ Lupa Password?
   <button onclick="logout()" class="btn link-btn">Logout</button>
 </div>
 
-     <!-- BANNER SLIDER -->
+    <!-- BANNER SLIDER -->
 <div class="banner-slider">
 
   <div class="banner-track" id="bannerTrack">
@@ -433,6 +454,15 @@ Lupa Password?
   </div>
 
 </div>
+
+<!-- TITIK INDIKATOR -->
+<div class="banner-dots">
+  <span class="dot active"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+</div>
+
+<h2 class="section-title">TOP UP</h2>
 
 <!-- TOP UP -->
 <h2 class="section-title">TOP UP</h2>
@@ -895,11 +925,25 @@ function logout() {
 
 let currentBanner = 0;
 
+const track = document.getElementById("bannerTrack");
+
+function updateBanner(){
+
+  track.style.transform =
+  `translateX(-${currentBanner * 100}%)`;
+
+  const dots =
+  document.querySelectorAll(".dot");
+
+  dots.forEach(dot =>
+    dot.classList.remove("active")
+  );
+
+  dots[currentBanner]
+  .classList.add("active");
+}
+
 setInterval(() => {
-
-  const track = document.getElementById("bannerTrack");
-
-  if(!track) return;
 
   currentBanner++;
 
@@ -907,10 +951,41 @@ setInterval(() => {
     currentBanner = 0;
   }
 
-  track.style.transform =
-    `translateX(-${currentBanner * 100}%)`;
+  updateBanner();
 
-}, 3000);
+},3000);
+
+let startX = 0;
+
+track.addEventListener("touchstart", e=>{
+  startX = e.touches[0].clientX;
+});
+
+track.addEventListener("touchend", e=>{
+
+  let endX = e.changedTouches[0].clientX;
+
+  if(startX - endX > 50){
+
+    currentBanner++;
+
+    if(currentBanner > 2)
+      currentBanner = 0;
+
+    updateBanner();
+  }
+
+  if(endX - startX > 50){
+
+    currentBanner--;
+
+    if(currentBanner < 0)
+      currentBanner = 2;
+
+    updateBanner();
+  }
+
+});
 
   
 
