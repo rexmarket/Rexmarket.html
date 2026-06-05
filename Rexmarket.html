@@ -730,11 +730,80 @@ JOKI BLOOD STRIKE
   
   <div id="jualBeliPage" style="display:none;">
 
-  <h2>JUAL BELI AKUN BLOOD STRIKE</h2>
+<header style="
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:60px;
+  padding:0 15px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  color:white;
+  background:#1e90ff;
+  box-shadow:0 0 25px rgba(30,144,255,0.7);
+  overflow:hidden;
+  z-index:999;
+">
 
-  <button onclick="backHome()">
-    Kembali
-  </button>
+  <!-- GRID -->
+  <div style="
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px);
+    background-size:18px 18px;
+    opacity:0.25;
+    animation:gridMove 6s linear infinite;
+  "></div>
+
+  <!-- GLOW -->
+  <div style="
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle, rgba(255,255,255,0.25), transparent 70%);
+    animation:pulse 2s infinite;
+  "></div>
+
+  <!-- BACK -->
+  <div onclick="showHome()" style="
+    position:relative;
+    cursor:pointer;
+    font-size:14px;
+  ">
+    ⬅ BACK
+  </div>
+
+  <!-- TITLE -->
+  <div style="
+    position:relative;
+    font-weight:bold;
+    letter-spacing:1px;
+  ">
+    JUAL BELI AKUN
+  </div>
+
+  <!-- SEARCH -->
+  <div style="
+    position:relative;
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+  ">
+    🔍
+  </div>
+
+</header>
+
+<div style="padding-top:90px;">
+</div>
 
   </div>
 
