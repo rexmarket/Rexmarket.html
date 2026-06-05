@@ -209,10 +209,10 @@ input {
 
   .menu-scroll{
   display:flex;
-  gap:10px;
+  gap:12px;
   overflow-x:auto;
-  padding:10px 15px;
-  margin-top:10px;
+  padding:12px 15px;
+  scrollbar-width:none;
 }
 
 .menu-scroll::-webkit-scrollbar{
@@ -221,13 +221,26 @@ input {
 
 .menu-scroll button{
   flex:none;
+  padding:10px 18px;
   border:none;
-  border-radius:20px;
-  padding:8px 16px;
-  background:#1f2937;
+  border-radius:999px;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(8px);
   color:white;
+  font-family:inherit;
+  font-size:13px;
   cursor:pointer;
-  white-space:nowrap;
+  transition:.25s;
+  box-shadow:0 0 10px rgba(30,144,255,.15);
+}
+
+.menu-scroll button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 15px rgba(30,144,255,.4);
+}
+
+.menu-scroll button:active{
+  transform:scale(.96);
 }
 
 /* TOP UP */
@@ -1265,6 +1278,21 @@ track.addEventListener("touchend", e=>{
   document.getElementById("leaderboardPage").style.display = "none";
 
   document.getElementById("homePage").style.display = "block";
+
+    }
+
+    
+
+    function scrollToSection(id){
+
+  const element = document.getElementById(id);
+
+  if(!element) return;
+
+  window.scrollTo({
+    top: element.offsetTop - 90,
+    behavior: "smooth"
+  });
 
     }
 
