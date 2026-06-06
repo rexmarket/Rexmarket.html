@@ -390,56 +390,7 @@ input {
   transform:scale(1.1);
 }
 
-  .clan-header{
-  position:relative;
-  height:70px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
 
-  background:linear-gradient(
-    90deg,
-    #0f172a,
-    #111827,
-    #0f172a
-  );
-
-  border-bottom:2px solid #00e5ff;
-
-  box-shadow:
-    0 0 10px rgba(0,229,255,.6),
-    0 0 20px rgba(0,229,255,.25);
-
-  overflow:hidden;
-}
-
-.clan-header::before{
-  content:"";
-  position:absolute;
-  inset:0;
-
-  background:
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 25px,
-      rgba(0,229,255,.08) 26px,
-      transparent 27px
-    );
-}
-
-.clan-title{
-  color:white;
-  font-size:22px;
-  font-weight:bold;
-  letter-spacing:3px;
-
-  text-shadow:
-    0 0 8px #00e5ff,
-    0 0 16px #00e5ff;
-}
-
-  
 .back-btn {
   position: relative;
   display: inline-block;
@@ -885,7 +836,43 @@ JOKI BLOOD STRIKE
   <div id="clanPage" style="display:none;">
 
   <!-- HEADER FUTURISTIK -->
-  <div class="clan-header">
+ <header style="
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:60px;
+  padding:0 15px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  color:white;
+  background:#1e90ff;
+  box-shadow:0 0 25px rgba(30,144,255,0.7);
+  overflow:hidden;
+  z-index:999;
+  backdrop-filter: blur(6px);
+">
+
+  <!-- GRID -->
+  <div style="
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px);
+    background-size:18px 18px;
+    opacity:0.25;
+    animation:gridMove 6s linear infinite;
+  "></div>
+
+  <!-- GLOW -->
+  <div style="
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle, rgba(255,255,255,0.25), transparent 70%);
+    animation:pulse 2s infinite;
+  "></div>
 
     <div class="back-btn" onclick="showHome()">
       ⬅ Back
