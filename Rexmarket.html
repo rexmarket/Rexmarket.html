@@ -389,6 +389,56 @@ input {
 .social-icons a img:hover{
   transform:scale(1.1);
 }
+
+  .clan-header{
+  position:relative;
+  height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:linear-gradient(
+    90deg,
+    #0f172a,
+    #111827,
+    #0f172a
+  );
+
+  border-bottom:2px solid #00e5ff;
+
+  box-shadow:
+    0 0 10px rgba(0,229,255,.6),
+    0 0 20px rgba(0,229,255,.25);
+
+  overflow:hidden;
+}
+
+.clan-header::before{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 25px,
+      rgba(0,229,255,.08) 26px,
+      transparent 27px
+    );
+}
+
+.clan-title{
+  color:white;
+  font-size:22px;
+  font-weight:bold;
+  letter-spacing:3px;
+
+  text-shadow:
+    0 0 8px #00e5ff,
+    0 0 16px #00e5ff;
+}
+
   
 .back-btn {
   position: relative;
@@ -834,37 +884,25 @@ JOKI BLOOD STRIKE
 
   <div id="clanPage" style="display:none;">
 
-  <!-- HEADER -->
-  <header style="
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:10px 12px;
-    background:#0f172a;
-    color:white;
-  ">
+  <!-- HEADER FUTURISTIK -->
+  <div class="clan-header">
 
-    <!-- BACK -->
-    <div class="back-btn-clan" onclick="backHome()">
-      <span class="back-main">⬅ Back</span>
+    <div class="back-btn" onclick="showHome()">
+      ⬅ Back
     </div>
 
-    <!-- TITLE -->
-    <div style="font-weight:bold; font-size:16px;">
-      Join Clan
+    <div class="clan-title">
+      JOIN CLAN
     </div>
 
-    <!-- EMPTY -->
-    <div style="width:60px;"></div>
-
-  </header>
+  </div>
 
   <!-- CONTENT -->
   <div style="padding:12px; color:white;">
+    
   </div>
 
   </div>
-
   
   <div id="leaderboardPage" style="display:none;">
 
