@@ -419,55 +419,29 @@ input {
 
 .market-grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
   padding:80px 10px 20px;
 }
 
 .sell-card{
-  display:flex;
-  align-items:center;
+  height:120px;
 
-  background:#111827;
-  border:1px solid rgba(30,144,255,.4);
-  border-radius:12px;
+  background:rgba(30,144,255,0.10);
+  backdrop-filter:blur(8px);
+
+  border:1px solid rgba(30,144,255,0.25);
+  border-radius:14px;
+
+  box-shadow:
+    0 0 10px rgba(30,144,255,0.15);
 
   overflow:hidden;
-  color:white;
-
-  box-shadow:0 0 10px rgba(30,144,255,.2);
 }
 
-.sell-img{
-  width:100px;
-  height:80px;
-  object-fit:cover;
-  flex-shrink:0;
+.sell-card:active{
+  transform:scale(.97);
 }
-
-.sell-content{
-  padding:8px;
-  flex:1;
-}
-
-.sell-tag{
-  color:#00e5ff;
-  font-size:10px;
-  font-weight:bold;
-}
-
-.sell-title{
-  font-size:14px;
-  font-weight:bold;
-  margin:3px 0;
-}
-
-.sell-price,
-.sell-log,
-.sell-stock{
-  font-size:11px;
-  }
-
   
 </style>  </head>  <body>  
   
@@ -881,40 +855,26 @@ JOKI BLOOD STRIKE
 
     <div class="market-grid">
 
-  <div class="sell-card">
-    <img src="https://via.placeholder.com/300x140">
-    <div class="sell-tag">FOR SELL</div>
-    <div class="sell-title">ACAK ETER</div>
-    <div class="sell-price">HARGA</div>
-    <div class="sell-log">LOG</div>
-    <div class="sell-stock">STOCK (0/1)</div>
-  </div>
+  <div class="sell-card"></div>
+  <div class="sell-card"></div>
+  <div class="sell-card"></div>
 
-  <div class="sell-card">
+  <div class="sell-card"></div>
+  <div class="sell-card"></div>
+  <div class="sell-card"></div>
 
-  <img src="https://via.placeholder.com/120x80" class="sell-img">
+  <div class="sell-card"></div>
+  <div class="sell-card"></div>
+  <div class="sell-card"></div>
 
-  <div class="sell-content">
-    <div class="sell-tag">FOR SELL</div>
+  <div class="sell-card"></div>
+  <div class="sell-card"></div>
+  <div class="sell-card"></div>
 
-    <div class="sell-title">
-      ACAK ETER
+  <div class="sell-card"></div>
+  <div class="sell-card"></div>
+
     </div>
-
-    <div class="sell-price">
-      💰 HARGA
-    </div>
-
-    <div class="sell-log">
-      📄 LOG
-    </div>
-
-    <div class="sell-stock">
-      STOCK (0/1)
-    </div>
-  </div>
-
-  </div>
 
   <div class="sell-card"><img src="https://via.placeholder.com/300x140"><div class="sell-tag">FOR SELL</div><div class="sell-title">ACAK M4</div><div class="sell-price">HARGA</div><div class="sell-log">LOG</div><div class="sell-stock">STOCK (0/1)</div></div>
 
