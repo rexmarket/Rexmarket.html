@@ -223,19 +223,27 @@ input {
 
 .menu-scroll button{
   flex:none;
-  padding:10px 18px;
-  border:none;
-  border-radius:999px;
-  background:rgba(255,255,255,0.08);
-  backdrop-filter:blur(8px);
+
+  padding:12px 22px;
+
+  border:1px solid rgba(30,144,255,.25);
+  border-radius:14px;
+
+  background:rgba(20,40,80,.65);
+
   color:white;
-  font-family:'Orbitron', sans-serif;
+
+  font-family:'Orbitron',sans-serif;
   font-size:13px;
   font-weight:600;
-  letter-spacing:0.5px;
-  cursor:pointer;
+  letter-spacing:.5px;
+
+  backdrop-filter:blur(8px);
+
+  box-shadow:
+    0 0 10px rgba(30,144,255,.15);
+
   transition:.25s;
-  box-shadow:0 0 10px rgba(30,144,255,.15);
 }
 
 .menu-scroll button:hover{
@@ -246,7 +254,6 @@ input {
 .menu-scroll button:active{
   transform:scale(.96);
 }
-
   .flash-title{
   color:white;
   font-size:22px;
