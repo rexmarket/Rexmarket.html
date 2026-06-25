@@ -243,6 +243,29 @@ input {
   transform:scale(.96);
 }
 
+  .flash-title{
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  margin:15px;
+
+  color:#fff;
+  font-size:22px;
+  font-weight:bold;
+}
+
+.flash-title::after{
+  content:"";
+  flex:1;
+  height:2px;
+  background:linear-gradient(
+    to right,
+    orange,
+    transparent
+  );
+}
+
 /* TOP UP */
 
 .section-title{
