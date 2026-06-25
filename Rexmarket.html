@@ -389,18 +389,74 @@ input {
 }
 
   .footer-info{
+  position:relative;
+
   margin:30px 15px;
   padding:20px;
 
-  background:rgba(90,15,15,.75);
+  background:linear-gradient(
+    135deg,
+    rgba(120,15,15,.90),
+    rgba(70,10,10,.90)
+  );
 
-  border-radius:15px;
+  border:1px solid rgba(255,80,80,.35);
+
+  border-radius:18px;
 
   text-align:center;
-  color:#dbeafe;
+  color:white;
 
   font-size:14px;
   line-height:1.8;
+
+  overflow:hidden;
+
+  box-shadow:
+    0 0 15px rgba(255,0,0,.25),
+    0 0 30px rgba(255,0,0,.10);
+  }
+
+  .footer-info::before{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background-image:
+    linear-gradient(
+      rgba(255,255,255,.08) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.08) 1px,
+      transparent 1px
+    );
+
+  background-size:20px 20px;
+
+  opacity:.35;
+
+  pointer-events:none;
+  }
+
+  .footer-info::after{
+  content:"";
+  position:absolute;
+
+  top:-50%;
+  left:-50%;
+
+  width:200%;
+  height:200%;
+
+  background:radial-gradient(
+    circle,
+    rgba(255,80,80,.15),
+    transparent 70%
+  );
+
+  pointer-events:none;
   }
 
 
