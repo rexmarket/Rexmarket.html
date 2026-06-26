@@ -504,39 +504,59 @@ left:130%;
     text-shadow:0 0 8px rgba(30,144,255,.4);
 }
 
-.popular-game{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
+.popular-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
 
-    margin-bottom:18px;
+    margin-bottom:20px;
 }
 
-.popular-game button{
-    padding:8px 14px;
+.popular-card{
+    position:relative;
 
-    border:none;
-    border-radius:12px;
+    background:#1d3667;
 
-    background:rgba(30,144,255,.18);
+    border-radius:16px;
+
+    overflow:hidden;
+
+    border:1px solid rgba(30,144,255,.25);
+
+    box-shadow:
+        0 0 12px rgba(30,144,255,.18);
+
+    transition:.25s;
+
+    cursor:pointer;
+}
+
+.popular-card img{
+    width:100%;
+    height:90px;
+
+    object-fit:cover;
+}
+
+.popular-card span{
+    display:block;
+
+    padding:8px 6px;
 
     color:white;
 
     font-family:'Poppins',sans-serif;
-    font-size:13px;
+    font-size:12px;
     font-weight:600;
 
-    border:1px solid rgba(30,144,255,.35);
-
-    backdrop-filter:blur(8px);
-
-    transition:.2s;
+    text-align:center;
 }
 
-.popular-game button:active{
-    transform:scale(.95);
+.popular-card:active{
+    transform:scale(.96);
 
-    background:rgba(30,144,255,.35);
+    box-shadow:
+        0 0 18px rgba(30,144,255,.35);
 }
 
   
@@ -996,20 +1016,34 @@ Lupa Password?
 </h2>
 
 <div class="game-badge">
-  
-<div class="topup-category">
+
+  <div class="topup-grid">
   Paling Banyak Dicari
 </div>
 
-<div class="popular-game">
-  <button>Blood Strike</button>
-  <button>Free Fire</button>
-  <button>PUBG Mobile</button>
+<div class="popular-grid">
+
+  <div class="popular-card">
+    <img src="BloodStrikeCardTopup.jpg">
+    <span>Blood Strike</span>
+  </div>
+
+  <div class="popular-card">
+    <img src="FreeFireCardTopup.jpg">
+    <span>Free Fire</span>
+  </div>
+
+  <div class="popular-card">
+    <img src="PUBGMOBILECardTopup.jpg">
+    <span>PUBG Mobile</span>
+  </div>
+
 </div>
 
 <div class="topup-category" style="margin-top:18px;">
   Semua Game
 </div>
+
   
   <div class="game-grid">
 
