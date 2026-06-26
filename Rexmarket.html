@@ -617,33 +617,18 @@ left:130%;
   -webkit-backdrop-filter:blur(10px);
 
   border:1px solid rgba(30,144,255,0.20);
-/* PANEL JOKI */
-.joki-panel{
-    margin:0 12px 30px;
-    padding:14px;
 
-    border-radius:24px;
 
-    background:linear-gradient(
-        180deg,
-        rgba(80,180,255,.22),
-        rgba(30,144,255,.12)
-    );
-
-    border:1px solid rgba(120,210,255,.35);
-
-    backdrop-filter:blur(16px);
-    -webkit-backdrop-filter:blur(16px);
-
-    overflow:hidden;
-}
-
+    /* GRID */
 .joki-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
     gap:14px;
+
+    padding:14px;
 }
 
+/* CARD */
 .joki-card{
     background:#1d3667;
 
@@ -653,6 +638,9 @@ left:130%;
 
     border:1px solid rgba(120,210,255,.18);
 
+    box-shadow:
+        0 0 10px rgba(30,144,255,.18);
+
     transition:.25s;
 }
 
@@ -660,12 +648,14 @@ left:130%;
     transform:scale(.97);
 }
 
-.joki-card:last-child{
+/* CARD TERAKHIR */
+.center-card{
     grid-column:1 / span 2;
     width:48%;
     margin:auto;
 }
 
+/* GAMBAR */
 .joki-card img{
     width:100%;
     height:220px;
@@ -673,6 +663,7 @@ left:130%;
     display:block;
 }
 
+/* NAMA */
 .joki-card span{
     display:block;
 
@@ -1184,7 +1175,7 @@ Lupa Password?
   JOKI BLOOD STRIKE
 </h2>
 
-<div class="joki-grid">
+<div class="game-badge">
 
   <div class="joki-grid">
 
@@ -1198,7 +1189,7 @@ Lupa Password?
       <span>Stars Rank SF</span>
     </div>
 
-    <div class="joki-card">
+    <div class="joki-card center-card">
       <img src="WeaponLevel.jpg">
       <span>Level Up Weapon</span>
     </div>
