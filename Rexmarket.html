@@ -541,7 +541,16 @@ left:130%;
 
   
 
-    .joki-card{
+    /* GRID */
+.joki-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    padding:14px;
+}
+
+/* CARD */
+.joki-card{
     position:relative;
 
     background:#1d3667;
@@ -550,43 +559,39 @@ left:130%;
 
     overflow:hidden;
 
-    text-align:center;
-
     transition:.25s;
 
-    z-index:2;
-}
-
-.joki-card img{
-    width:100%;
-    height:170px;   /* samakan dengan game-card kalau berbeda */
-    object-fit:cover;
-    display:block;
-}
-
-.joki-card span{
-    display:block;
-
-    padding:10px 6px;
-
-    color:white;
-
-    font-family:'Poppins',sans-serif;
-    font-size:13px;
-    font-weight:600;
-
-    background:rgba(30,144,255,.16);
+    cursor:pointer;
 }
 
 .joki-card:active{
     transform:scale(.97);
 }
 
-.center-card{
-    grid-column:1 / span 2;
-    width:48%;
-    margin:auto;
-  }
+/* GAMBAR */
+.joki-card img{
+    width:100%;
+    height:140px; /* samakan dengan game-card img */
+    object-fit:cover;
+    display:block;
+}
+
+/* NAMA */
+.joki-card span{
+    display:block;
+
+    padding:10px 6px;
+
+    background:rgba(30,144,255,.16);
+
+    color:#fff;
+
+    font-family:'Poppins',sans-serif;
+    font-size:13px;
+    font-weight:600;
+
+    text-align:center;
+    }
   
 
   .footer-info{
@@ -1156,6 +1161,7 @@ Lupa Password?
 </div>
 
 <h2 id="jokiSection" class="section-title">
+<h2 id="jokiSection" class="section-title">
   JOKI BLOOD STRIKE
 </h2>
 
@@ -1164,17 +1170,17 @@ Lupa Password?
   <div class="joki-grid">
 
     <div class="joki-card">
-      <img src="ValorantCardTopup.jpg">
+      <img src="PointRankBR.jpg">
       <span>Point Rank BR</span>
     </div>
 
     <div class="joki-card">
-      <img src="ValorantCardTopup.jpg">
+      <img src="StarsRankSF.jpg">
       <span>Stars Rank SF</span>
     </div>
 
     <div class="joki-card">
-      <img src="ValorantCardTopup.jpg">
+      <img src="WeaponLevel.jpg">
       <span>Level Up Weapon</span>
     </div>
 
