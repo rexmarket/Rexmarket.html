@@ -394,6 +394,53 @@ text-shadow:0 0 10px rgba(30,144,255,.5);
   }
 }
 
+  .game-badge{
+    position:relative;
+
+    padding:8px;
+
+    border-radius:22px;
+
+    background:rgba(30,144,255,.12);
+
+    border:1px solid rgba(30,144,255,.20);
+
+    backdrop-filter:blur(12px);
+
+    overflow:hidden;
+
+    box-shadow:
+        0 0 18px rgba(30,144,255,.18);
+}
+
+/* Motif bergerak */
+.game-badge::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+
+    background-size:18px 18px;
+
+    animation:gridMove 8s linear infinite;
+
+    opacity:.35;
+}
+
+.game-card{
+    position:relative;
+    z-index:2;
+
+    background:#1d3667;
+
+    border-radius:16px;
+
+    overflow:hidden;
+}
 
   
 
@@ -848,45 +895,55 @@ Lupa Password?
      
 <!-- TOP UP -->   
 <h2 id="topupSection" class="section-title">
-TOP UP
+  TOP UP
 </h2>
-     
 
 <!-- GAME LIST -->
 <div class="game-grid">
 
-  <div class="game-card">
-    <img src="BloodStrikeCardTopup.jpg">
-    <span>Blood Strike</span>
+  <div class="game-badge">
+    <div class="game-card">
+      <img src="BloodStrikeCardTopup.jpg">
+      <span>Blood Strike</span>
+    </div>
   </div>
 
-  <div class="game-card">
-    <img src="PUBGMOBILECardTopup.jpg">
-    <span>PUBG Mobile</span>
+  <div class="game-badge">
+    <div class="game-card">
+      <img src="PUBGMOBILECardTopup.jpg">
+      <span>PUBG Mobile</span>
+    </div>
   </div>
 
-  <div class="game-card">
-    <img src="FreeFireCardTopup.jpg">
-    <span>Free Fire</span>
+  <div class="game-badge">
+    <div class="game-card">
+      <img src="FreeFireCardTopup.jpg">
+      <span>Free Fire</span>
+    </div>
   </div>
 
-  <div class="game-card">
-    <img src="MobileLegendsCardTopup.jpg">
-    <span>Mobile Legends</span>
+  <div class="game-badge">
+    <div class="game-card">
+      <img src="MobileLegendsCardTopup.jpg">
+      <span>Mobile Legends</span>
+    </div>
   </div>
 
-  <div class="game-card">
-    <img src="CODMCardTopup.jpg">
-    <span>COD Mobile</span>
+  <div class="game-badge">
+    <div class="game-card">
+      <img src="CODMCardTopup.jpg">
+      <span>COD Mobile</span>
+    </div>
   </div>
 
-  <div class="game-card">
-    <img src="GhensinImpactCardTopup.jpg">
-    <span>Genshin Impact</span>
+  <div class="game-badge">
+    <div class="game-card">
+      <img src="GhensinImpactCardTopup.jpg">
+      <span>Genshin Impact</span>
+    </div>
   </div>
 
 </div>
-
 
 <h2 id="jokiSection" class="section-title">
 JOKI BLOOD STRIKE
