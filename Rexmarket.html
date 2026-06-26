@@ -579,6 +579,53 @@ left:130%;
   text-align:center;
   padding:10px;
 }
+
+    .joki-badge{
+    position:relative;
+
+    margin:0 12px 30px;
+    padding:14px;
+
+    border-radius:24px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(80,180,255,.20),
+            rgba(30,144,255,.10)
+        );
+
+    border:1px solid rgba(120,210,255,.25);
+
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+
+    overflow:hidden;
+}
+
+.joki-badge::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+
+    background-size:22px 22px;
+
+    animation:gridMove 15s linear infinite;
+
+    opacity:.35;
+
+    pointer-events:none;
+}
+
+.joki-grid{
+    position:relative;
+    z-index:2;
+    }
   
 
   .footer-info{
@@ -1102,26 +1149,30 @@ Lupa Password?
 </div>
 
 <h2 id="jokiSection" class="section-title">
-JOKI BLOOD STRIKE
+  JOKI BLOOD STRIKE
 </h2>
 
-<div class="joki-grid">
+<div class="joki-badge">
 
-  <div class="joki-card">
-    <div class="joki-image"></div>
-    <div class="joki-name">Point Rank BR</div>
+  <div class="joki-grid">
+
+    <div class="joki-card">
+      <div class="joki-image"></div>
+      <div class="joki-name">Point Rank BR</div>
+    </div>
+
+    <div class="joki-card">
+      <div class="joki-image"></div>
+      <div class="joki-name">Stars Rank SF</div>
+    </div>
+
+    <div class="joki-card">
+      <div class="joki-image"></div>
+      <div class="joki-name">Level Up Weapon</div>
+    </div>
+
   </div>
 
-  <div class="joki-card">
-    <div class="joki-image"></div>
-    <div class="joki-name">Stars Rank SF</div>
-  </div>
-
-  <div class="joki-card center-card">
-    <div class="joki-image"></div>
-    <div class="joki-name">Level Up Weapon</div>
-  </div>
-  
 </div>
      
 
