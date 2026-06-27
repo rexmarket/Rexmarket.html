@@ -714,131 +714,7 @@ left:130%;
     }
 
     
-/* ===========================
-   OVERLAY
-=========================== */
 
-.overlay{
-    position:fixed;
-    inset:0;
-
-    background:rgba(0,0,0,.35);
-
-    backdrop-filter:blur(8px);
-    -webkit-backdrop-filter:blur(8px);
-
-    opacity:0;
-    visibility:hidden;
-
-    transition:.25s;
-
-    z-index:9998;
-}
-
-.overlay.show{
-    opacity:1;
-    visibility:visible;
-}
-
-/* ===========================
-   BAR BAWAH
-=========================== */
-
-.bottom-bar{
-
-    position:fixed;
-
-    left:50%;
-    bottom:18px;
-
-    transform:translateX(-50%);
-
-    width:320px;
-    height:70px;
-
-    border-radius:999px;
-
-    background:rgba(29,54,103,.96);
-
-    border:1px solid rgba(120,210,255,.20);
-
-    backdrop-filter:blur(15px);
-    -webkit-backdrop-filter:blur(15px);
-
-    z-index:9999;
-}
-
-/* ===========================
-   TOMBOL BULAT
-=========================== */
-
-.fab-btn{
-
-    position:fixed;
-
-    left:50%;
-    bottom:32px;
-
-    transform:translateX(-50%);
-
-    width:88px !important;
-    height:88px !important;
-
-    display:flex !important;
-    justify-content:center;
-    align-items:center;
-
-    margin:0 !important;
-    padding:0 !important;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:linear-gradient(180deg,#3aa3ff,#1d63e6);
-
-    cursor:pointer;
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.35),
-        0 0 20px rgba(30,144,255,.35);
-
-    z-index:10000;
-}
-
-.fab-btn:active{
-
-    transform:translateX(-50%) scale(.95);
-
-}
-
-/* ===========================
-   IKON 9 TITIK
-=========================== */
-
-.menu-dot{
-
-    display:grid;
-
-    grid-template-columns:repeat(3,7px);
-
-    gap:6px;
-
-}
-
-.menu-dot span{
-
-    width:7px;
-    height:7px;
-
-    border-radius:50%;
-
-    background:white;
-
-}
-
-
-    
   
 </style>  </head>  <body>  
   
@@ -1202,6 +1078,8 @@ Lupa Password?
 <div id="footerSection" class="footer-info">
 
   <h3>REXMARKET</h3>
+
+  <div class="game-badge">
 
   <div class="footer-title">
     INFORMATION
