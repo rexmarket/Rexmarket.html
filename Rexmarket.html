@@ -781,27 +781,29 @@ left:130%;
 
     transform:translateX(-50%);
 
-    width:88px;
-    height:88px;
+    width:88px !important;
+    height:88px !important;
+
+    display:flex !important;
+    justify-content:center;
+    align-items:center;
+
+    margin:0 !important;
+    padding:0 !important;
 
     border:none;
+
     border-radius:50%;
 
     background:linear-gradient(180deg,#3aa3ff,#1d63e6);
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    box-shadow:
-    0 10px 30px rgba(0,0,0,.35),
-    0 0 20px rgba(30,144,255,.35);
-
     cursor:pointer;
 
-    z-index:10000;
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.35),
+        0 0 20px rgba(30,144,255,.35);
 
-    transition:.25s;
+    z-index:10000;
 }
 
 .fab-btn:active{
