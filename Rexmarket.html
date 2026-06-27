@@ -540,88 +540,73 @@ left:130%;
 }
   
 
-  .footer-info{
-  position:relative;
+  /* ===========================
+        FOOTER
+=========================== */
 
-  margin:30px 15px;
-  padding:20px;
+.footer-info{
+    position:relative;
 
-  background:rgba(30,144,255,0.12);
+    padding:20px;
 
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
+    color:#dbeafe;
 
-  border:1px solid rgba(30,144,255,0.20);
-    
-.footer-info::before{
-  content:"";
-  position:absolute;
-  inset:0;
+    text-align:left;
 
-  background-image:
-    linear-gradient(
-      rgba(255,255,255,0.05) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,0.05) 1px,
-      transparent 1px
-    );
+    font-family:'Poppins',sans-serif;
 
-  background-size:20px 20px;
+    font-size:14px;
 
-  opacity:.3;
+    line-height:1.8;
 
-  animation:gridMove 8s linear infinite;
-
-  pointer-events:none;
-    }
-
-.footer-info::after{
-  content:"";
-  position:absolute;
-
-  top:-100%;
-  left:0;
-
-  width:100%;
-  height:100%;
-
-  background:linear-gradient(
-    transparent,
-    rgba(255,255,255,0.08),
-    transparent
-  );
-
-  animation:scan 4s linear infinite;
-
-  pointer-events:none;
+    z-index:2;
 }
 
-@keyframes scan{
-  from{
-    top:-100%;
-  }
+/* Judul */
+.footer-title{
+    display:inline-block;
 
-  to{
-    top:100%;
-  }
-    }
+    color:#fff;
 
-  .footer-title{
-  margin-top:20px;
-  margin-bottom:10px;
+    font-family:'Orbitron',sans-serif;
 
-  padding-bottom:6px;
+    font-size:18px;
+    font-weight:700;
 
-  border-bottom:2px solid #1e90ff;
+    margin:0 0 15px;
 
-  text-align:left;
+    padding-bottom:8px;
 
-  font-weight:bold;
-  color:white;
-  }
+    border-bottom:3px solid #1e90ff;
+
+    text-shadow:0 0 10px rgba(30,144,255,.45);
+}
+
+/* Paragraf */
+.footer-info p{
+    margin:8px 0;
+
+    color:#dbeafe;
+
+    font-family:'Poppins',sans-serif;
+
+    font-size:14px;
+
+    line-height:1.8;
+}
+
+/* Link */
+.footer-info a{
+    color:#7cc7ff;
+
+    text-decoration:none;
+
+    font-weight:600;
+}
+
+.footer-info a:hover{
+    color:#fff;
+}
   
 
   .social-icons{
@@ -1077,7 +1062,7 @@ Lupa Password?
 
 <div id="footerSection" class="game-badge">
   
-  
+  <div class="footer-info">
 
   <h3>REXMARKET</h3>
 
