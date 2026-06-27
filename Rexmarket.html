@@ -712,6 +712,117 @@ left:130%;
   font-size:12px;
   opacity:.8;
     }
+
+    /* ========================= */
+/* FLOAT BUTTON */
+/* ========================= */
+
+.fab-container{
+    position:fixed;
+
+    bottom:20px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    z-index:9999;
+}
+
+/* MENU */
+
+.fab-menu{
+    position:absolute;
+
+    bottom:90px;
+    left:50%;
+
+    transform:translateX(-50%) scale(.8);
+
+    opacity:0;
+    pointer-events:none;
+
+    transition:.25s;
+
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.fab-menu.show{
+
+    opacity:1;
+
+    transform:translateX(-50%) scale(1);
+
+    pointer-events:auto;
+}
+
+.fab-menu button{
+
+    border:none;
+
+    border-radius:16px;
+
+    padding:12px 18px;
+
+    color:white;
+
+    font-family:'Poppins',sans-serif;
+
+    font-weight:600;
+
+    background:rgba(30,144,255,.18);
+
+    border:1px solid rgba(30,144,255,.35);
+
+    backdrop-filter:blur(12px);
+
+    cursor:pointer;
+
+    white-space:nowrap;
+
+    transition:.2s;
+}
+
+.fab-menu button:active{
+
+    transform:scale(.95);
+
+    background:rgba(30,144,255,.35);
+}
+
+/* TOMBOL BULAT */
+
+.fab-btn{
+
+    width:72px;
+    height:72px;
+
+    border-radius:50%;
+
+    border:none;
+
+    cursor:pointer;
+
+    background:#1d3667;
+
+    color:white;
+
+    font-size:28px;
+
+    border:2px solid rgba(30,144,255,.35);
+
+    box-shadow:
+        0 0 20px rgba(30,144,255,.25);
+
+    transition:.25s;
+}
+
+.fab-btn.active{
+
+    transform:rotate(45deg);
+}
+    
   
 </style>  </head>  <body>  
   
@@ -1144,6 +1255,7 @@ Lupa Password?
 
 </div>
 
+
   
   <div id="jualBeliPage" style="display:none;">
 
@@ -1361,6 +1473,29 @@ Lupa Password?
   <div style="padding-top:80px; color:white;">
     
   </div>
+
+</div>
+
+     <!-- FLOAT MENU -->
+<div class="fab-container">
+
+  <div class="fab-menu" id="fabMenu">
+
+    <button onclick="showTopup()">💎 Top Up</button>
+
+    <button onclick="showJoki()">⚔️ Joki</button>
+
+    <button onclick="showTransaksi()">📜 Transaksi</button>
+
+    <button onclick="showPesanan()">📦 Pesanan</button>
+
+  </div>
+
+  <button class="fab-btn" id="fabBtn" onclick="toggleFab()">
+
+    <span id="fabIcon">⠿</span>
+
+  </button>
 
 </div>
   
@@ -1906,6 +2041,45 @@ track.addEventListener("touchend", e=>{
   });
 
     }
+
+    let fabOpen = false;
+
+function toggleFab(){
+
+    fabOpen = !fabOpen;
+
+    document
+        .getElementById("fabMenu")
+        .classList.toggle("show");
+
+    document
+        .getElementById("fabBtn")
+        .classList.toggle("active");
+
+    document
+        .getElementById("fabIcon")
+        .innerHTML = fabOpen ? "✕" : "⠿";
+
+}
+
+// Contoh
+function showTopup(){
+    toggleFab();
+    showTopupPage();
+}
+
+function showJoki(){
+    toggleFab();
+    showJokiPage();
+}
+
+function showTransaksi(){
+    toggleFab();
+}
+
+function showPesanan(){
+    toggleFab();
+}
 
     
 
