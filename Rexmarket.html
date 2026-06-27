@@ -714,12 +714,11 @@ left:130%;
     }
 
     
-    /* ===========================
-   FLOATING MENU
+/* ===========================
+   OVERLAY
 =========================== */
 
-/* Blur */
-.fab-overlay{
+.overlay{
     position:fixed;
     inset:0;
 
@@ -736,125 +735,104 @@ left:130%;
     z-index:9998;
 }
 
-.fab-overlay.show{
+.overlay.show{
     opacity:1;
     visibility:visible;
 }
 
-/* Tombol */
-.fab-container{
+/* ===========================
+   BAR BAWAH
+=========================== */
+
+.bottom-bar{
+
     position:fixed;
 
     left:50%;
-    bottom:22px;
+    bottom:18px;
 
     transform:translateX(-50%);
 
-    z-index:10000;
+    width:320px;
+    height:70px;
+
+    border-radius:999px;
+
+    background:rgba(29,54,103,.96);
+
+    border:1px solid rgba(120,210,255,.20);
+
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
+
+    z-index:9999;
 }
 
+/* ===========================
+   TOMBOL BULAT
+=========================== */
+
 .fab-btn{
-    width:72px;
-    height:72px;
+
+    position:fixed;
+
+    left:50%;
+    bottom:32px;
+
+    transform:translateX(-50%);
+
+    width:88px;
+    height:88px;
+
+    border:none;
+    border-radius:50%;
+
+    background:linear-gradient(180deg,#3aa3ff,#1d63e6);
 
     display:flex;
     justify-content:center;
     align-items:center;
 
-    border:none;
-    border-radius:50%;
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.35),
+    0 0 20px rgba(30,144,255,.35);
 
     cursor:pointer;
 
-    background:linear-gradient(180deg,#2f8fff,#1d5fd7);
-
-    border:2px solid rgba(255,255,255,.15);
-
-    box-shadow:
-        0 0 20px rgba(30,144,255,.45),
-        0 8px 25px rgba(0,0,0,.35);
+    z-index:10000;
 
     transition:.25s;
 }
 
 .fab-btn:active{
-    transform:scale(.93);
+
+    transform:translateX(-50%) scale(.95);
+
 }
 
-/* 9 titik */
+/* ===========================
+   IKON 9 TITIK
+=========================== */
+
 .menu-dot{
+
     display:grid;
-    grid-template-columns:repeat(3,6px);
-    gap:5px;
+
+    grid-template-columns:repeat(3,7px);
+
+    gap:6px;
+
 }
 
 .menu-dot span{
-    width:6px;
-    height:6px;
+
+    width:7px;
+    height:7px;
 
     border-radius:50%;
 
     background:white;
-}
 
-/* Popup */
-.fab-menu{
-
-    position:fixed;
-
-    left:50%;
-    bottom:110px;
-
-    transform:translateX(-50%) scale(.9);
-
-    width:260px;
-
-    background:rgba(22,35,70,.92);
-
-    border:1px solid rgba(80,180,255,.35);
-
-    border-radius:22px;
-
-    padding:16px;
-
-    backdrop-filter:blur(18px);
-
-    opacity:0;
-    visibility:hidden;
-
-    transition:.25s;
-
-    z-index:9999;
-}
-
-.fab-menu.show{
-
-    opacity:1;
-    visibility:visible;
-
-    transform:translateX(-50%) scale(1);
-}
-
-.fab-item{
-
-    padding:14px;
-
-    color:white;
-
-    font-family:'Poppins',sans-serif;
-
-    font-size:15px;
-    font-weight:600;
-
-    border-radius:14px;
-
-    cursor:pointer;
-
-    transition:.2s;
-}
-
-.fab-item:hover{
-    background:rgba(30,144,255,.18);
 }
 
 
@@ -1512,47 +1490,7 @@ Lupa Password?
 
 </div>
 
-     <div id="fabOverlay" class="fab-overlay" onclick="closeFab()"></div>
-
-<div id="fabMenu" class="fab-menu">
-
-    <div class="fab-item" onclick="showTopup()">
-        💎 Top Up
-    </div>
-
-    <div class="fab-item" onclick="showJoki()">
-        ⚔️ Joki
-    </div>
-
-    <div class="fab-item" onclick="showTransaksi()">
-        📜 Transaksi
-    </div>
-
-    <div class="fab-item" onclick="showPesanan()">
-        📦 Pesanan
-    </div>
-
-</div>
-
-<div class="fab-container">
-
-    <button
-        id="fabBtn"
-        class="fab-btn"
-        onclick="toggleFab()">
-
-        <div class="menu-dot">
-
-            <span></span><span></span><span></span>
-            <span></span><span></span><span></span>
-            <span></span><span></span><span></span>
-
-        </div>
-
-    </button>
-
-</div>
-  
+    
 
 <div id="adminPage" style="display:none;">
 
@@ -1638,6 +1576,28 @@ Lupa Password?
   box-shadow:0 0 15px rgba(0,0,0,0.4);
 ">
      </div>
+
+     <!-- Overlay -->
+<div id="overlay" class="overlay" onclick="toggleFab()"></div>
+
+<!-- Bar bawah -->
+<div class="bottom-bar"></div>
+
+<!-- Tombol -->
+<button
+id="fabBtn"
+class="fab-btn"
+onclick="toggleFab()">
+
+<div class="menu-dot">
+
+<span></span><span></span><span></span>
+<span></span><span></span><span></span>
+<span></span><span></span><span></span>
+
+</div>
+
+</button>
     
 
   
@@ -2096,56 +2056,7 @@ track.addEventListener("touchend", e=>{
 
     }
 
-    let fabOpen = false;
-
-function toggleFab(){
-
-    fabOpen = !fabOpen;
-
-    document.getElementById("fabMenu").classList.toggle("show");
-
-    document.getElementById("fabOverlay").classList.toggle("show");
-
-}
-
-function closeFab(){
-
-    fabOpen = false;
-
-    document.getElementById("fabMenu").classList.remove("show");
-
-    document.getElementById("fabOverlay").classList.remove("show");
-
-}
-
-function showTopup(){
-
-    closeFab();
-
-    // panggil halaman Top Up
-    // showTopupPage();
-
-}
-
-function showJoki(){
-
-    closeFab();
-
-    // showJokiPage();
-
-}
-
-function showTransaksi(){
-
-    closeFab();
-
-}
-
-function showPesanan(){
-
-    closeFab();
-
-}
+  
 
     window.addEventListener("DOMContentLoaded", () => {
 
@@ -2254,6 +2165,18 @@ function showPesanan(){
     document.getElementById("homePage").style.display = "block";
   }
 });
+
+    let fabOpen = false;
+
+function toggleFab(){
+
+    fabOpen = !fabOpen;
+
+    document
+    .getElementById("overlay")
+    .classList.toggle("show",fabOpen);
+
+}
 
   
 </script>
