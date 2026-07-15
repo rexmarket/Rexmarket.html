@@ -1457,6 +1457,16 @@ onclick="toggleFab()">
 </div>
 
 </button>
+
+  <div id="menuLoader"></div>
+
+<script>
+fetch("menu.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("menuLoader").innerHTML = html;
+  });
+</script>
     
 
   
