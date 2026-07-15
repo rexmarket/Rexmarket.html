@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+/* CSS di sini */
 /* ===========================
    FLOATING BUTTON
 =========================== */
@@ -59,8 +69,6 @@
     gap:6px;
 }
 
-
-
 .menu-icon span{
 
     width:6px;
@@ -69,38 +77,37 @@
     border-radius:50%;
 
     background:white;
-}
+   }
+   
+</style>
 
+</head>
+
+<body>
 
 <div class="fab-container">
 
-    <button
-        class="fab-btn"
-        onclick="toggleMenu()">
+    <button class="fab-btn" onclick="toggleMenu()">
 
         <div class="menu-icon">
-
-            <span></span>
-            <span></span>
-            <span></span>
-
-            <span></span>
-            <span></span>
-            <span></span>
-
-            <span></span>
-            <span></span>
-            <span></span>
-
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
         </div>
 
     </button>
 
 </div>
 
+<script>
 
-  function toggleMenu(){
+function toggleMenu(){
 
     console.log("Menu ditekan");
 
-  }
+}
+
+</script>
+
+</body>
+</html>
