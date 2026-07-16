@@ -712,26 +712,24 @@ left:130%;
 }
 
 .fab-btn{
-    width:72px;
-    height:72px;
+    position:fixed !important;
+    left:50% !important;
+    bottom:20px !important;
+    transform:translateX(-50%) !important;
 
-    border:none;
-    border-radius:50%;
+    width:80px !important;
+    height:80px !important;
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    display:block !important;
 
-    background:linear-gradient(180deg,#3aa3ff,#1d63e6);
+    background:red !important;
 
-    cursor:pointer;
+    border-radius:50% !important;
 
-    box-shadow:
-        0 8px 20px rgba(0,0,0,.35),
-        0 0 18px rgba(30,144,255,.35);
+    border:none !important;
 
-    transition:.25s;
-}
+    z-index:999999 !important;
+           }
 
 .fab-btn:active{
     transform:scale(.95);
@@ -1497,9 +1495,7 @@ Lupa Password?
         <div class="menu-icon">
 
             <span></span><span></span><span></span>
-
             <span></span><span></span><span></span>
-
             <span></span><span></span><span></span>
 
         </div>
@@ -1507,6 +1503,7 @@ Lupa Password?
     </button>
 
 </div>
+
   
   <!-- FIREBASE --> 
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>  
