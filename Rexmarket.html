@@ -698,6 +698,57 @@ left:130%;
   opacity:.8;
     }
 
+
+    /* ===========================
+   FLOATING MENU BUTTON
+=========================== */
+
+.fab-container{
+    position:fixed;
+    left:50%;
+    bottom:20px;
+    transform:translateX(-50%);
+    z-index:99999;
+}
+
+.fab-btn{
+    width:72px;
+    height:72px;
+
+    border:none;
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:linear-gradient(180deg,#3aa3ff,#1d63e6);
+
+    cursor:pointer;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.35),
+        0 0 18px rgba(30,144,255,.35);
+
+    transition:.25s;
+}
+
+.fab-btn:active{
+    transform:scale(.95);
+}
+
+.menu-icon{
+    display:grid;
+    grid-template-columns:repeat(3,6px);
+    gap:5px;
+}
+
+.menu-icon span{
+    width:6px;
+    height:6px;
+    background:#fff;
+    border-radius:50%;
+}
     
 
   
@@ -1436,39 +1487,26 @@ Lupa Password?
 ">
      </div>
 
-     <!-- Overlay -->
-<div id="overlay" class="overlay" onclick="toggleFab()"></div>
+<div class="fab-container">
 
-<!-- Bar bawah -->
-<div class="bottom-bar"></div>
+    <button
+        id="fabBtn"
+        class="fab-btn"
+        onclick="toggleMenu()">
 
-<!-- Tombol -->
-<button
-id="fabBtn"
-class="fab-btn"
-onclick="toggleFab()">
+        <div class="menu-icon">
 
-<div class="menu-dot">
+            <span></span><span></span><span></span>
 
-<span></span><span></span><span></span>
-<span></span><span></span><span></span>
-<span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+
+            <span></span><span></span><span></span>
+
+        </div>
+
+    </button>
 
 </div>
-
-</button>
-
-  <div id="menuLoader"></div>
-
-<script>
-fetch("menu.html")
-  .then(res => res.text())
-  .then(html => {
-    document.getElementById("menuLoader").innerHTML = html;
-  });
-</script>
-    
-
   
   <!-- FIREBASE --> 
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>  
@@ -1922,6 +1960,12 @@ track.addEventListener("touchend", e=>{
     top: element.offsetTop - 90,
     behavior: "smooth"
   });
+
+    }
+
+    function toggleMenu(){
+
+    alert("Tombol berhasil ditekan");
 
     }
 
