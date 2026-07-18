@@ -128,18 +128,27 @@ HEADER
 }
 
 /* VIDEO */
-
 .header-logo{
 
     position:relative;
 
-    width:230px;
+    width:85%;
+    max-width:420px;
+    height:auto;
 
-    height:58px;
+    
 
     object-fit:contain;
 
     display:block;
+
+    filter:
+        brightness(1.25)
+        contrast(1.4)
+        saturate(1.2)
+        opacity(.88);
+
+    mix-blend-mode:screen;
 
     pointer-events:none;
 
@@ -147,13 +156,8 @@ HEADER
 
     z-index:2;
 
-    filter:
+    }
 
-        drop-shadow(0 0 8px rgba(255,255,255,.25))
-
-        drop-shadow(0 0 18px rgba(30,144,255,.35));
-
-}
 
 /* ANIMASI */
 
