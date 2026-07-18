@@ -17,8 +17,7 @@ rel="stylesheet">
 
 <style>
 
-    
-/* =========================================
+    /* =========================================
 HEADER
 ========================================= */
 
@@ -40,12 +39,15 @@ HEADER
 
     background:transparent;
 
-    transition:.35s;
+    transition:
+        background .35s,
+        box-shadow .35s,
+        backdrop-filter .35s;
 
     z-index:9999;
 }
 
-/* Saat sudah masuk area merah */
+/* Saat scroll ke area merah */
 
 #header.scrolled{
 
@@ -54,6 +56,8 @@ HEADER
         #d11d25,
         #99151a
     );
+
+    backdrop-filter:blur(10px);
 
     box-shadow:
         0 5px 18px rgba(255,0,0,.25);
@@ -85,9 +89,9 @@ HEADER
 
     background-size:22px 22px;
 
-    opacity:.35;
-
     animation:headerGrid 8s linear infinite;
+
+    opacity:.35;
 
     pointer-events:none;
 
@@ -111,7 +115,7 @@ HEADER
 
         transparent,
 
-        rgba(255,255,255,.10),
+        rgba(255,255,255,.08),
 
         transparent
 
@@ -123,24 +127,35 @@ HEADER
 
 }
 
-#header h1{
+/* VIDEO */
+
+.header-logo{
 
     position:relative;
 
-    color:white;
+    width:230px;
 
-    font-size:24px;
+    height:58px;
 
-    font-weight:700;
+    object-fit:contain;
 
-    letter-spacing:3px;
+    display:block;
 
-    text-shadow:
-        0 0 10px rgba(255,255,255,.35);
+    pointer-events:none;
+
+    user-select:none;
 
     z-index:2;
 
+    filter:
+
+        drop-shadow(0 0 8px rgba(255,255,255,.25))
+
+        drop-shadow(0 0 18px rgba(30,144,255,.35));
+
 }
+
+/* ANIMASI */
 
 @keyframes headerGrid{
 
@@ -172,12 +187,11 @@ HEADER
 
     }
 
-        }
-
-
+}
     
     
-/* =========================================
+    
+    /* =========================================
    RESET
 ========================================= */
 
@@ -325,21 +339,20 @@ HEADER
 
 <header id="header">
 
-    <h1>REXMARKET</h1>
+    <video
+        class="header-logo"
+        autoplay
+        muted
+        loop
+        playsinline>
 
-</header>
+        <!-- Jika format WebM -->
+        <source src="assets/logo.webm" type="video/webm">
 
-    <button class="profile-btn">
+        <!-- Jika format MP4 -->
+        <!-- <source src="assets/logo.mp4" type="video/mp4"> -->
 
-        <svg viewBox="0 0 24 24" fill="none">
-
-            <circle cx="12" cy="8" r="4" stroke="white" stroke-width="2"/>
-
-            <path d="M4 20c1.5-4 5-6 8-6s6.5 2 8 6" stroke="white" stroke-width="2" stroke-linecap="round"/>
-
-        </svg>
-
-    </button>
+    </video>
 
 </header>
 
@@ -359,9 +372,9 @@ HEADER
 
 window.addEventListener("scroll",function(){
 
-    const header = document.getElementById("header");
+    const header=document.getElementById("header");
 
-    if(window.scrollY > 650){
+    if(window.scrollY>650){
 
         header.classList.add("scrolled");
 
