@@ -435,27 +435,78 @@ BOTTOM NAV
 
     position:fixed;
 
-    left:16px;
+    left:0;
 
-    right:16px;
+    right:0;
 
-    bottom:16px;
+    bottom:0;
 
-    height:62px;
+    width:100%;
 
-    border-radius:20px;
+    height:68px;
 
-    background:rgba(12,25,45,.92);
+    overflow:hidden;
+
+    background:rgba(8,20,42,.95);
 
     backdrop-filter:blur(18px);
     -webkit-backdrop-filter:blur(18px);
 
-    border:1px solid rgba(255,255,255,.08);
+    border-top:1px solid rgba(255,255,255,.08);
 
     box-shadow:
-        0 10px 30px rgba(0,0,0,.45);
+        0 -8px 25px rgba(0,0,0,.45);
 
     z-index:9999;
+
+}
+
+/* GRID */
+
+.bottom-nav::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background-image:
+
+        linear-gradient(
+            rgba(255,255,255,.05) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.05) 1px,
+            transparent 1px
+        );
+
+    background-size:22px 22px;
+
+    animation:bottomGrid 8s linear infinite;
+
+    opacity:.35;
+
+}
+
+/* GLOW */
+
+.bottom-nav::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        radial-gradient(circle at 50% 50%,
+        rgba(0,140,255,.18),
+        transparent 70%);
 
 }
 
@@ -473,35 +524,42 @@ CENTER BUTTON
 
     transform:translateX(-50%);
 
-    width:70px;
+    width:68px;
 
-    height:70px;
+    height:68px;
 
     border:none;
 
     border-radius:50%;
 
     background:linear-gradient(
+
         180deg,
-        #1f74ff,
-        #0f47b8
+
+        #215dbb,
+
+        #123a82
+
     );
 
     display:flex;
 
     justify-content:center;
+
     align-items:center;
 
     cursor:pointer;
 
     box-shadow:
-        0 0 20px rgba(30,144,255,.35),
-        0 8px 20px rgba(0,0,0,.4);
+
+        0 0 18px rgba(0,120,255,.35),
+
+        0 8px 20px rgba(0,0,0,.45);
 
 }
 
 /* =========================================
-ICON 3x3
+ICON
 ========================================= */
 
 .menu-icon{
@@ -525,6 +583,28 @@ ICON 3x3
     background:#fff;
 
 }
+
+/* =========================================
+ANIMATION
+========================================= */
+
+@keyframes bottomGrid{
+
+    from{
+
+        background-position:0 0;
+
+    }
+
+    to{
+
+        background-position:22px 22px;
+
+    }
+
+}
+
+    
     
 </style>
 
