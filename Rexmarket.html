@@ -427,6 +427,113 @@ body::after{
 
 }
 
+/* =========================================
+BOTTOM NAV
+========================================= */
+
+.bottom-nav{
+
+    position:fixed;
+
+    left:50%;
+
+    bottom:20px;
+
+    transform:translateX(-50%);
+
+    width:88%;
+
+    height:72px;
+
+    border-radius:22px;
+
+    background:rgba(12,25,45,.92);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.45);
+
+    z-index:9999;
+
+}
+
+/* =========================================
+CENTER BUTTON
+========================================= */
+
+.center-btn{
+
+    position:absolute;
+
+    left:50%;
+
+    top:-26px;
+
+    transform:translateX(-50%);
+
+    width:86px;
+
+    height:86px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+
+        180deg,
+
+        #1f74ff,
+
+        #0f47b8
+
+    );
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    box-shadow:
+
+        0 0 25px rgba(30,144,255,.45),
+
+        0 8px 25px rgba(0,0,0,.4);
+
+}
+
+/* =========================================
+9 DOT ICON
+========================================= */
+
+.menu-icon{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,7px);
+
+    gap:6px;
+
+}
+
+.menu-icon span{
+
+    width:7px;
+
+    height:7px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+        }
+    
 </style>
 
 </head>
@@ -446,8 +553,24 @@ HEADER
 
 </header>
     
+<div class="bottom-nav">
 
-<!-- HOME PAGE -->
+    <button class="center-btn">
+
+        <div class="menu-icon">
+
+            <span></span><span></span><span></span>
+
+            <span></span><span></span><span></span>
+
+            <span></span><span></span><span></span>
+
+        </div>
+
+    </button>
+
+</div>
+
 
 
 <script>
