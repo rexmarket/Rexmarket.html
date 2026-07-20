@@ -493,6 +493,65 @@ BOTTOM NAV
 
 }
 
+    .bottom-nav{
+    z-index:99999;
+    pointer-events:auto;
+}
+
+.nav-item{
+    pointer-events:auto;
+    z-index:100000;
+}
+
+     /* =========================================
+NAV ACTIVE
+========================================= */
+
+.nav-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-end;
+    gap:4px;
+
+    width:60px;
+
+    color:#999;
+    font-size:12px;
+
+    cursor:pointer;
+    transition:all .25s ease;
+}
+
+.nav-icon{
+    width:22px;
+    height:22px;
+
+    fill:none;
+    stroke:#999;
+    stroke-width:2;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+
+    transition:all .25s ease;
+}
+
+.nav-item span{
+    color:#999;
+    font-weight:500;
+    transition:all .25s ease;
+}
+
+.nav-item.active .nav-icon{
+    stroke:#ff4040;
+}
+
+.nav-item.active span{
+    color:#ff4040;
+    font-weight:600;
+}
+    
+
 /* =========================================
 MENU ITEM
 ========================================= */
@@ -702,53 +761,7 @@ ANIMATION
 }
 
 
-    /* =========================================
-NAV ACTIVE
-========================================= */
 
-.nav-item{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:flex-end;
-    gap:4px;
-
-    width:60px;
-
-    color:#999;
-    font-size:12px;
-
-    cursor:pointer;
-    transition:all .25s ease;
-}
-
-.nav-icon{
-    width:22px;
-    height:22px;
-
-    fill:none;
-    stroke:#999;
-    stroke-width:2;
-    stroke-linecap:round;
-    stroke-linejoin:round;
-
-    transition:all .25s ease;
-}
-
-.nav-item span{
-    color:#999;
-    font-weight:500;
-    transition:all .25s ease;
-}
-
-.nav-item.active .nav-icon{
-    stroke:#ff4040;
-}
-
-.nav-item.active span{
-    color:#ff4040;
-    font-weight:600;
-    }
     
 </style>
 
@@ -848,21 +861,14 @@ NAVBAR ACTIVE
 ========================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-
     const navItems = document.querySelectorAll(".nav-item");
 
-    // Beranda aktif saat pertama kali dibuka
-    if (navItems.length > 0) {
-        navItems[0].classList.add("active");
-    }
-
-    navItems.forEach(item => {
-        item.addEventListener("click", () => {
+    navItems.forEach((item) => {
+        item.addEventListener("click", function () {
             navItems.forEach(i => i.classList.remove("active"));
-            item.classList.add("active");
+            this.classList.add("active");
         });
     });
-
 });
     
 </script>
