@@ -21,6 +21,14 @@ rel="stylesheet">
 HEADER
 ========================================= */
 
+body{
+
+    margin:0;
+
+    padding-top:95px;
+
+}
+
 #header{
 
     position:fixed;
@@ -29,7 +37,7 @@ HEADER
     left:0;
 
     width:100%;
-    height:72px;
+    height:95px;
 
     display:flex;
     justify-content:center;
@@ -37,34 +45,23 @@ HEADER
 
     overflow:hidden;
 
-    background:transparent;
+    background:rgba(8,20,45,.95);
 
-    transition:
-        background .35s,
-        box-shadow .35s,
-        backdrop-filter .35s;
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
 
-    z-index:9999;
-}
-
-/* Saat scroll ke area merah */
-
-#header.scrolled{
-
-    background:linear-gradient(
-        180deg,
-        #d11d25,
-        #99151a
-    );
-
-    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,.08);
 
     box-shadow:
-        0 5px 18px rgba(255,0,0,.25);
+        0 10px 30px rgba(0,0,0,.45);
+
+    transition:.35s;
+
+    z-index:99999;
 
 }
 
-/* GRID */
+/* Grid */
 
 #header::before{
 
@@ -89,15 +86,13 @@ HEADER
 
     background-size:22px 22px;
 
-    animation:headerGrid 8s linear infinite;
-
     opacity:.35;
 
-    pointer-events:none;
+    animation:gridMove 8s linear infinite;
 
 }
 
-/* SCAN */
+/* Scan */
 
 #header::after{
 
@@ -106,6 +101,7 @@ HEADER
     position:absolute;
 
     top:-100%;
+
     left:0;
 
     width:100%;
@@ -121,31 +117,29 @@ HEADER
 
     );
 
-    animation:headerScan 4s linear infinite;
-
-    pointer-events:none;
+    animation:scan 4s linear infinite;
 
 }
 
-/* =========================================
-LOGO
-========================================= */
+/* Logo */
 
 .header-logo{
 
-    width:260px;
+    position:relative;
+
+    width:300px;
 
     height:auto;
 
+    display:block;
+
     object-fit:contain;
 
-    user-select:none;
+    z-index:2;
 
     pointer-events:none;
 
-    position:relative;
-
-    z-index:2;
+    user-select:none;
 
     filter:
 
@@ -153,20 +147,25 @@ LOGO
 
         drop-shadow(0 0 18px rgba(30,144,255,.35));
 
-    transition:.3s;
+}
+
+/* Saat scroll */
+
+#header.scrolled{
+
+    background:rgba(125,10,20,.96);
+
+    border-bottom:1px solid rgba(255,70,70,.20);
+
+    box-shadow:
+
+        0 10px 30px rgba(255,0,0,.25);
 
 }
 
-.header-logo:hover{
+/* Animasi */
 
-    transform:scale(1.03);
-
-    }
-
-
-/* ANIMASI */
-
-@keyframes headerGrid{
+@keyframes gridMove{
 
     from{
 
@@ -182,7 +181,7 @@ LOGO
 
 }
 
-@keyframes headerScan{
+@keyframes scan{
 
     from{
 
@@ -197,6 +196,8 @@ LOGO
     }
 
 }
+
+
     
     
     
@@ -349,9 +350,9 @@ HEADER
 <header id="header">
 
     <img
-        src="RexmarketLogo.png"
+        src="Rexmarketlogo.png"
         class="header-logo"
-        alt="Rexmarket">
+        alt="">
 
 </header>
     
