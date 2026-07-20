@@ -683,7 +683,27 @@ ANIMATION
 
 }
 
+/* Hilangkan highlight biru saat disentuh */
+*{
+    -webkit-tap-highlight-color: transparent;
+}
 
+/* Hilangkan outline saat fokus */
+button,
+.nav-item,
+.center-btn,
+a{
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+button:focus,
+button:active,
+.nav-item:focus,
+.center-btn:focus,
+a:focus{
+    outline: none;
+}
 
     
 </style>
