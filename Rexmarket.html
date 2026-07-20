@@ -427,11 +427,11 @@ body::after{
 
 }
 
+
 /* =========================================
 BOTTOM NAV
 ========================================= */
 .bottom-nav{
-
     position:fixed;
 
     left:16px;
@@ -441,9 +441,7 @@ BOTTOM NAV
     height:72px;
 
     display:flex;
-
     justify-content:space-between;
-
     align-items:flex-end;
 
     padding:0 18px 10px;
@@ -462,210 +460,133 @@ BOTTOM NAV
     box-shadow:0 8px 25px rgba(0,0,0,.45);
 
     z-index:9999;
-
 }
-
-    
 
 /* Cahaya */
-
 .bottom-nav::before{
-
     content:"";
-
     position:absolute;
-
     left:8%;
-
     right:8%;
-
     bottom:-14px;
-
     height:36px;
-
     border-radius:50%;
-
     background:rgba(0,140,255,.45);
-
     filter:blur(30px);
+    z-index:-2;
+}
+
+/* Grid */
+.bottom-nav::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+
+    background-size:22px 22px;
+    animation:bottomGrid 8s linear infinite;
+    opacity:.35;
 
     z-index:-1;
-
 }
-
-    .bottom-nav{
-    z-index:99999;
-    pointer-events:auto;
-}
-
-.nav-item{
-    pointer-events:auto;
-    z-index:100000;
-}
-
-     
-    
 
 /* =========================================
 MENU ITEM
 ========================================= */
 
 .nav-item{
-
     display:flex;
-
     flex-direction:column;
-
     align-items:center;
-
     justify-content:flex-end;
 
     gap:4px;
-
-    color:#fff;
-
-    font-size:12px;
-
     width:60px;
 
+    color:#999;
+    font-size:12px;
+
+    cursor:pointer;
+    transition:.25s;
+
+    position:relative;
+    z-index:2;
 }
 
 .nav-icon{
-
     width:22px;
-
     height:22px;
 
     fill:none;
-
-    stroke:#fff;
-
+    stroke:#999;
     stroke-width:2;
-
     stroke-linecap:round;
-
     stroke-linejoin:round;
 
+    transition:.25s;
 }
 
 .nav-item span{
-
+    color:#999;
     font-weight:500;
-
-}
-    
-/* GRID */
-
-.bottom-nav::before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background-image:
-
-        linear-gradient(
-            rgba(255,255,255,.05) 1px,
-            transparent 1px
-        ),
-
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,.05) 1px,
-            transparent 1px
-        );
-
-    background-size:22px 22px;
-
-    animation:bottomGrid 8s linear infinite;
-
-    opacity:.35;
-
+    transition:.25s;
 }
 
-    
-    
-/* GLOW */
-
-.bottom-nav::after{
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-
-        radial-gradient(circle at 50% 50%,
-        rgba(0,140,255,.18),
-        transparent 70%);
-
-}
-    .transaksi{
-    margin-right:35px;
+.nav-item.active .nav-icon{
+    stroke:#ff4040;
 }
 
-.pesanan{
-    margin-left:35px;
+.nav-item.active span{
+    color:#ff4040;
+    font-weight:600;
 }
 
-    /* =========================================
+/* =========================================
 CENTER BUTTON
 ========================================= */
-.center-btn{
 
+.center-btn{
     position:fixed;
 
     left:50%;
-
     bottom:52px;
 
     transform:translateX(-50%);
 
     width:68px;
-
     height:68px;
 
     border:none;
-
     border-radius:50%;
 
     display:flex;
-
     justify-content:center;
-
     align-items:center;
 
-    background:linear-gradient(
-        180deg,
-        #2F78E7,
-        #174EA6
-    );
+    background:linear-gradient(180deg,#2F78E7,#174EA6);
 
     cursor:pointer;
 
-    z-index:10000;
+    z-index:10001;
 
     box-shadow:
-
         0 0 20px rgba(47,120,231,.45),
-
         0 8px 25px rgba(0,0,0,.45);
 
-    -webkit-tap-highlight-color:transparent;
-
     transition:.2s;
-
 }
 
 .center-btn:active{
-
     transform:translateX(-50%) scale(.92);
-
 }
+     
+    
+
+
+    
 
     /* =========================================
 NAV ACTIVE
