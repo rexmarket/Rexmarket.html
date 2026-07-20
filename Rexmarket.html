@@ -838,23 +838,25 @@ window.addEventListener("scroll",function(){
 NAVBAR ACTIVE
 ========================================= */
 
-document.addEventListener("DOMContentLoaded",()=>{
+window.onload = function () {
 
-    const navItems=document.querySelectorAll(".nav-item");
+    const navItems = document.querySelectorAll(".nav-item");
 
-    navItems.forEach(item=>{
+    console.log(navItems.length);
 
-        item.addEventListener("click",()=>{
+    navItems.forEach(item => {
 
-            navItems.forEach(i=>i.classList.remove("active"));
+        item.onclick = function () {
 
-            item.classList.add("active");
+            navItems.forEach(i => i.classList.remove("active"));
 
-        });
+            this.classList.add("active");
+
+        };
 
     });
 
-});
+};
     
     
 </script>
