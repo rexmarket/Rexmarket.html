@@ -244,8 +244,46 @@ body{
 }
 
 /* =========================================
-   GRID BACKGROUND
+BACKGROUND
 ========================================= */
+
+body{
+
+    margin:0;
+
+    padding-top:100px;
+
+    font-family:'Poppins',sans-serif;
+
+    color:#fff;
+
+    overflow-x:hidden;
+
+    min-height:100vh;
+
+    position:relative;
+
+    background:linear-gradient(
+
+        180deg,
+
+        #3476d4 0%,
+
+        #275fb8 20%,
+
+        #1c458d 40%,
+
+        #35254b 65%,
+
+        #681c29 82%,
+
+        #8f1f2d 100%
+
+    );
+
+}
+
+/* GRID */
 
 body::before{
 
@@ -255,19 +293,90 @@ body::before{
 
     inset:0;
 
+    z-index:-2;
+
     pointer-events:none;
 
     background-image:
-        linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
+
+        linear-gradient(
+            rgba(255,255,255,.05) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.05) 1px,
+            transparent 1px
+        );
 
     background-size:40px 40px;
 
-    opacity:.35;
-
     animation:gridMove 12s linear infinite;
 
-    z-index:-2;
+    opacity:.35;
+
+}
+
+/* GLOW */
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-1;
+
+    pointer-events:none;
+
+    background:
+
+        radial-gradient(circle at 15% 10%,rgba(0,170,255,.22),transparent 28%),
+
+        radial-gradient(circle at 80% 25%,rgba(0,120,255,.18),transparent 30%),
+
+        radial-gradient(circle at 50% 75%,rgba(255,0,0,.12),transparent 35%),
+
+        radial-gradient(circle at 20% 100%,rgba(255,60,60,.15),transparent 28%);
+
+    animation:glowMove 10s ease-in-out infinite alternate;
+
+}
+
+/* ANIMASI */
+
+@keyframes gridMove{
+
+    from{
+
+        background-position:0 0;
+
+    }
+
+    to{
+
+        background-position:40px 40px;
+
+    }
+
+}
+
+@keyframes glowMove{
+
+    from{
+
+        transform:translateY(0) scale(1);
+
+    }
+
+    to{
+
+        transform:translateY(-30px) scale(1.08);
+
+    }
 
 }
 
