@@ -711,103 +711,72 @@ BANNER
 ========================================= */
 
 .banner-slider{
-
     width:100%;
-    overflow:hidden;
-
+    height:140px;
+    margin:14px 0 18px;
     border-radius:18px;
-
+    overflow:hidden;
     position:relative;
-
-    margin:18px 0;
-
 }
 
 .banner-track{
-
     display:flex;
-
     width:300%;
-
-    transition:.6s ease;
-
+    height:100%;
+    transition:transform .5s ease;
 }
 
 .banner{
-
     width:100%;
-
-    min-height:170px;
-
+    height:140px;
     flex-shrink:0;
 
     display:flex;
-
     flex-direction:column;
-
     justify-content:center;
-
     align-items:center;
 
     text-align:center;
-
     color:#fff;
 
     background:linear-gradient(135deg,#0D47A1,#1976D2);
-
 }
 
 .banner h2{
-
-    font-size:28px;
-
-    margin-bottom:8px;
-
+    font-size:22px;
+    font-weight:700;
+    margin-bottom:4px;
 }
 
 .banner p{
-
-    font-size:15px;
-
+    font-size:13px;
     opacity:.9;
-
 }
 
 .banner-dots{
-
     position:absolute;
-
     left:50%;
-
-    bottom:12px;
-
+    bottom:10px;
     transform:translateX(-50%);
-
     display:flex;
-
-    gap:8px;
-
+    gap:6px;
 }
 
 .banner-dots span{
-
-    width:10px;
-
-    height:10px;
-
+    width:7px;
+    height:7px;
     border-radius:50%;
-
     background:rgba(255,255,255,.35);
-
     transition:.3s;
-
 }
 
 .banner-dots .active{
-
     background:#fff;
+    width:20px;
+    border-radius:20px;
+}
 
-    }
+
     
     
 </style>
@@ -828,6 +797,41 @@ HEADER
         alt="">
 
 </header>
+
+
+<!-- =========================================
+BANNER
+========================================= -->
+
+<div class="banner-slider">
+
+    <div class="banner-track">
+
+        <div class="banner">
+            <h2>REXMARKET</h2>
+            <p>TOP UP GAME MURAH & CEPAT</p>
+        </div>
+
+        <div class="banner">
+            <h2>JOKI RANK</h2>
+            <p>AMAN • CEPAT • TERPERCAYA</p>
+        </div>
+
+        <div class="banner">
+            <h2>JUAL BELI AKUN</h2>
+            <p>100% AMAN BERSAMA REXMARKET</p>
+        </div>
+
+    </div>
+
+    <div class="banner-dots">
+        <span class="active"></span>
+        <span></span>
+        <span></span>
+    </div>
+
+</div>
+    
     
 <div class="bottom-nav">
 
@@ -878,38 +882,7 @@ HEADER
 </button>
 
 
-    <!-- =========================================
-BANNER
-========================================= -->
-
-<div class="banner-slider">
-
-    <div class="banner-track">
-
-        <div class="banner">
-            <h2>REXMARKET</h2>
-            <p>TOP UP GAME MURAH & CEPAT</p>
-        </div>
-
-        <div class="banner">
-            <h2>JOKI RANK</h2>
-            <p>AMAN • CEPAT • TERPERCAYA</p>
-        </div>
-
-        <div class="banner">
-            <h2>JUAL BELI AKUN</h2>
-            <p>100% AMAN BERSAMA REXMARKET</p>
-        </div>
-
-    </div>
-
-    <div class="banner-dots">
-        <span class="active"></span>
-        <span></span>
-        <span></span>
-    </div>
-
-</div>
+    
     
     
 <script>
