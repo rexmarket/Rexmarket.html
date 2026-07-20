@@ -707,32 +707,48 @@ NAV ACTIVE
 ========================================= */
 
 .nav-item{
-    cursor: pointer;
-    transition: .25s;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-end;
+    gap:4px;
+
+    width:60px;
+
+    color:#999;
+    font-size:12px;
+
+    cursor:pointer;
+    transition:all .25s ease;
 }
 
 .nav-icon{
-    width: 24px;
-    height: 24px;
-    fill: none;
-    stroke: #999;
-    stroke-width: 2;
-    transition: .25s;
+    width:22px;
+    height:22px;
+
+    fill:none;
+    stroke:#999;
+    stroke-width:2;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+
+    transition:all .25s ease;
 }
 
 .nav-item span{
-    color: #999;
-    transition: .25s;
+    color:#999;
+    font-weight:500;
+    transition:all .25s ease;
 }
 
 .nav-item.active .nav-icon{
-    stroke: #ff4040;
+    stroke:#ff4040;
 }
 
 .nav-item.active span{
-    color: #ff4040;
-    font-weight: 600;
-}
+    color:#ff4040;
+    font-weight:600;
+    }
     
 </style>
 
@@ -831,26 +847,23 @@ window.addEventListener("scroll",function(){
 NAVBAR ACTIVE
 ========================================= */
 
-window.onload = function () {
+document.addEventListener("DOMContentLoaded", () => {
 
     const navItems = document.querySelectorAll(".nav-item");
 
-    console.log(navItems.length);
+    // Beranda aktif saat pertama kali dibuka
+    if (navItems.length > 0) {
+        navItems[0].classList.add("active");
+    }
 
     navItems.forEach(item => {
-
-        item.onclick = function () {
-
+        item.addEventListener("click", () => {
             navItems.forEach(i => i.classList.remove("active"));
-
-            this.classList.add("active");
-
-        };
-
+            item.classList.add("active");
+        });
     });
 
-};
-    
+});
     
 </script>
 
