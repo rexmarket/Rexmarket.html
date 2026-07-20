@@ -436,20 +436,18 @@ BOTTOM NAV
     position:fixed;
 
     left:16px;
-
     right:16px;
-
     bottom:16px;
 
     height:72px;
 
-    display:flex;
+    display:grid;
 
-    justify-content:space-between;
+    grid-template-columns:1fr 1fr 80px 1fr 1fr;
 
-    align-items:flex-end;
+    align-items:end;
 
-    padding:0 18px 10px;
+    padding:0 14px 10px;
 
     overflow:visible;
 
@@ -462,13 +460,11 @@ BOTTOM NAV
 
     border:1px solid rgba(255,255,255,.08);
 
-    box-shadow:
-        0 8px 25px rgba(0,0,0,.45);
+    box-shadow:0 8px 25px rgba(0,0,0,.45);
 
     z-index:9999;
 
 }
-
 /* Cahaya */
 
 .bottom-nav::before{
@@ -542,20 +538,6 @@ MENU ITEM
     font-weight:500;
 
 }
-
-/* Jarak dari tombol tengah */
-
-.transaksi{
-
-    margin-right:55px;
-
-}
-
-.pesanan{
-
-    margin-left:55px;
-
-    }
     
 /* GRID */
 
