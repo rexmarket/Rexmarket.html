@@ -707,39 +707,32 @@ NAV ACTIVE
 ========================================= */
 
 .nav-item{
-
-    cursor:pointer;
-
-    transition:.25s;
-
+    cursor: pointer;
+    transition: .25s;
 }
 
 .nav-icon{
-
-    transition:.25s;
-
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: #999;
+    stroke-width: 2;
+    transition: .25s;
 }
 
 .nav-item span{
-
-    transition:.25s;
-
+    color: #999;
+    transition: .25s;
 }
 
 .nav-item.active .nav-icon{
-
-    stroke:#ff4040;
-
+    stroke: #ff4040;
 }
 
 .nav-item.active span{
-
-    color:#ff4040;
-
-    font-weight:600;
-
+    color: #ff4040;
+    font-weight: 600;
 }
-    
     
 </style>
 
@@ -760,7 +753,7 @@ HEADER
 
 </header>
     
-<div class="bottom-nav">
+<div class="nav-item active">
 
     <div class="nav-item">
         <svg class="nav-icon" viewBox="0 0 24 24">
