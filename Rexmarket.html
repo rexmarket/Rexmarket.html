@@ -435,25 +435,27 @@ BOTTOM NAV
 
     position:fixed;
 
-    left:0;
-    right:0;
-    bottom:0;
+    left:16px;
 
-    width:100%;
+    right:16px;
 
-    height:68px;
+    bottom:16px;
+
+    height:64px;
 
     overflow:visible;
+
+    border-radius:22px;
 
     background:rgba(8,20,42,.95);
 
     backdrop-filter:blur(18px);
     -webkit-backdrop-filter:blur(18px);
 
-    border-top:1px solid rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.08);
 
     box-shadow:
-        0 -8px 25px rgba(0,0,0,.45);
+        0 8px 25px rgba(0,0,0,.45);
 
     z-index:9999;
 
@@ -508,7 +510,7 @@ BOTTOM NAV
 
 }
 
-/* =========================================
+    /* =========================================
 CENTER BUTTON
 ========================================= */
 
@@ -518,13 +520,13 @@ CENTER BUTTON
 
     left:50%;
 
-    top:-35px;
+    top:-28px;
 
     transform:translateX(-50%);
 
-    width:72px;
+    width:68px;
 
-    height:72px;
+    height:68px;
 
     border:none;
 
@@ -532,8 +534,8 @@ CENTER BUTTON
 
     background:linear-gradient(
         180deg,
-        #215dbb,
-        #123a82
+        #215DBB,
+        #123A82
     );
 
     display:flex;
@@ -543,13 +545,11 @@ CENTER BUTTON
 
     cursor:pointer;
 
-    z-index:10001;
+    z-index:10000;
 
     box-shadow:
-
-        0 0 20px rgba(0,120,255,.35),
-
-        0 10px 25px rgba(0,0,0,.45);
+        0 0 18px rgba(33,93,187,.35),
+        0 8px 20px rgba(0,0,0,.45);
 
 }
 
