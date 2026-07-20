@@ -503,53 +503,7 @@ BOTTOM NAV
     z-index:100000;
 }
 
-     /* =========================================
-NAV ACTIVE
-========================================= */
-
-.nav-item{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:flex-end;
-    gap:4px;
-
-    width:60px;
-
-    color:#999;
-    font-size:12px;
-
-    cursor:pointer;
-    transition:all .25s ease;
-}
-
-.nav-icon{
-    width:22px;
-    height:22px;
-
-    fill:none;
-    stroke:#999;
-    stroke-width:2;
-    stroke-linecap:round;
-    stroke-linejoin:round;
-
-    transition:all .25s ease;
-}
-
-.nav-item span{
-    color:#999;
-    font-weight:500;
-    transition:all .25s ease;
-}
-
-.nav-item.active .nav-icon{
-    stroke:#ff4040;
-}
-
-.nav-item.active span{
-    color:#ff4040;
-    font-weight:600;
-}
+     
     
 
 /* =========================================
@@ -711,6 +665,54 @@ CENTER BUTTON
 
     transform:translateX(-50%) scale(.92);
 
+}
+
+    /* =========================================
+NAV ACTIVE
+========================================= */
+
+.nav-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-end;
+    gap:4px;
+
+    width:60px;
+
+    color:#999;
+    font-size:12px;
+
+    cursor:pointer;
+    transition:all .25s ease;
+}
+
+.nav-icon{
+    width:22px;
+    height:22px;
+
+    fill:none;
+    stroke:#999;
+    stroke-width:2;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+
+    transition:all .25s ease;
+}
+
+.nav-item span{
+    color:#999;
+    font-weight:500;
+    transition:all .25s ease;
+}
+
+.nav-item.active .nav-icon{
+    stroke:#ff4040;
+}
+
+.nav-item.active span{
+    color:#ff4040;
+    font-weight:600;
 }
 
 
