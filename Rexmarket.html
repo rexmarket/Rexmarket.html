@@ -127,7 +127,7 @@ body{
 
     position:relative;
 
-    width:300px;
+    width:700px;
 
     height:auto;
 
@@ -216,34 +216,6 @@ html{
 }
 
 /* =========================================
-   GLOBAL
-========================================= */
-
-body{
-
-    font-family:'Poppins',sans-serif;
-
-    color:#fff;
-
-    overflow-x:hidden;
-
-    min-height:100vh;
-
-    position:relative;
-
-    background:
-        linear-gradient(
-            180deg,
-            #49a8ff 0%,
-            #2877ff 20%,
-            #174da6 45%,
-            #3b1b58 70%,
-            #9d1826 100%
-        );
-
-}
-
-/* =========================================
 BACKGROUND
 ========================================= */
 
@@ -267,23 +239,25 @@ body{
 
         180deg,
 
-        #3476d4 0%,
+        #0A1B36 0%,
 
-        #275fb8 20%,
+        #07162B 20%,
 
-        #1c458d 40%,
+        #05101F 40%,
 
-        #35254b 65%,
+        #1A0B17 65%,
 
-        #681c29 82%,
+        #3A0C16 82%,
 
-        #8f1f2d 100%
+        #541018 100%
 
     );
 
 }
 
-/* GRID */
+/* =========================================
+GRID
+========================================= */
 
 body::before{
 
@@ -300,13 +274,13 @@ body::before{
     background-image:
 
         linear-gradient(
-            rgba(255,255,255,.05) 1px,
+            rgba(255,255,255,.04) 1px,
             transparent 1px
         ),
 
         linear-gradient(
             90deg,
-            rgba(255,255,255,.05) 1px,
+            rgba(255,255,255,.04) 1px,
             transparent 1px
         );
 
@@ -314,11 +288,13 @@ body::before{
 
     animation:gridMove 12s linear infinite;
 
-    opacity:.35;
+    opacity:.25;
 
 }
 
-/* GLOW */
+/* =========================================
+GLOW
+========================================= */
 
 body::after{
 
@@ -334,19 +310,21 @@ body::after{
 
     background:
 
-        radial-gradient(circle at 15% 10%,rgba(0,170,255,.22),transparent 28%),
+        radial-gradient(circle at 15% 10%,rgba(40,90,180,.15),transparent 30%),
 
-        radial-gradient(circle at 80% 25%,rgba(0,120,255,.18),transparent 30%),
+        radial-gradient(circle at 80% 25%,rgba(25,60,130,.12),transparent 35%),
 
-        radial-gradient(circle at 50% 75%,rgba(255,0,0,.12),transparent 35%),
+        radial-gradient(circle at 50% 75%,rgba(150,25,35,.10),transparent 40%),
 
-        radial-gradient(circle at 20% 100%,rgba(255,60,60,.15),transparent 28%);
+        radial-gradient(circle at 20% 100%,rgba(110,15,25,.14),transparent 35%);
 
     animation:glowMove 10s ease-in-out infinite alternate;
 
 }
 
-/* ANIMASI */
+/* =========================================
+ANIMATION
+========================================= */
 
 @keyframes gridMove{
 
@@ -378,7 +356,10 @@ body::after{
 
     }
 
-}
+    }
+
+
+
 
 /* =========================================
    GLOW
