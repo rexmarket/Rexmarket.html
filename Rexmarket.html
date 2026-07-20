@@ -705,6 +705,110 @@ a:focus{
     outline: none;
 }
 
+
+/* =========================================
+BANNER
+========================================= */
+
+.banner-slider{
+
+    width:100%;
+    overflow:hidden;
+
+    border-radius:18px;
+
+    position:relative;
+
+    margin:18px 0;
+
+}
+
+.banner-track{
+
+    display:flex;
+
+    width:300%;
+
+    transition:.6s ease;
+
+}
+
+.banner{
+
+    width:100%;
+
+    min-height:170px;
+
+    flex-shrink:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    color:#fff;
+
+    background:linear-gradient(135deg,#0D47A1,#1976D2);
+
+}
+
+.banner h2{
+
+    font-size:28px;
+
+    margin-bottom:8px;
+
+}
+
+.banner p{
+
+    font-size:15px;
+
+    opacity:.9;
+
+}
+
+.banner-dots{
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:12px;
+
+    transform:translateX(-50%);
+
+    display:flex;
+
+    gap:8px;
+
+}
+
+.banner-dots span{
+
+    width:10px;
+
+    height:10px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.35);
+
+    transition:.3s;
+
+}
+
+.banner-dots .active{
+
+    background:#fff;
+
+    }
+    
     
 </style>
 
@@ -772,10 +876,41 @@ HEADER
     </div>
 
 </button>
-    
-<div class="banner">
-    <img src="banner1.jpg" alt="Banner">
+
+
+    <!-- =========================================
+BANNER
+========================================= -->
+
+<div class="banner-slider">
+
+    <div class="banner-track">
+
+        <div class="banner">
+            <h2>REXMARKET</h2>
+            <p>TOP UP GAME MURAH & CEPAT</p>
+        </div>
+
+        <div class="banner">
+            <h2>JOKI RANK</h2>
+            <p>AMAN • CEPAT • TERPERCAYA</p>
+        </div>
+
+        <div class="banner">
+            <h2>JUAL BELI AKUN</h2>
+            <p>100% AMAN BERSAMA REXMARKET</p>
+        </div>
+
+    </div>
+
+    <div class="banner-dots">
+        <span class="active"></span>
+        <span></span>
+        <span></span>
+    </div>
+
 </div>
+    
     
 <script>
 
@@ -816,6 +951,37 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
+    /* =========================================
+BANNER AUTO SLIDE
+========================================= */
+
+const track = document.querySelector(".banner-track");
+
+const dots = document.querySelectorAll(".banner-dots span");
+
+let index = 0;
+
+function slideBanner(){
+
+    index++;
+
+    if(index > 2){
+
+        index = 0;
+
+    }
+
+    track.style.transform = `translateX(-${index * 33.333}%)`;
+
+    dots.forEach(dot => dot.classList.remove("active"));
+
+    dots[index].classList.add("active");
+
+}
+
+setInterval(slideBanner,4000);
+    
     
 </script>
 
