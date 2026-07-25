@@ -898,7 +898,6 @@ MENU PANEL
 .overlay{
 
     position:fixed;
-
     inset:0;
 
     background:rgba(0,0,0,.35);
@@ -907,10 +906,9 @@ MENU PANEL
     -webkit-backdrop-filter:blur(10px);
 
     opacity:0;
-
     visibility:hidden;
 
-    transition:.3s;
+    transition:.25s;
 
     z-index:99998;
 
@@ -919,7 +917,6 @@ MENU PANEL
 .overlay.show{
 
     opacity:1;
-
     visibility:visible;
 
 }
@@ -928,51 +925,80 @@ MENU PANEL
 
     position:fixed;
 
+    top:50%;
     left:50%;
 
-    bottom:-100%;
+    transform:translate(-50%,-50%) scale(.95);
 
-    transform:translateX(-50%);
-
-    width:94%;
-
-    height:85vh;
+    width:88%;
+    height:480px;
 
     background:#08142A;
 
-    border-radius:24px 24px 0 0;
-
     border:1px solid rgba(255,255,255,.08);
 
-    transition:.35s ease;
+    border-radius:22px;
 
-    z-index:99999;
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.45);
 
     padding:20px;
 
-    overflow:auto;
+    overflow-y:auto;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:
+        opacity .25s ease,
+        transform .25s ease;
+
+    z-index:99999;
 
 }
 
 .menu-panel.show{
 
-    bottom:0;
+    opacity:1;
+
+    visibility:visible;
+
+    transform:translate(-50%,-50%) scale(1);
 
 }
 
 .panel-handle{
 
     width:60px;
-
     height:5px;
 
-    background:#777;
+    background:rgba(255,255,255,.25);
 
-    border-radius:20px;
+    border-radius:999px;
 
     margin:0 auto 20px;
 
 }
+
+.menu-panel h2{
+
+    text-align:center;
+
+    color:#fff;
+
+    margin-bottom:12px;
+
+}
+
+.menu-panel p{
+
+    color:#bfc9da;
+
+    text-align:center;
+
+    line-height:1.6;
+
+                    }
     
     
 </style>
