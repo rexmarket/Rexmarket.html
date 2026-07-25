@@ -765,7 +765,61 @@ BANNER
     border-radius:20px;
 }
 
+/* =========================================
+SEARCH BAR
+========================================= */
+.search-box{
+    width:92%;
+    height:52px;
+    margin:16px auto 20px;
 
+    display:flex;
+    align-items:center;
+
+    padding:0 16px;
+
+    border-radius:16px;
+
+    background:rgba(12,35,70,.8);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(12px);
+
+    box-shadow:0 8px 20px rgba(0,0,0,.25);
+}
+
+.search-icon{
+    width:20px;
+    height:20px;
+
+    stroke:#6faeff;
+    stroke-width:2;
+
+    fill:none;
+}
+
+.search-box input{
+    flex:1;
+
+    margin-left:12px;
+
+    background:transparent;
+
+    border:none;
+
+    outline:none;
+
+    color:#fff;
+
+    font-size:14px;
+
+    font-family:Poppins,sans-serif;
+}
+
+.search-box input::placeholder{
+    color:#8ea8c9;
+}
     
     
 </style>
@@ -820,8 +874,27 @@ BANNER
     </div>
 
 </div>
+
+    <!-- =========================================
+SEARCH BAR
+========================================= -->
+<div class="search-box">
+
+    <svg class="search-icon" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="7"></circle>
+        <path d="M20 20L17 17"></path>
+    </svg>
+
+    <input
+        type="text"
+        placeholder="Cari item..."
+    >
+
+</div>
     
-    
+ <!-- =========================================
+BOTTOM NAV
+========================================= -->   
 <div class="bottom-nav">
 
     <div class="nav-item">
