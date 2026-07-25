@@ -820,6 +820,76 @@ SEARCH BAR
 .search-box input::placeholder{
     color:#8ea8c9;
 }
+
+
+    /* =========================================
+CATEGORY NAV
+========================================= */
+.category-nav{
+
+    display:flex;
+
+    gap:12px;
+
+    overflow-x:auto;
+
+    padding:0 16px 18px;
+
+    scroll-behavior:smooth;
+
+    scrollbar-width:none;
+
+}
+
+.category-nav::-webkit-scrollbar{
+
+    display:none;
+
+}
+
+.category-item{
+
+    flex:none;
+
+    height:42px;
+
+    padding:0 18px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,.06);
+
+    color:#b8c7df;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    white-space:nowrap;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.category-item.active{
+
+    background:#1976D2;
+
+    color:#fff;
+
+    box-shadow:0 0 15px rgba(25,118,210,.35);
+
+}
+
+.category-item:active{
+
+    transform:scale(.96);
+
+    }
     
     
 </style>
@@ -889,6 +959,23 @@ SEARCH BAR
         type="text"
         placeholder="Cari item..."
     >
+
+</div>
+
+    <!-- =========================================
+CATEGORY NAV
+========================================= -->
+<div class="category-nav">
+
+    <button class="category-item active">Top Up</button>
+
+    <button class="category-item">Joki</button>
+
+    <button class="category-item">Leaderboard</button>
+
+    <button class="category-item">JB Akun</button>
+
+    <button class="category-item">Footer</button>
 
 </div>
     
@@ -1016,6 +1103,27 @@ function slideBanner(){
 }
 
 setInterval(slideBanner,4000);
+
+
+    /* =========================================
+CATEGORY NAV
+========================================= */
+const categoryItems =
+document.querySelectorAll(".category-item");
+
+categoryItems.forEach(item=>{
+
+    item.onclick=()=>{
+
+        categoryItems.forEach(i=>
+            i.classList.remove("active")
+        );
+
+        item.classList.add("active");
+
+    };
+
+});
     
     
 </script>
