@@ -538,6 +538,7 @@ CENTER BUTTON
 ========================================= */
 
 .center-btn{
+
     position:fixed;
 
     left:50%;
@@ -565,12 +566,47 @@ CENTER BUTTON
         0 0 20px rgba(47,120,231,.45),
         0 8px 25px rgba(0,0,0,.45);
 
-    transition:.2s;
+    transition:.25s;
+
 }
 
 .center-btn:active{
+
     transform:translateX(-50%) scale(.92);
+
 }
+
+/* =========================================
+9 DOT ICON
+========================================= */
+
+.dot-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,8px);
+
+    grid-template-rows:repeat(3,8px);
+
+    gap:6px;
+
+    transform:rotate(-25deg);
+
+}
+
+.dot-grid span{
+
+    width:8px;
+
+    height:8px;
+
+    background:#fff;
+
+    border-radius:50%;
+
+    box-shadow:0 0 6px rgba(255,255,255,.45);
+
+    }
      
     
 
