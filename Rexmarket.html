@@ -538,75 +538,40 @@ CENTER BUTTON
 ========================================= */
 
 .center-btn{
-
     position:fixed;
-
     left:50%;
     bottom:52px;
-
     transform:translateX(-50%);
-
     width:68px;
     height:68px;
-
     border:none;
     border-radius:50%;
-
     display:flex;
     justify-content:center;
     align-items:center;
-
     background:linear-gradient(180deg,#2F78E7,#174EA6);
-
     cursor:pointer;
-
     z-index:10001;
-
-    box-shadow:
-        0 0 20px rgba(47,120,231,.45),
-        0 8px 25px rgba(0,0,0,.45);
-
-    transition:.25s;
-
 }
-
-.center-btn:active{
-
-    transform:translateX(-50%) scale(.92);
-
-}
-
-/* =========================================
-9 DOT ICON
-========================================= */
 
 .dot-grid{
-
     display:grid;
-
     grid-template-columns:repeat(3,8px);
-
     grid-template-rows:repeat(3,8px);
-
     gap:6px;
 
-    transform:rotate(-25deg);
-
+    /* Geser sedikit ke kiri atas */
+    transform:translate(-2px,-2px);
 }
 
 .dot-grid span{
-
     width:8px;
-
     height:8px;
-
     background:#fff;
-
     border-radius:50%;
+}
 
-    box-shadow:0 0 6px rgba(255,255,255,.45);
 
-    }
      
     
 
