@@ -914,8 +914,10 @@ CATEGORY NAV
 
     
 /* =========================================
-MENU PANEL OVERLAY
+/* =========================================
+OVERLAY
 ========================================= */
+
 .overlay{
 
     position:fixed;
@@ -923,17 +925,20 @@ MENU PANEL OVERLAY
     inset:0;
 
     width:100%;
-    height:100%;
+    height:100vh;
 
-    background:rgba(0,0,0,.35);
+    background:rgba(0,0,0,.45);
 
-    backdrop-filter:blur(10px);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
 
     opacity:0;
 
     visibility:hidden;
 
-    z-index:99999;
+    transition:.25s;
+
+    z-index:99998;
 
 }
 
@@ -1172,60 +1177,8 @@ CATEGORY NAV
     <button class="category-item">Footer</button>
 
 </div>
-    
- <!-- =========================================
-BOTTOM NAV
-========================================= -->   
-<div class="bottom-nav">
 
-    <div class="nav-item">
-        <svg class="nav-icon" viewBox="0 0 24 24">
-            <path d="M3 10.5L12 3l9 7.5v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>
-        </svg>
-        <span>Beranda</span>
-    </div>
-
-    <div class="nav-item">
-        <svg class="nav-icon" viewBox="0 0 24 24">
-            <path d="M6 2h12v20l-2-1-2 1-2-1-2 1-2-1-2 1V2z"/>
-            <path d="M8 7h8M8 11h8M8 15h5"/>
-        </svg>
-        <span>Transaksi</span>
-    </div>
-
-    <!-- Ruang untuk tombol tengah -->
-    <div class="nav-space"></div>
-
-    <div class="nav-item">
-        <svg class="nav-icon" viewBox="0 0 24 24">
-            <path d="M5 3h11a3 3 0 0 1 3 3v15H8a3 3 0 0 0-3 3z"/>
-            <path d="M8 3v18"/>
-        </svg>
-        <span>Pesanan</span>
-    </div>
-
-    <div class="nav-item" id="akunBtn">
-
-    <svg class="nav-icon" viewBox="0 0 24 24">
-        <circle cx="12" cy="8" r="4"/>
-        <path d="M4 20c1.8-4 14.2-4 16 0"/>
-    </svg>
-
-    <span>Akun</span>
-
-    </div>
-
-<button class="center-btn">
-    <i>
-        <span></span><span></span><span></span>
-        <span></span><span></span><span></span>
-        <span></span><span></span><span></span>
-    </i>
-</button>
-
-</button>
-
-<!-- =========================================
+    <!-- =========================================
 MENU PANEL
 ========================================= -->
 
@@ -1269,6 +1222,23 @@ MENU PANEL
             </svg>
 
             <span>Grup JB 1</span>
+
+        </a>
+
+        <!-- =========================================
+        GRUP JB 2
+        ========================================== -->
+
+        <a href="https://chat.whatsapp.com/GhBQ8rUZyoNJDqhJ3kQEP9" target="_blank" class="menu-card">
+
+            <svg class="menu-icon" viewBox="0 0 24 24">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 1 0 0 7.75"/>
+            </svg>
+
+            <span>Grup JB 2</span>
 
         </a>
 
@@ -1338,6 +1308,59 @@ MENU PANEL
     </div>
 
 </div>
+    
+    
+ <!-- =========================================
+BOTTOM NAV
+========================================= -->   
+<div class="bottom-nav">
+
+    <div class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24">
+            <path d="M3 10.5L12 3l9 7.5v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>
+        </svg>
+        <span>Beranda</span>
+    </div>
+
+    <div class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24">
+            <path d="M6 2h12v20l-2-1-2 1-2-1-2 1-2-1-2 1V2z"/>
+            <path d="M8 7h8M8 11h8M8 15h5"/>
+        </svg>
+        <span>Transaksi</span>
+    </div>
+
+    <!-- Ruang untuk tombol tengah -->
+    <div class="nav-space"></div>
+
+    <div class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24">
+            <path d="M5 3h11a3 3 0 0 1 3 3v15H8a3 3 0 0 0-3 3z"/>
+            <path d="M8 3v18"/>
+        </svg>
+        <span>Pesanan</span>
+    </div>
+
+    <div class="nav-item" id="akunBtn">
+
+    <svg class="nav-icon" viewBox="0 0 24 24">
+        <circle cx="12" cy="8" r="4"/>
+        <path d="M4 20c1.8-4 14.2-4 16 0"/>
+    </svg>
+
+    <span>Akun</span>
+
+    </div>
+
+<button class="center-btn">
+    <i>
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+    </i>
+</button>
+
+</button>
     
     
 <script>
