@@ -53,48 +53,73 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* =========================================
-LOGIN / REGISTER SWITCH
+LOGIN / REGISTER
 ========================================= */
+
 let registerMode = false;
 
 const formTitle = document.getElementById("formTitle");
-const confirmBox = document.getElementById("confirmBox");
+const username = document.getElementById("username");
+const password = document.getElementById("password");
+
 const mainBtn = document.getElementById("mainBtn");
-const switchBtn = document.getElementById("switchBtn");
-const switchText = document.getElementById("switchText");
+const registerBtn = document.getElementById("registerBtn");
+const registerText = document.getElementById("registerText");
 
-if(formTitle && confirmBox && mainBtn && switchBtn && switchText){
+registerBtn.onclick = () => {
 
-    switchBtn.addEventListener("click", () => {
+    registerMode = true;
 
-        registerMode = !registerMode;
+    formTitle.innerText = "Registrasi";
 
-        if(registerMode){
+    username.value = "";
+    password.value = "";
 
-            formTitle.textContent = "Register";
+    username.placeholder = "Buat Username";
+    password.placeholder = "Buat Password";
 
-            confirmBox.style.display = "block";
+    mainBtn.innerText = "Register";
 
-            mainBtn.textContent = "Daftar";
+    registerBtn.style.display = "none";
 
-            switchText.textContent = "Sudah punya akun?";
+    registerText.innerText = "Isi data untuk membuat akun";
 
-            switchBtn.textContent = "Login";
+};
 
-        }else{
+mainBtn.onclick = () => {
 
-            formTitle.textContent = "Login";
+    if(registerMode){
 
-            confirmBox.style.display = "none";
+        if(username.value === "" || password.value === ""){
 
-            mainBtn.textContent = "Login";
+            alert("Lengkapi data terlebih dahulu!");
 
-            switchText.textContent = "Belum punya akun?";
-
-            switchBtn.textContent = "Register";
+            return;
 
         }
 
-    });
+        alert("✅ Akun berhasil dibuat!");
 
-}
+        registerMode = false;
+
+        formTitle.innerText = "Login";
+
+        username.value = "";
+        password.value = "";
+
+        username.placeholder = "Masukkan Username";
+        password.placeholder = "Masukkan Password";
+
+        mainBtn.innerText = "Login";
+
+        registerBtn.style.display = "block";
+
+        registerText.innerText = "Belum punya akun?";
+
+    }else{
+
+        alert("Login berhasil!");
+
+    }
+
+};
