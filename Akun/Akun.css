@@ -210,3 +210,81 @@ LOGIN BOX
     color:#4ea1ff;
 
 }
+
+/* =========================================
+PASSWORD BOX
+========================================= */
+
+.password-box{
+
+    position:relative;
+
+    width:100%;
+
+    margin-bottom:16px;
+
+}
+
+.password-box input{
+
+    width:100%;
+
+    height:52px;
+
+    padding:0 50px 0 16px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,.08);
+
+    color:#fff;
+
+    font-size:15px;
+
+}
+
+.toggle-password{
+
+    position:absolute;
+
+    top:50%;
+
+    right:16px;
+
+    transform:translateY(-50%);
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.toggle-password svg{
+
+    width:22px;
+
+    height:22px;
+
+    stroke:#9CA3AF;
+
+    stroke-width:2;
+
+    fill:none;
+
+    transition:.2s;
+
+}
+
+.toggle-password:hover svg{
+
+    stroke:#3D8BFF;
+
+}
