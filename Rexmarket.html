@@ -1000,71 +1000,41 @@ MENU PANEL
 
                     }
     
-/* =========================================
-MENU CARD
-========================================= */
 .menu-grid{
-
     display:grid;
-
     grid-template-columns:repeat(2,1fr);
-
-    gap:15px;
-
-    margin-top:20px;
-
+    gap:16px;
+    margin-top:25px;
 }
 
 .menu-card{
-
-    height:120px;
-
-    background:rgba(255,255,255,.04);
-
+    aspect-ratio:1/1;
+    background:#12203A;
     border:1px solid rgba(255,255,255,.08);
-
     border-radius:18px;
-
     display:flex;
-
     flex-direction:column;
-
     justify-content:center;
-
     align-items:center;
-
-    transition:.25s;
-
+    text-align:center;
+    transition:.2s;
 }
 
-.menu-card-icon{
-
-    width:32px;
-
-    height:32px;
-
-    fill:none;
-
-    stroke:#2F78E7;
-
-    stroke-width:2;
-
-    stroke-linecap:round;
-
-    stroke-linejoin:round;
-
-    margin-bottom:12px;
-
+.menu-card:active{
+    transform:scale(.97);
 }
 
-.menu-card h3{
+.menu-card i{
+    font-size:34px;
+    color:#3D8BFF;
+    margin-bottom:14px;
+}
 
-    color:#fff;
-
-    font-size:14px;
-
+.menu-card span{
+    font-size:16px;
     font-weight:600;
-
+    color:#fff;
+    line-height:1.4;
 }
 
     
@@ -1221,53 +1191,29 @@ MENU PANEL
 <div class="menu-grid">
 
     <!-- Bantuan -->
+    <div class="menu-grid">
+
     <div class="menu-card">
-
-        <svg class="menu-card-icon" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="10"/>
-            <path d="M9.5 9a2.5 2.5 0 1 1 4.5 1.5c-.8.8-2 1.4-2 2.5"/>
-            <circle cx="12" cy="17" r=".5"/>
-        </svg>
-
-        <h3>Bantuan</h3>
-
+        <i class="ri-question-line"></i>
+        <span>Bantuan</span>
     </div>
 
-    <!-- Grup JB 1 -->
     <div class="menu-card">
-
-        <svg class="menu-card-icon" viewBox="0 0 24 24">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-        </svg>
-
-        <h3>Grup JB 1</h3>
-
+        <i class="ri-message-2-line"></i>
+        <span>Grup JB 1</span>
     </div>
 
-    <!-- Grup JB 2 -->
     <div class="menu-card">
-
-        <svg class="menu-card-icon" viewBox="0 0 24 24">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-        </svg>
-
-        <h3>Grup JB 2</h3>
-
+        <i class="ri-message-2-line"></i>
+        <span>Grup JB 2</span>
     </div>
 
-    <!-- Saluran WA -->
     <div class="menu-card">
-
-        <svg class="menu-card-icon" viewBox="0 0 24 24">
-            <path d="M22 2L11 13"/>
-            <path d="M22 2L15 22l-4-9-9-4z"/>
-        </svg>
-
-        <h3>Saluran WA</h3>
-
+        <i class="ri-telegram-line"></i>
+        <span>Saluran WA</span>
     </div>
 
-</div>
+    </div>
     
     
     
