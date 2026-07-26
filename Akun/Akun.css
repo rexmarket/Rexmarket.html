@@ -268,31 +268,37 @@ BUTTON
 }
 
 /* =========================================
-REGISTER
+REGISTER TEXT
 ========================================= */
 
 .register-text{
 
-    margin-top:20px;
+    display:flex;
 
-    text-align:center;
+    align-items:center;
 
-    color:#fff;
+    justify-content:center;
+
+    gap:12px;
+
+    margin:22px 0 12px;
+
+    color:#8B95A7;
+
+    font-size:14px;
 
 }
 
-.register-link{
+.register-text::before,
+.register-text::after{
 
-    display:block;
+    content:"";
 
-    text-align:center;
+    flex:1;
 
-    margin-top:8px;
+    height:1px;
 
-    color:#4ea1ff;
-
-    text-decoration:none;
+    background:rgba(255,255,255,.15);
 
     }
-    
     
