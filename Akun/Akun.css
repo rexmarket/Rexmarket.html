@@ -204,25 +204,20 @@ PASSWORD
 
     position:absolute;
 
+    top:0;
     right:16px;
 
-    top:50%;
-
-    transform:translateY(-50%);
-
     width:24px;
-
-    height:24px;
+    height:50px;
 
     display:flex;
 
-    align-items:center;
-
     justify-content:center;
+    align-items:center;
 
     cursor:pointer;
 
-}
+                        }
 
 .toggle-password svg{
 
@@ -240,7 +235,7 @@ PASSWORD
 
     stroke-linejoin:round;
 
-}
+    }
 
 .toggle-password:hover svg{
 
