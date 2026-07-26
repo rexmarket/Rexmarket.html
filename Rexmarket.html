@@ -1000,6 +1000,73 @@ MENU PANEL
 
                     }
     
+/* =========================================
+MENU CARD
+========================================= */
+.menu-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+.menu-card{
+
+    height:120px;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:18px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    transition:.25s;
+
+}
+
+.menu-card-icon{
+
+    width:32px;
+
+    height:32px;
+
+    fill:none;
+
+    stroke:#2F78E7;
+
+    stroke-width:2;
+
+    stroke-linecap:round;
+
+    stroke-linejoin:round;
+
+    margin-bottom:12px;
+
+}
+
+.menu-card h3{
+
+    color:#fff;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
     
 </style>
 
@@ -1150,7 +1217,45 @@ MENU PANEL
 
     <h2>Menu</h2>
 
-    <p>Isi menu di sini...</p>
+    <div class="menu-grid">
+
+        <!-- Bantuan -->
+        <div class="menu-card">
+
+            <svg class="menu-card-icon" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9.5 9a2.5 2.5 0 1 1 4.5 1.5c-.8.8-2 1.4-2 2.5"/>
+                <circle cx="12" cy="17" r=".5"/>
+            </svg>
+
+            <h3>Bantuan</h3>
+
+        </div>
+
+        <!-- Grup JB -->
+        <div class="menu-card">
+
+            <svg class="menu-card-icon" viewBox="0 0 24 24">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+
+            <h3>Grup JB</h3>
+
+        </div>
+
+        <!-- Saluran WA -->
+        <div class="menu-card">
+
+            <svg class="menu-card-icon" viewBox="0 0 24 24">
+                <path d="M22 2L11 13"/>
+                <path d="M22 2L15 22l-4-9-9-4z"/>
+            </svg>
+
+            <h3>Saluran WA</h3>
+
+        </div>
+
+    </div>
 
 </div>
     
