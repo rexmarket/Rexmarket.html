@@ -50,3 +50,51 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+
+
+/* =========================================
+LOGIN / REGISTER SWITCH
+========================================= */
+let registerMode = false;
+
+const formTitle = document.getElementById("formTitle");
+const confirmBox = document.getElementById("confirmBox");
+const mainBtn = document.getElementById("mainBtn");
+const switchBtn = document.getElementById("switchBtn");
+const switchText = document.getElementById("switchText");
+
+if(formTitle && confirmBox && mainBtn && switchBtn && switchText){
+
+    switchBtn.addEventListener("click", () => {
+
+        registerMode = !registerMode;
+
+        if(registerMode){
+
+            formTitle.textContent = "Register";
+
+            confirmBox.style.display = "block";
+
+            mainBtn.textContent = "Daftar";
+
+            switchText.textContent = "Sudah punya akun?";
+
+            switchBtn.textContent = "Login";
+
+        }else{
+
+            formTitle.textContent = "Login";
+
+            confirmBox.style.display = "none";
+
+            mainBtn.textContent = "Login";
+
+            switchText.textContent = "Belum punya akun?";
+
+            switchBtn.textContent = "Register";
+
+        }
+
+    });
+
+}
