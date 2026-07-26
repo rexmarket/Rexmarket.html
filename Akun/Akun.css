@@ -12,7 +12,6 @@ RESET
 /* =========================================
 BODY
 ========================================= */
-
 body{
 
     margin:0;
@@ -25,11 +24,102 @@ body{
 
     align-items:center;
 
-    background:#07162B;
-
     padding:20px;
 
+    overflow-x:hidden;
+
+    position:relative;
+
+    color:#fff;
+
+    background:linear-gradient(
+        180deg,
+        #0A1B36 0%,
+        #07162B 20%,
+        #05101F 40%,
+        #1A0B17 65%,
+        #3A0C16 82%,
+        #541018 100%
+    );
+
 }
+
+/* =========================================
+BACKGROUND GRID
+========================================= */
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-2;
+
+    pointer-events:none;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+
+    background-size:40px 40px;
+
+    opacity:.25;
+
+    animation:gridMove 12s linear infinite;
+
+}
+
+/* =========================================
+BACKGROUND GLOW
+========================================= */
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-1;
+
+    pointer-events:none;
+
+    background:
+        radial-gradient(circle at 15% 10%, rgba(40,90,180,.15), transparent 30%),
+        radial-gradient(circle at 80% 25%, rgba(25,60,130,.12), transparent 35%),
+        radial-gradient(circle at 50% 75%, rgba(150,25,35,.10), transparent 40%),
+        radial-gradient(circle at 20% 100%, rgba(110,15,25,.14), transparent 35%);
+
+    animation:glowMove 10s ease-in-out infinite alternate;
+
+}
+
+@keyframes gridMove{
+
+    from{
+        background-position:0 0;
+    }
+
+    to{
+        background-position:40px 40px;
+    }
+
+}
+
+@keyframes glowMove{
+
+    from{
+        transform:translateY(0) scale(1);
+    }
+
+    to{
+        transform:translateY(-30px) scale(1.08);
+    }
+
+}
+
 
 /* =========================================
 LOGIN BOX
