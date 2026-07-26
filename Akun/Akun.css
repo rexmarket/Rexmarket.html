@@ -1,11 +1,4 @@
-body{
-
-    background:red;
-
-}
-
-
-/* =========================================
+            /* =========================================
 RESET
 ========================================= */
 
@@ -16,154 +9,16 @@ RESET
     font-family:'Poppins',sans-serif;
 }
 
+
 /* =========================================
-BODY
+BODY + BACKGROUND
 ========================================= */
 
 body{
 
-    background:linear-gradient(
-        180deg,
-        #0A1B36 0%,
-        #07162B 20%,
-        #05101F 40%,
-        #1A0B17 65%,
-        #3A0C16 82%,
-        #541018 100%
-    );
-
-    color:#fff;
-
-    min-height:100vh;
-
-    overflow-x:hidden;
-
-}
-
-/* =========================================
-HEADER
-========================================= */
-
-#header{
-
-    position:fixed;
-
-    top:0;
-    left:0;
-
-    width:100%;
-    height:75px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:rgba(8,20,45,.95);
-
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
-
-    border-bottom:1px solid rgba(255,255,255,.08);
-
-    z-index:9999;
-
-}
-
-.header-title{
-
-    font-size:22px;
-
-    font-weight:700;
-
-    color:#fff;
-
-}
-
-/* =========================================
-CONTENT
-========================================= */
-
-.container{
-
-    padding:95px 16px 100px;
-
-}
-
-/* =========================================
-CARD
-========================================= */
-
-.card{
-
-    width:100%;
-
-    background:rgba(255,255,255,.05);
-
-    border:1px solid rgba(255,255,255,.08);
-
-    border-radius:20px;
-
-    padding:18px;
-
-    backdrop-filter:blur(12px);
-    -webkit-backdrop-filter:blur(12px);
-
-    margin-bottom:16px;
-
-}
-
-/* =========================================
-BUTTON
-========================================= */
-
-.btn{
-
-    width:100%;
-
-    height:50px;
-
-    border:none;
-
-    border-radius:14px;
-
-    background:linear-gradient(
-        180deg,
-        #2F78E7,
-        #174EA6
-    );
-
-    color:#fff;
-
-    font-size:15px;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-}
-
-/* =========================================
-LINK
-========================================= */
-
-a{
-
-    text-decoration:none;
-
-    color:inherit;
-
-}
-
-/* =========================================
-BACKGROUND
-========================================= */
-body{
     margin:0;
-    padding-top:75px; /* sama dengan tinggi header */
 
-    font-family:'Poppins',sans-serif;
+    padding-top:75px;
 
     color:#fff;
 
@@ -182,11 +37,12 @@ body{
         #3A0C16 82%,
         #541018 100%
     );
+
 }
 
 
 /* =========================================
-GRID
+GRID BACKGROUND
 ========================================= */
 
 body::before{
@@ -222,8 +78,9 @@ body::before{
 
 }
 
+
 /* =========================================
-GLOW
+GLOW EFFECT
 ========================================= */
 
 body::after{
@@ -240,17 +97,34 @@ body::after{
 
     background:
 
-        radial-gradient(circle at 15% 10%,rgba(40,90,180,.15),transparent 30%),
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(40,90,180,.15),
+            transparent 30%
+        ),
 
-        radial-gradient(circle at 80% 25%,rgba(25,60,130,.12),transparent 35%),
+        radial-gradient(
+            circle at 80% 25%,
+            rgba(25,60,130,.12),
+            transparent 35%
+        ),
 
-        radial-gradient(circle at 50% 75%,rgba(150,25,35,.10),transparent 40%),
+        radial-gradient(
+            circle at 50% 75%,
+            rgba(150,25,35,.10),
+            transparent 40%
+        ),
 
-        radial-gradient(circle at 20% 100%,rgba(110,15,25,.14),transparent 35%);
+        radial-gradient(
+            circle at 20% 100%,
+            rgba(110,15,25,.14),
+            transparent 35%
+        );
 
     animation:glowMove 10s ease-in-out infinite alternate;
 
 }
+
 
 /* =========================================
 ANIMATION
@@ -259,32 +133,24 @@ ANIMATION
 @keyframes gridMove{
 
     from{
-
         background-position:0 0;
-
     }
 
     to{
-
         background-position:40px 40px;
-
     }
 
 }
+
 
 @keyframes glowMove{
 
     from{
-
         transform:translateY(0) scale(1);
-
     }
 
     to{
-
         transform:translateY(-30px) scale(1.08);
-
     }
 
 }
-
