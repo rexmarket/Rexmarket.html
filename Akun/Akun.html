@@ -22,13 +22,13 @@
 <!-- =========================================
 LOGIN BOX
 ========================================= -->
+<div class="login-box" id="authBox">
 
-<div class="login-box">
-
-    <h2>Login</h2>
+    <h2 id="formTitle">Login</h2>
 
     <input
         type="text"
+        id="username"
         placeholder="Masukkan Username">
 
     <div class="password-box">
@@ -38,43 +38,37 @@ LOGIN BOX
             id="password"
             placeholder="Masukkan Password">
 
-        <span
-            class="toggle-password"
-            id="togglePassword">
+        <span class="toggle-password" id="togglePassword">
 
-            <svg
-                id="eyeIcon"
-                viewBox="0 0 24 24">
-
-                <path d="M1 12S5 5 12 5s11 7 11 7-4 7-11 7S1 12 1 12z"></path>
-                <circle cx="12" cy="12" r="3"></circle>
-
-            </svg>
+            <svg id="eyeIcon" viewBox="0 0 24 24"></svg>
 
         </span>
 
     </div>
 
-    <button class="login-btn">
+    <!-- Muncul hanya saat Register -->
+    <div class="password-box" id="confirmBox" style="display:none;">
 
+        <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Konfirmasi Password">
+
+    </div>
+
+    <button class="login-btn" id="mainBtn">
         Login
-
     </button>
 
-    <p class="register-text">
-
+    <p class="register-text" id="switchText">
         Belum punya akun?
-
     </p>
 
-    <a
-        href="#"
-        class="register-link">
-
+    <button class="register-btn" id="switchBtn">
         Register
+    </button>
 
-    </a>
-
+</div>
 </div>
     
 </body>
