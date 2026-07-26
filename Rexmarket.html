@@ -943,12 +943,11 @@ MENU PANEL
     top:50%;
     left:50%;
 
-    transform:translate(-50%,-50%) scale(.95);
-
     width:90%;
     max-width:430px;
 
     height:70vh;
+    max-height:600px;
 
     background:#08142A;
 
@@ -960,17 +959,19 @@ MENU PANEL
 
     box-sizing:border-box;
 
+    overflow-y:auto;
+
     opacity:0;
     visibility:hidden;
 
-    overflow-y:auto;
-    overflow-x:hidden;
+    z-index:99999;
+
+    transform:translate(-50%,-45%) scale(.95);
 
     transition:.25s;
 
-    z-index:99999;
-
 }
+
 
 .menu-panel.show{
 
@@ -980,7 +981,7 @@ MENU PANEL
 
     transform:translate(-50%,-50%) scale(1);
 
-}
+    }
 
 .menu-grid{
 
@@ -1063,6 +1064,13 @@ MENU PANEL
     color:inherit;
 
     }
+
+    html,body{
+
+    width:100%;
+    min-height:100%;
+
+        }
 
     
 </style>
