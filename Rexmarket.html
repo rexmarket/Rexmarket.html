@@ -542,31 +542,50 @@ CENTER BUTTON
     left:50%;
     bottom:52px;
     transform:translateX(-50%);
+
     width:68px;
     height:68px;
+
     border:none;
     border-radius:50%;
+
     display:flex;
     justify-content:center;
     align-items:center;
+
     background:linear-gradient(180deg,#2F78E7,#174EA6);
+
     cursor:pointer;
+
     z-index:10001;
+
+    box-shadow:
+        0 0 20px rgba(47,120,231,.45),
+        0 8px 25px rgba(0,0,0,.45);
+
+    transition:transform .2s;
 }
 
-.dot-grid{
+/* Animasi pas ditekan */
+.center-btn:active{
+    transform:translateX(-50%) scale(.92);
+}
+
+/* 9 titik */
+.center-btn i{
     display:grid;
-    grid-template-columns:repeat(3,8px);
-    grid-template-rows:repeat(3,8px);
+    grid-template-columns:repeat(3,6px);
+    grid-template-rows:repeat(3,6px);
     gap:6px;
 
-    /* Geser sedikit ke kiri atas */
-    transform:translate(-2px,-2px);
+    transform:none;
+    margin-left:2px;   /* geser sedikit biar benar-benar center */
+    margin-top:1px;
 }
 
-.dot-grid span{
-    width:8px;
-    height:8px;
+.center-btn i span{
+    width:6px;
+    height:6px;
     background:#fff;
     border-radius:50%;
 }
@@ -1167,14 +1186,12 @@ BOTTOM NAV
 </div>
 
 <button class="center-btn">
-
-    <div class="dot-grid">
-
+    <i>
         <span></span><span></span><span></span>
         <span></span><span></span><span></span>
         <span></span><span></span><span></span>
-
-    </div>
+    </i>
+</button>
 
 </button>
 
