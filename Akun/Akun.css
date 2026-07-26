@@ -268,7 +268,7 @@ BUTTON
 }
 
 /* =========================================
-REGISTER TEXT
+REGISTER
 ========================================= */
 
 .register-text{
@@ -281,11 +281,17 @@ REGISTER TEXT
 
     gap:12px;
 
-    margin:22px 0 12px;
+    width:100%;
+
+    margin:24px 0 12px;
 
     color:#8B95A7;
 
     font-size:14px;
+
+    font-weight:500;
+
+    text-align:center;
 
 }
 
@@ -300,5 +306,38 @@ REGISTER TEXT
 
     background:rgba(255,255,255,.15);
 
-    }
-    
+}
+
+.register-link{
+
+    display:block;
+
+    width:100%;
+
+    text-align:center;
+
+    margin-top:8px;
+
+    color:#3D8BFF;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    text-decoration:none;
+
+    transition:.2s;
+
+}
+
+.register-link:hover{
+
+    color:#63A5FF;
+
+}
+
+.register-link:active{
+
+    transform:scale(.98);
+
+}
