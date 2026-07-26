@@ -892,151 +892,103 @@ CATEGORY NAV
     }
 
 
-    /* =========================================
+    
+/* =========================================
 MENU PANEL
 ========================================= */
 .overlay{
-
     position:fixed;
     inset:0;
-
     background:rgba(0,0,0,.35);
-
     backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
-
     opacity:0;
     visibility:hidden;
-
     transition:.25s;
-
     z-index:99998;
-
 }
 
 .overlay.show{
-
     opacity:1;
     visibility:visible;
-
 }
 
 .menu-panel{
-
     position:fixed;
-
     top:50%;
     left:50%;
-
     transform:translate(-50%,-50%) scale(.95);
+    opacity:0;
 
     width:88%;
-    height:480px;
+    height:70vh;
 
     background:#08142A;
-
+    border-radius:28px;
     border:1px solid rgba(255,255,255,.08);
 
-    border-radius:22px;
+    padding:22px;
+    box-sizing:border-box;
 
-    box-shadow:
-        0 20px 50px rgba(0,0,0,.45);
-
-    padding:20px;
-
-    overflow-y:auto;
-
-    opacity:0;
-    visibility:hidden;
-
-    transition:
-        opacity .25s ease,
-        transform .25s ease;
-
+    transition:.25s;
     z-index:99999;
-
 }
 
 .menu-panel.show{
-
     opacity:1;
-
-    visibility:visible;
-
     transform:translate(-50%,-50%) scale(1);
-
 }
 
 .panel-handle{
-
-    width:60px;
-    height:5px;
-
-    background:rgba(255,255,255,.25);
-
-    border-radius:999px;
-
+    width:80px;
+    height:6px;
+    background:#5b6577;
+    border-radius:50px;
     margin:0 auto 20px;
-
 }
 
-.menu-panel h2{
-
+.menu-title{
     text-align:center;
-
-    color:#fff;
-
-    margin-bottom:12px;
-
+    font-size:42px;
+    margin-bottom:30px;
+    font-weight:700;
 }
 
-.menu-panel p{
-
-    color:#bfc9da;
-
-    text-align:center;
-
-    line-height:1.6;
-
-                    }
-    
 .menu-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:16px;
-    margin-top:25px;
+    gap:18px;
 }
 
 .menu-card{
-    aspect-ratio:1/1;
-    background:#12203A;
+    height:150px;
+    background:#132341;
+    border-radius:20px;
     border:1px solid rgba(255,255,255,.08);
-    border-radius:18px;
+
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    text-align:center;
+
     transition:.2s;
 }
 
 .menu-card:active{
-    transform:scale(.97);
+    transform:scale(.96);
 }
 
 .menu-card i{
-    font-size:34px;
+    font-size:42px;
     color:#3D8BFF;
     margin-bottom:14px;
 }
 
 .menu-card span{
-    font-size:16px;
+    font-size:18px;
     font-weight:600;
-    color:#fff;
+    text-align:center;
     line-height:1.4;
 }
-
     
 </style>
 
@@ -1185,32 +1137,63 @@ MENU PANEL
 
     <div class="panel-handle"></div>
 
-    <h2>Menu</h2>
+    <h2 class="menu-title">Menu</h2>
 
     <div class="menu-grid">
-<div class="menu-grid">
 
-    <!-- Bantuan -->
-    <div class="menu-grid">
+        <!-- Bantuan -->
+        <div class="menu-card">
 
-    <div class="menu-card">
-        <i class="ri-question-line"></i>
-        <span>Bantuan</span>
-    </div>
+            <svg width="46" height="46" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="9" stroke="#3D8BFF" stroke-width="2"/>
+                <path d="M10 9.5C10.2 8.5 11.1 7.8 12.2 7.8C13.5 7.8 14.4 8.7 14.4 9.8C14.4 10.8 13.8 11.4 13 11.9C12.2 12.4 11.8 12.9 11.8 13.8" stroke="#3D8BFF" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="12" cy="16.8" r="1" fill="#3D8BFF"/>
+            </svg>
 
-    <div class="menu-card">
-        <i class="ri-message-2-line"></i>
-        <span>Grup JB 1</span>
-    </div>
+            <span>Bantuan</span>
 
-    <div class="menu-card">
-        <i class="ri-message-2-line"></i>
-        <span>Grup JB 2</span>
-    </div>
+        </div>
 
-    <div class="menu-card">
-        <i class="ri-telegram-line"></i>
-        <span>Saluran WA</span>
+        <!-- Grup JB 1 -->
+        <div class="menu-card">
+
+            <svg width="46" height="46" viewBox="0 0 24 24" fill="none">
+                <circle cx="9" cy="9" r="3" stroke="#3D8BFF" stroke-width="2"/>
+                <circle cx="16" cy="10" r="2.5" stroke="#3D8BFF" stroke-width="2"/>
+                <path d="M5 18C5.7 16 7.3 15 9 15C10.7 15 12.3 16 13 18" stroke="#3D8BFF" stroke-width="2" stroke-linecap="round"/>
+                <path d="M15 17.5C15.5 16.5 16.5 16 17.8 16C19 16 20 16.5 20.5 17.5" stroke="#3D8BFF" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+
+            <span>Grup JB 1</span>
+
+        </div>
+
+        <!-- Grup JB 2 -->
+        <div class="menu-card">
+
+            <svg width="46" height="46" viewBox="0 0 24 24" fill="none">
+                <circle cx="9" cy="9" r="3" stroke="#3D8BFF" stroke-width="2"/>
+                <circle cx="16" cy="10" r="2.5" stroke="#3D8BFF" stroke-width="2"/>
+                <path d="M5 18C5.7 16 7.3 15 9 15C10.7 15 12.3 16 13 18" stroke="#3D8BFF" stroke-width="2" stroke-linecap="round"/>
+                <path d="M15 17.5C15.5 16.5 16.5 16 17.8 16C19 16 20 16.5 20.5 17.5" stroke="#3D8BFF" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+
+            <span>Grup JB 2</span>
+
+        </div>
+
+        <!-- Saluran WA -->
+        <div class="menu-card">
+
+            <svg width="46" height="46" viewBox="0 0 24 24" fill="none">
+                <path d="M20 12C20 16.4 16.4 20 12 20C10.9 20 9.8 19.8 8.9 19.3L5 20L5.7 16.2C5.2 15.2 5 13.9 5 12C5 7.6 8.6 4 12 4C16.4 4 20 7.6 20 12Z" stroke="#3D8BFF" stroke-width="2"/>
+                <path d="M9.5 10.5L11.5 13L15 10.5" stroke="#3D8BFF" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+
+            <span>Saluran WA</span>
+
+        </div>
+
     </div>
 
     </div>
