@@ -21,6 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const togglePassword = document.getElementById("togglePassword");
     const eyeIcon = document.getElementById("eyeIcon");
 
+    const backBtn = document.getElementById("backBtn");
+
     let registerMode = false;
 
     /* =========================================
@@ -77,24 +79,61 @@ document.addEventListener("DOMContentLoaded", () => {
 
     registerBtn.addEventListener("click", () => {
 
-        registerMode = true;
+        if(!registerMode){
 
-        formTitle.textContent = "Registrasi";
+            registerMode = true;
 
-        username.value = "";
-        password.value = "";
+            formTitle.textContent = "Registrasi";
 
-        username.placeholder = "Buat Username";
-        password.placeholder = "Buat Password";
+            username.value = "";
+            password.value = "";
 
-        password.type = "password";
-        eyeClosed();
+            username.placeholder = "Buat Username";
+            password.placeholder = "Buat Password";
 
-        mainBtn.textContent = "Register";
+            password.type = "password";
+            eyeClosed();
 
-        registerBtn.style.display = "none";
+            mainBtn.textContent = "Register";
 
-        registerText.textContent = "Isi data untuk membuat akun";
+            registerText.textContent = "Sudah punya akun?";
+
+            registerBtn.textContent = "Login";
+
+            if(backBtn){
+
+                backBtn.style.display = "none";
+
+            }
+
+        }else{
+
+            registerMode = false;
+
+            formTitle.textContent = "Login";
+
+            username.value = "";
+            password.value = "";
+
+            username.placeholder = "Masukkan Username";
+            password.placeholder = "Masukkan Password";
+
+            password.type = "password";
+            eyeClosed();
+
+            mainBtn.textContent = "Login";
+
+            registerText.textContent = "Belum punya akun?";
+
+            registerBtn.textContent = "Register";
+
+            if(backBtn){
+
+                backBtn.style.display = "flex";
+
+            }
+
+        }
 
     });
 
@@ -105,7 +144,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if(username.value.trim() === "" || password.value.trim() === ""){
 
                 alert("Lengkapi data terlebih dahulu!");
-
                 return;
 
             }
@@ -127,9 +165,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
             mainBtn.textContent = "Login";
 
-            registerBtn.style.display = "block";
-
             registerText.textContent = "Belum punya akun?";
+
+            registerBtn.textContent = "Register";
+
+            if(backBtn){
+
+                backBtn.style.display = "flex";
+
+            }
 
         }else{
 
