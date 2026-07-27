@@ -46,29 +46,54 @@ LOGIN BOX
 
     <h2 id="formTitle">Login</h2>
 
-    <input
-        type="text"
-        id="username"
-        placeholder="Masukkan Username">
-
     <!-- =========================================
-USERNAME
-========================================= -->
+    USERNAME
+    ========================================= -->
 
-<div class="username-box">
+    <div class="username-box">
 
-    <input
-        type="text"
-        id="username"
-        placeholder="Masukkan Username"
-        autocomplete="off">
+        <input
+            type="text"
+            id="username"
+            placeholder="Masukkan Username"
+            autocomplete="off">
 
-    <div
-        id="usernameSuggestion"
-        class="username-suggestion">
+        <div
+            id="usernameSuggestion"
+            class="username-suggestion">
+        </div>
+
     </div>
 
+    <div class="password-box">
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Masukkan Password">
+
+        <span class="toggle-password" id="togglePassword">
+
+            <svg id="eyeIcon" viewBox="0 0 24 24"></svg>
+
+        </span>
+
+    </div>
+
+    <button class="login-btn" id="mainBtn">
+        Login
+    </button>
+
+    <p class="register-text" id="registerText">
+        Belum punya akun?
+    </p>
+
+    <button class="register-btn" id="registerBtn">
+        Register
+    </button>
+
 </div>
+
 
     <div class="password-box">
 
