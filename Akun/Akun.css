@@ -345,6 +345,7 @@ REGISTER
 /* =========================================
 REGISTER BUTTON
 ========================================= */
+
 .register-btn{
 
     width:100%;
@@ -353,13 +354,13 @@ REGISTER BUTTON
 
     margin-top:10px;
 
-    border:none;
+    background:transparent;
+
+    border:1.5px solid #3D8BFF;
 
     border-radius:14px;
 
-    background:linear-gradient(180deg,#2F78E7,#174EA6);
-
-    color:#fff;
+    color:#3D8BFF;
 
     font-size:16px;
 
@@ -367,12 +368,20 @@ REGISTER BUTTON
 
     cursor:pointer;
 
-    transition:.2s;
+    transition:.25s;
+
+}
+
+.register-btn:hover{
+
+    background:rgba(61,139,255,.10);
 
 }
 
 .register-btn:active{
 
     transform:scale(.98);
+
+    background:rgba(61,139,255,.15);
 
 }
