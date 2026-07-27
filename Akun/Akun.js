@@ -160,84 +160,58 @@ document.addEventListener("DOMContentLoaded", () => {
 
     mainBtn.addEventListener("click", () => {
 
-    if(registerMode){
+        if(registerMode){
 
-        if(username.value.trim() === "" || password.value.trim() === ""){
+            if(username.value.trim() === "" || password.value.trim() === ""){
 
-            showNotification(
-                "Gagal",
-                "Lengkapi Username dan Password."
-            );
+                showNotification(
+                    "Gagal",
+                    "Lengkapi Username dan Password."
+                );
 
-            return;
+                return;
 
-        }
-
-        // Simpan akun
-        localStorage.setItem("rex_username", username.value);
-        localStorage.setItem("rex_password", password.value);
-
-        showNotification(
-            "Berhasil",
-            "Akun berhasil dibuat. Silakan login."
-        );
-
-        registerMode = false;
-
-        formTitle.textContent = "Login";
-
-        username.value = "";
-        password.value = "";
-
-        username.placeholder = "Masukkan Username";
-        password.placeholder = "Masukkan Password";
-
-        password.type = "password";
-        eyeClosed();
-
-        mainBtn.textContent = "Login";
-
-        registerText.textContent = "Belum punya akun?";
-
-        registerBtn.textContent = "Register";
-
-        if(backBtn){
-
-            backBtn.style.display = "flex";
-
-        }
-
-    }else{
-
-        if(username.value.trim() === "" || password.value.trim() === ""){
+            }
 
             showNotification(
-                "Gagal",
-                "Masukkan Username dan Password."
+                "Berhasil",
+                "Akun berhasil dibuat. Silakan login."
             );
 
-            return;
+            registerMode = false;
 
-        }
+            formTitle.textContent = "Login";
 
-        const savedUser = localStorage.getItem("rex_username");
-        const savedPass = localStorage.getItem("rex_password");
+            username.value = "";
+            password.value = "";
 
-        if(username.value === savedUser && password.value === savedPass){
+            username.placeholder = "Masukkan Username";
+            password.placeholder = "Masukkan Password";
 
-            sessionStorage.setItem("loginSuccess","true");
+            password.type = "password";
+            eyeClosed();
 
-            window.location.href="../Rexmarket.html";
+            mainBtn.textContent = "Login";
+
+            registerText.textContent = "Belum punya akun?";
+
+            registerBtn.textContent = "Register";
+
+            if(backBtn){
+
+                backBtn.style.display = "flex";
+
+            }
 
         }else{
 
             showNotification(
-                "Login Gagal",
-                "Username atau Password salah."
+                "Login",
+                "Login berhasil."
             );
 
         }
 
-    }
+    });
 
 });
