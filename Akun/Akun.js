@@ -95,123 +95,188 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* =========================================
-    LOGIN / REGISTER
-    ========================================= */
+LOGIN / REGISTER
+========================================= */
 
-    registerBtn.addEventListener("click", () => {
+registerBtn.addEventListener("click", () => {
 
-        if(!registerMode){
+    if(!registerMode){
 
-            registerMode = true;
+        registerMode = true;
 
-            formTitle.textContent = "Registrasi";
+        formTitle.textContent = "Registrasi";
 
-            username.value = "";
-            password.value = "";
+        username.value = "";
+        password.value = "";
 
-            username.placeholder = "Buat Username";
-            password.placeholder = "Buat Password";
+        username.placeholder = "Buat Username";
+        password.placeholder = "Buat Password";
 
-            password.type = "password";
-            eyeClosed();
+        password.type = "password";
+        eyeClosed();
 
-            mainBtn.textContent = "Register";
+        mainBtn.textContent = "Register";
 
-            registerText.textContent = "Sudah punya akun?";
+        registerText.textContent = "Sudah punya akun?";
 
-            registerBtn.textContent = "Login";
+        registerBtn.textContent = "Login";
 
-            if(backBtn){
+        if(backBtn){
 
-                backBtn.style.display = "none";
-
-            }
-
-        }else{
-
-            registerMode = false;
-
-            formTitle.textContent = "Login";
-
-            username.value = "";
-            password.value = "";
-
-            username.placeholder = "Masukkan Username";
-            password.placeholder = "Masukkan Password";
-
-            password.type = "password";
-            eyeClosed();
-
-            mainBtn.textContent = "Login";
-
-            registerText.textContent = "Belum punya akun?";
-
-            registerBtn.textContent = "Register";
-
-            if(backBtn){
-
-                backBtn.style.display = "flex";
-
-            }
+            backBtn.style.display = "none";
 
         }
 
-    });
+    }else{
 
-    mainBtn.addEventListener("click", () => {
+        registerMode = false;
 
-        if(registerMode){
+        formTitle.textContent = "Login";
 
-            if(username.value.trim() === "" || password.value.trim() === ""){
+        username.value = "";
+        password.value = "";
 
-                showNotification(
-                    "Gagal",
-                    "Lengkapi Username dan Password."
-                );
+        username.placeholder = "Masukkan Username";
+        password.placeholder = "Masukkan Password";
 
-                return;
+        password.type = "password";
+        eyeClosed();
 
-            }
+        mainBtn.textContent = "Login";
+
+        registerText.textContent = "Belum punya akun?";
+
+        registerBtn.textContent = "Register";
+
+        if(backBtn){
+
+            backBtn.style.display = "flex";
+
+        }
+
+    }
+
+});
+
+mainBtn.addEventListener("click", () => {
+
+    if(registerMode){
+
+        if(username.value.trim() === "" || password.value.trim() === ""){
 
             showNotification(
-                "Berhasil",
-                "Akun berhasil dibuat. Silakan login."
+                "Gagal",
+                "Lengkapi Username dan Password."
             );
 
-            registerMode = false;
+            return;
 
-            formTitle.textContent = "Login";
+        }
 
-            username.value = "";
-            password.value = "";
+        let accounts = JSON.parse(
+            localStorage.getItem("rex_accounts")
+        ) || [];
 
-            username.placeholder = "Masukkan Username";
-            password.placeholder = "Masukkan Password";
+        const exist = accounts.find(
+            account => account.username === username.value.trim()
+        );
 
-            password.type = "password";
-            eyeClosed();
+        if(exist){
 
-            mainBtn.textContent = "Login";
+            showNotification(
+                "Registrasi Gagal",
+                "Username sudah digunakan."
+            );
 
-            registerText.textContent = "Belum punya akun?";
+            return;
 
-            registerBtn.textContent = "Register";
+        }
 
-            if(backBtn){
+        accounts.push({
 
-                backBtn.style.display = "flex";
+            username: username.value.trim(),
 
-            }
+            password: password.value
+
+        });
+
+        localStorage.setItem(
+            "rex_accounts",
+            JSON.stringify(accounts)
+        );
+
+        showNotification(
+            "Berhasil",
+            "Akun berhasil dibuat. Silakan login."
+        );
+
+        registerMode = false;
+
+        formTitle.textContent = "Login";
+
+        username.value = "";
+        password.value = "";
+
+        username.placeholder = "Masukkan Username";
+        password.placeholder = "Masukkan Password";
+
+        password.type = "password";
+        eyeClosed();
+
+        mainBtn.textContent = "Login";
+
+        registerText.textContent = "Belum punya akun?";
+
+        registerBtn.textContent = "Register";
+
+        if(backBtn){
+
+            backBtn.style.display = "flex";
+
+        }
+
+    }else{
+
+        if(username.value.trim() === "" || password.value.trim() === ""){
+
+            showNotification(
+                "Login Gagal",
+                "Masukkan Username dan Password."
+            );
+
+            return;
+
+        }
+
+        const accounts = JSON.parse(
+            localStorage.getItem("rex_accounts")
+        ) || [];
+
+        const account = accounts.find(acc =>
+
+            acc.username === username.value.trim() &&
+            acc.password === password.value
+
+        );
+
+        if(account){
+
+            sessionStorage.setItem(
+                "loginSuccess",
+                "true"
+            );
+
+            window.location.href = "../Rexmarket.html";
 
         }else{
 
             showNotification(
-                "Login",
-                "Login berhasil."
+                "Login Gagal",
+                "Username atau Password salah."
             );
 
         }
 
-    });
+    }
 
 });
