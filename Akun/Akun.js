@@ -23,7 +23,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const backBtn = document.getElementById("backBtn");
 
+    const topNotification = document.getElementById("topNotification");
+    const notifTitle = document.getElementById("notifTitle");
+    const notifText = document.getElementById("notifText");
+
     let registerMode = false;
+
+    /* =========================================
+    SHOW NOTIFICATION
+    ========================================= */
+
+    function showNotification(title, text){
+
+        notifTitle.textContent = title;
+        notifText.textContent = text;
+
+        topNotification.classList.add("show");
+
+        setTimeout(() => {
+
+            topNotification.classList.remove("show");
+
+        },3000);
+
+    }
 
     /* =========================================
     SHOW / HIDE PASSWORD
@@ -38,13 +61,11 @@ document.addEventListener("DOMContentLoaded", () => {
             if(password.type === "password"){
 
                 password.type = "text";
-
                 eyeOpen();
 
             }else{
 
                 password.type = "password";
-
                 eyeClosed();
 
             }
@@ -143,12 +164,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if(username.value.trim() === "" || password.value.trim() === ""){
 
-                alert("Lengkapi data terlebih dahulu!");
+                showNotification(
+                    "Gagal",
+                    "Lengkapi Username dan Password."
+                );
+
                 return;
 
             }
 
-            alert("✅ Akun berhasil dibuat!");
+            showNotification(
+                "Berhasil",
+                "Akun berhasil dibuat. Silakan login."
+            );
 
             registerMode = false;
 
@@ -177,7 +205,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }else{
 
-            alert("Login berhasil!");
+            showNotification(
+                "Login",
+                "Login berhasil."
+            );
 
         }
 
