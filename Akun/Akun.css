@@ -385,3 +385,70 @@ REGISTER BUTTON
     background:rgba(61,139,255,.15);
 
 }
+
+
+/* =========================================
+BACK BUTTON
+========================================= */
+
+.back-btn{
+
+    position:fixed;
+
+    top:20px;
+
+    left:20px;
+
+    width:44px;
+
+    height:44px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:rgba(8,20,42,.85);
+
+    border:1px solid rgba(61,139,255,.35);
+
+    backdrop-filter:blur(16px);
+
+    cursor:pointer;
+
+    z-index:999;
+
+    transition:.2s;
+
+}
+
+.back-btn svg{
+
+    width:22px;
+
+    height:22px;
+
+    stroke:#3D8BFF;
+
+    stroke-width:2.5;
+
+    fill:none;
+
+}
+
+.back-btn:hover{
+
+    background:rgba(61,139,255,.12);
+
+}
+
+.back-btn:active{
+
+    transform:scale(.95);
+
+}
