@@ -487,3 +487,81 @@ input:focus{
     box-shadow:none;
 
 }
+
+/* =========================================
+TOP NOTIFICATION
+========================================= */
+
+.top-notification{
+
+    position:fixed;
+
+    top:-100px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:92%;
+
+    max-width:420px;
+
+    padding:15px 18px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    background:#102748;
+
+    border:1px solid rgba(61,139,255,.35);
+
+    border-radius:16px;
+
+    box-shadow:0 10px 35px rgba(0,0,0,.35);
+
+    transition:.35s;
+
+    z-index:99999;
+
+}
+
+.top-notification.show{
+
+    top:18px;
+
+}
+
+.top-notification svg{
+
+    width:24px;
+
+    height:24px;
+
+    stroke:#4ADE80;
+
+    stroke-width:2.5;
+
+    fill:none;
+
+}
+
+.top-notification h4{
+
+    color:#fff;
+
+    font-size:15px;
+
+    margin-bottom:2px;
+
+}
+
+.top-notification p{
+
+    color:#B7C4D8;
+
+    font-size:13px;
+
+}
