@@ -7,19 +7,29 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Akun page loaded");
 
     /* =========================================
-    SHOW / HIDE PASSWORD
+    ELEMENT
     ========================================= */
 
+    const formTitle = document.getElementById("formTitle");
+    const username = document.getElementById("username");
     const password = document.getElementById("password");
+
+    const mainBtn = document.getElementById("mainBtn");
+    const registerBtn = document.getElementById("registerBtn");
+    const registerText = document.getElementById("registerText");
+
     const togglePassword = document.getElementById("togglePassword");
     const eyeIcon = document.getElementById("eyeIcon");
 
+    let registerMode = false;
+
+    /* =========================================
+    SHOW / HIDE PASSWORD
+    ========================================= */
+
     if(password && togglePassword && eyeIcon){
 
-        eyeIcon.innerHTML = `
-            <path d="M1 12S5 5 12 5s11 7 11 7-4 7-11 7S1 12 1 12"></path>
-            <circle cx="12" cy="12" r="3"></circle>
-        `;
+        eyeClosed();
 
         togglePassword.addEventListener("click", () => {
 
@@ -27,21 +37,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 password.type = "text";
 
-                eyeIcon.innerHTML = `
-                    <path d="M3 3L21 21"></path>
-                    <path d="M10.6 10.6A3 3 0 0013.4 13.4"></path>
-                    <path d="M9.9 5.1A11 11 0 0112 5c7 0 11 7 11 7"></path>
-                    <path d="M6.7 6.7A18 18 0 001 12s4 7 11 7a11 11 0 005.3-1.4"></path>
-                `;
+                eyeOpen();
 
             }else{
 
                 password.type = "password";
 
-                eyeIcon.innerHTML = `
-                    <path d="M1 12S5 5 12 5s11 7 11 7-4 7-11 7S1 12 1 12"></path>
-                    <circle cx="12" cy="12" r="3"></circle>
-                `;
+                eyeClosed();
 
             }
 
@@ -49,23 +51,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-});
+    function eyeClosed(){
 
+        eyeIcon.innerHTML = `
+            <path d="M1 12S5 5 12 5s11 7 11 7-4 7-11 7S1 12 1 12"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+        `;
 
-/* =========================================
-LOGIN / REGISTER
-========================================= */
+    }
 
-const formTitle = document.getElementById("formTitle");
-const username = document.getElementById("username");
-const password = document.getElementById("password");
-const mainBtn = document.getElementById("mainBtn");
-const registerBtn = document.getElementById("registerBtn");
-const registerText = document.getElementById("registerText");
+    function eyeOpen(){
 
-let registerMode = false;
+        eyeIcon.innerHTML = `
+            <path d="M3 3L21 21"></path>
+            <path d="M10.6 10.6A3 3 0 0013.4 13.4"></path>
+            <path d="M9.9 5.1A11 11 0 0112 5c7 0 11 7 11 7"></path>
+            <path d="M6.7 6.7A18 18 0 001 12s4 7 11 7a11 11 0 005.3-1.4"></path>
+        `;
 
-if(formTitle && username && password && mainBtn && registerBtn && registerText){
+    }
+
+    /* =========================================
+    LOGIN / REGISTER
+    ========================================= */
 
     registerBtn.addEventListener("click", () => {
 
@@ -79,6 +87,9 @@ if(formTitle && username && password && mainBtn && registerBtn && registerText){
         username.placeholder = "Buat Username";
         password.placeholder = "Buat Password";
 
+        password.type = "password";
+        eyeClosed();
+
         mainBtn.textContent = "Register";
 
         registerBtn.style.display = "none";
@@ -91,9 +102,10 @@ if(formTitle && username && password && mainBtn && registerBtn && registerText){
 
         if(registerMode){
 
-            if(username.value === "" || password.value === ""){
+            if(username.value.trim() === "" || password.value.trim() === ""){
 
                 alert("Lengkapi data terlebih dahulu!");
+
                 return;
 
             }
@@ -110,6 +122,9 @@ if(formTitle && username && password && mainBtn && registerBtn && registerText){
             username.placeholder = "Masukkan Username";
             password.placeholder = "Masukkan Password";
 
+            password.type = "password";
+            eyeClosed();
+
             mainBtn.textContent = "Login";
 
             registerBtn.style.display = "block";
@@ -124,4 +139,4 @@ if(formTitle && username && password && mainBtn && registerBtn && registerText){
 
     });
 
-}
+});
