@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const topNotification = document.getElementById("topNotification");
     const notifTitle = document.getElementById("notifTitle");
     const notifText = document.getElementById("notifText");
+    const usernameSuggestion = document.getElementById("usernameSuggestion");
 
     let registerMode = false;
 
@@ -93,6 +94,78 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
 
     }
+
+    /* =========================================
+USERNAME AUTOCOMPLETE
+========================================= */
+
+username.addEventListener("input", () => {
+
+    const keyword = username.value.toLowerCase().trim();
+
+    usernameSuggestion.innerHTML = "";
+
+    if(keyword === ""){
+
+        usernameSuggestion.style.display = "none";
+
+        return;
+
+    }
+
+    const accounts = JSON.parse(
+        localStorage.getItem("rex_accounts")
+    ) || [];
+
+    const result = accounts.filter(account =>
+
+        account.username
+        .toLowerCase()
+        .startsWith(keyword)
+
+    );
+
+    if(result.length === 0){
+
+        usernameSuggestion.style.display = "none";
+
+        return;
+
+    }
+
+    result.forEach(account => {
+
+        const item = document.createElement("div");
+
+        item.className = "username-item";
+
+        item.textContent = "👤 " + account.username;
+
+        item.onclick = () => {
+
+            username.value = account.username;
+
+            usernameSuggestion.style.display = "none";
+
+        };
+
+        usernameSuggestion.appendChild(item);
+
+    });
+
+    usernameSuggestion.style.display = "block";
+
+});
+
+document.addEventListener("click",(e)=>{
+
+    if(!e.target.closest(".username-box")){
+
+        usernameSuggestion.style.display = "none";
+
+    }
+
+});
 
     /* =========================================
 LOGIN / REGISTER
