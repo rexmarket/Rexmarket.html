@@ -139,7 +139,14 @@ username.addEventListener("input", () => {
 
         item.className = "username-item";
 
-        item.textContent = "👤 " + account.username;
+        item.innerHTML = `
+    <svg class="user-icon" viewBox="0 0 24 24">
+        <circle cx="12" cy="8" r="4"></circle>
+        <path d="M4 20c1.8-4 14.2-4 16 0"></path>
+    </svg>
+
+    <span>${account.username}</span>
+`;
 
         item.onclick = () => {
 
