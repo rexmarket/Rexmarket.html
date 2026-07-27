@@ -160,58 +160,84 @@ document.addEventListener("DOMContentLoaded", () => {
 
     mainBtn.addEventListener("click", () => {
 
-        if(registerMode){
+    if(registerMode){
 
-            if(username.value.trim() === "" || password.value.trim() === ""){
-
-                showNotification(
-                    "Gagal",
-                    "Lengkapi Username dan Password."
-                );
-
-                return;
-
-            }
+        if(username.value.trim() === "" || password.value.trim() === ""){
 
             showNotification(
-                "Berhasil",
-                "Akun berhasil dibuat. Silakan login."
+                "Gagal",
+                "Lengkapi Username dan Password."
             );
 
-            registerMode = false;
+            return;
 
-            formTitle.textContent = "Login";
+        }
 
-            username.value = "";
-            password.value = "";
+        // Simpan akun
+        localStorage.setItem("rex_username", username.value);
+        localStorage.setItem("rex_password", password.value);
 
-            username.placeholder = "Masukkan Username";
-            password.placeholder = "Masukkan Password";
+        showNotification(
+            "Berhasil",
+            "Akun berhasil dibuat. Silakan login."
+        );
 
-            password.type = "password";
-            eyeClosed();
+        registerMode = false;
 
-            mainBtn.textContent = "Login";
+        formTitle.textContent = "Login";
 
-            registerText.textContent = "Belum punya akun?";
+        username.value = "";
+        password.value = "";
 
-            registerBtn.textContent = "Register";
+        username.placeholder = "Masukkan Username";
+        password.placeholder = "Masukkan Password";
 
-            if(backBtn){
+        password.type = "password";
+        eyeClosed();
 
-                backBtn.style.display = "flex";
+        mainBtn.textContent = "Login";
 
-            }
+        registerText.textContent = "Belum punya akun?";
+
+        registerBtn.textContent = "Register";
+
+        if(backBtn){
+
+            backBtn.style.display = "flex";
+
+        }
+
+    }else{
+
+        if(username.value.trim() === "" || password.value.trim() === ""){
+
+            showNotification(
+                "Gagal",
+                "Masukkan Username dan Password."
+            );
+
+            return;
+
+        }
+
+        const savedUser = localStorage.getItem("rex_username");
+        const savedPass = localStorage.getItem("rex_password");
+
+        if(username.value === savedUser && password.value === savedPass){
+
+            sessionStorage.setItem("loginSuccess","true");
+
+            window.location.href="../Rexmarket.html";
 
         }else{
 
             showNotification(
-                "Login",
-                "Login berhasil."
+                "Login Gagal",
+                "Username atau Password salah."
             );
 
         }
 
-    });
+    }
 
 });
