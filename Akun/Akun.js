@@ -108,12 +108,15 @@ document.addEventListener("DOMContentLoaded", () => {
     /* =========================================
 RESET PASSWORD
 ========================================= */
-
 forgotPassword.addEventListener("click",(e)=>{
 
     e.preventDefault();
 
     resetOverlay.classList.add("show");
+
+    resetUsername.readOnly = false;
+
+    checkUsernameBtn.style.display = "block";
 
     resetUsername.value = "";
 
@@ -125,9 +128,24 @@ forgotPassword.addEventListener("click",(e)=>{
 
 });
 
+
 closeReset.addEventListener("click",()=>{
 
+    resetUsername.readOnly = false;
+
+    checkUsernameBtn.style.display = "block";
+
+    resetUsername.value = "";
+
+    newPassword.value = "";
+
+    confirmPassword.value = "";
+
+    newPasswordSection.style.display = "none";
+
     resetOverlay.classList.remove("show");
+
+
 
 });
 
@@ -166,7 +184,11 @@ checkUsernameBtn.addEventListener("click",()=>{
 
     }
 
-    newPasswordSection.style.display = "block";
+    resetUsername.readOnly = true;
+
+checkUsernameBtn.style.display = "none";
+
+newPasswordSection.style.display = "block";
 
 });
 
@@ -219,25 +241,30 @@ checkUsernameBtn.addEventListener("click",()=>{
 
     accounts[index].password = newPassword.value;
 
-    localStorage.setItem(
-        "rex_accounts",
-        JSON.stringify(accounts)
-    );
+        localStorage.setItem(
+    "rex_accounts",
+    JSON.stringify(accounts)
+);
 
-    resetOverlay.classList.remove("show");
+resetOverlay.classList.remove("show");
 
-    showNotification(
-        "Berhasil",
-        "Password berhasil diubah."
-    );
+showNotification(
+    "Berhasil",
+    "Password berhasil diubah."
+);
 
-    resetUsername.value = "";
+// Kembalikan ke kondisi awal
+resetUsername.readOnly = false;
 
-    newPassword.value = "";
+checkUsernameBtn.style.display = "block";
 
-    confirmPassword.value = "";
+resetUsername.value = "";
 
-    newPasswordSection.style.display = "none";
+newPassword.value = "";
+
+confirmPassword.value = "";
+
+newPasswordSection.style.display = "none";
 
 });
     
