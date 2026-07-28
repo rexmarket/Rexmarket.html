@@ -686,3 +686,90 @@ PASSWORD ACTION
     color:#3D8BFF;
 
 }
+
+
+/* =========================================
+RESET PASSWORD
+========================================= */
+
+.reset-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.55);
+
+    backdrop-filter:blur(8px);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:999;
+
+}
+
+.reset-overlay.show{
+
+    display:flex;
+
+}
+
+.reset-box{
+
+    width:90%;
+
+    max-width:400px;
+
+    padding:28px;
+
+    border-radius:22px;
+
+    background:#112341;
+
+    border:1px solid rgba(61,139,255,.3);
+
+    box-shadow:0 15px 45px rgba(0,0,0,.45);
+
+}
+
+.reset-box h2{
+
+    text-align:center;
+
+    color:#fff;
+
+    margin-bottom:22px;
+
+}
+
+.reset-box input{
+
+    width:100%;
+
+    height:52px;
+
+    margin-bottom:15px;
+
+    padding:0 16px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,.08);
+
+    color:#fff;
+
+}
+
+.reset-box input::placeholder{
+
+    color:#8B95A7;
+
+}
