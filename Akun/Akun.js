@@ -106,6 +106,144 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* =========================================
+RESET PASSWORD
+========================================= */
+
+forgotPassword.addEventListener("click",(e)=>{
+
+    e.preventDefault();
+
+    resetOverlay.classList.add("show");
+
+    resetUsername.value = "";
+
+    newPassword.value = "";
+
+    confirmPassword.value = "";
+
+    newPasswordSection.style.display = "none";
+
+});
+
+closeReset.addEventListener("click",()=>{
+
+    resetOverlay.classList.remove("show");
+
+});
+
+checkUsernameBtn.addEventListener("click",()=>{
+
+    if(resetUsername.value.trim() === ""){
+
+        showNotification(
+            "Reset Password",
+            "Masukkan Username terlebih dahulu."
+        );
+
+        return;
+
+    }
+
+    const accounts = JSON.parse(
+        localStorage.getItem("rex_accounts")
+    ) || [];
+
+    const account = accounts.find(acc=>
+
+        acc.username.toLowerCase() ===
+        resetUsername.value.trim().toLowerCase()
+
+    );
+
+    if(!account){
+
+        showNotification(
+            "Reset Password",
+            "Username tidak ditemukan."
+        );
+
+        return;
+
+    }
+
+    newPasswordSection.style.display = "block";
+
+});
+
+    confirmResetBtn.addEventListener("click",()=>{
+
+    if(newPassword.value.trim() === "" ||
+       confirmPassword.value.trim() === ""){
+
+        showNotification(
+            "Reset Password",
+            "Lengkapi Password baru."
+        );
+
+        return;
+
+    }
+
+    if(newPassword.value !== confirmPassword.value){
+
+        showNotification(
+            "Reset Password",
+            "Konfirmasi Password tidak cocok."
+        );
+
+        return;
+
+    }
+
+    let accounts = JSON.parse(
+        localStorage.getItem("rex_accounts")
+    ) || [];
+
+    const index = accounts.findIndex(acc=>
+
+        acc.username.toLowerCase() ===
+        resetUsername.value.trim().toLowerCase()
+
+    );
+
+    if(index === -1){
+
+        showNotification(
+            "Reset Password",
+            "Username tidak ditemukan."
+        );
+
+        return;
+
+    }
+
+    accounts[index].password = newPassword.value;
+
+    localStorage.setItem(
+        "rex_accounts",
+        JSON.stringify(accounts)
+    );
+
+    resetOverlay.classList.remove("show");
+
+    showNotification(
+        "Berhasil",
+        "Password berhasil diubah."
+    );
+
+    resetUsername.value = "";
+
+    newPassword.value = "";
+
+    confirmPassword.value = "";
+
+    newPasswordSection.style.display = "none";
+
+});
+    
+    
+
+    /* =========================================
 USERNAME AUTOCOMPLETE
 ========================================= */
 
