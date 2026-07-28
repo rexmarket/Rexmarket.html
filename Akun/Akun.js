@@ -1,3 +1,15 @@
+import { db } from "./Firebase.js";
+
+import {
+    collection,
+    addDoc,
+    getDocs,
+    query,
+    where
+} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+
+
 /* =========================================
 AKUN PAGE
 ========================================= */
@@ -374,18 +386,30 @@ username.addEventListener("input", () => {
         return;
 
     }
+    
 
-    const accounts = JSON.parse(
-        localStorage.getItem("rex_accounts")
-    ) || [];
+    const users = await getDocs(
+    collection(db, "users")
+);
 
-    const result = accounts.filter(account =>
+const result = [];
 
+
+users.forEach((doc)=>{
+
+    const account = doc.data();
+
+    if(
         account.username
         .toLowerCase()
         .startsWith(keyword)
+    ){
 
-    );
+        result.push(account);
+
+    }
+
+});
 
     if(result.length === 0){
 
@@ -500,7 +524,7 @@ registerBtn.addEventListener("click", () => {
 
 });
 
-mainBtn.addEventListener("click", () => {
+mainBtn.addEventListener("click", async () => {
 
     if(registerMode){
 
@@ -515,37 +539,40 @@ mainBtn.addEventListener("click", () => {
 
         }
 
-        let accounts = JSON.parse(
-            localStorage.getItem("rex_accounts")
-        ) || [];
 
-        const exist = accounts.find(
-            account => account.username === username.value.trim()
-        );
+const usernameInput = username.value.trim();
 
-        if(exist){
+const cekUser = query(
+    collection(db, "users"),
+    where("username", "==", usernameInput)
+);
 
-            showNotification(
-                "Registrasi Gagal",
-                "Username sudah digunakan."
-            );
+const hasil = await getDocs(cekUser);
 
-            return;
 
-        }
+if(!hasil.empty){
 
-        accounts.push({
+    showNotification(
+        "Registrasi Gagal",
+        "Username sudah digunakan."
+    );
 
-            username: username.value.trim(),
+    return;
 
-            password: password.value
+}
 
-        });
 
-        localStorage.setItem(
-            "rex_accounts",
-            JSON.stringify(accounts)
-        );
+await addDoc(
+    collection(db, "users"),
+    {
+        username: usernameInput,
+        password: password.value,
+        role: "Member",
+        saldo: 0,
+        createdAt: new Date()
+    }
+);
+        
 
         showNotification(
             "Berhasil",
