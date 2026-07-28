@@ -373,7 +373,7 @@ newPasswordSection.style.display = "none";
 USERNAME AUTOCOMPLETE
 ========================================= */
 
-username.addEventListener("input", () => {
+username.addEventListener("input", async () => {
 
     const keyword = username.value.toLowerCase().trim();
 
