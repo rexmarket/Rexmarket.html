@@ -287,21 +287,42 @@ checkUsernameBtn.addEventListener("click",()=>{
         localStorage.getItem("rex_accounts")
     ) || [];
 
-    const index = accounts.findIndex(acc=>
+    let index;
+
+if(resetMode === "forgot"){
+
+    index = accounts.findIndex(acc=>
 
         acc.username.toLowerCase() ===
         resetUsername.value.trim().toLowerCase()
 
     );
 
+}else{
+
+    index = accounts.findIndex(acc=>
+
+        acc.password === resetUsername.value
+
+    );
+
+}
+
     if(index === -1){
 
-        showNotification(
-            "Reset Password",
-            "Username tidak ditemukan."
-        );
+    showNotification(
 
-        return;
+        resetMode === "forgot"
+        ? "Reset Password"
+        : "Ganti Password",
+
+        resetMode === "forgot"
+        ? "Username tidak ditemukan."
+        : "Password lama salah."
+
+    );
+
+    return;
 
     }
 
