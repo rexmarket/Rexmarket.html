@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const confirmResetBtn = document.getElementById("confirmResetBtn");
    
     let registerMode = false;
+    let resetMode = "forgot";
 
     /* =========================================
     SHOW NOTIFICATION
@@ -104,15 +105,52 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
 
     }
-
-    /* =========================================
+    
+/* =========================================
 RESET PASSWORD
 ========================================= */
-forgotPassword.addEventListener("click",(e)=>{
+    forgotPassword.addEventListener("click",(e)=>{
 
     e.preventDefault();
 
+    resetMode = "forgot";
+
+    document.querySelector(".reset-box h2").textContent =
+    "Lupa Password";
+
+    resetUsername.placeholder = "Masukkan Username";
+
+    checkUsernameBtn.textContent = "Cek Akun";
+
     resetOverlay.classList.add("show");
+
+    resetUsername.readOnly = false;
+
+    checkUsernameBtn.style.display = "block";
+
+    resetUsername.value = "";
+
+    newPassword.value = "";
+
+    confirmPassword.value = "";
+
+    newPasswordSection.style.display = "none";
+
+});
+
+    changePassword.addEventListener("click",(e)=>{
+        
+    e.preventDefault();
+        resetMode = "change";
+
+    resetOverlay.classList.add("show");
+
+    document.querySelector(".reset-box h2").textContent =
+    "Ganti Password";
+
+    resetUsername.placeholder = "Masukkan Password Lama";
+
+    checkUsernameBtn.textContent = "Ganti Password";
 
     resetUsername.readOnly = false;
 
@@ -154,8 +192,10 @@ checkUsernameBtn.addEventListener("click",()=>{
     if(resetUsername.value.trim() === ""){
 
         showNotification(
-            "Reset Password",
-            "Masukkan Username terlebih dahulu."
+            resetMode === "forgot" ? "Reset Password" : "Ganti Password",
+            resetMode === "forgot"
+            ? "Masukkan Username terlebih dahulu."
+            : "Masukkan Password lama terlebih dahulu."
         );
 
         return;
@@ -166,31 +206,57 @@ checkUsernameBtn.addEventListener("click",()=>{
         localStorage.getItem("rex_accounts")
     ) || [];
 
-    const account = accounts.find(acc=>
+    let account;
 
-        acc.username.toLowerCase() ===
-        resetUsername.value.trim().toLowerCase()
+    if(resetMode === "forgot"){
 
-    );
+        account = accounts.find(acc=>
 
-    if(!account){
+            acc.username.toLowerCase() ===
+            resetUsername.value.trim().toLowerCase()
 
-        showNotification(
-            "Reset Password",
-            "Username tidak ditemukan."
         );
 
-        return;
+        if(!account){
+
+            showNotification(
+                "Reset Password",
+                "Username tidak ditemukan."
+            );
+
+            return;
+
+        }
+
+    }else{
+
+        account = accounts.find(acc=>
+
+            acc.password === resetUsername.value
+
+        );
+
+        if(!account){
+
+            showNotification(
+                "Ganti Password",
+                "Password lama salah."
+            );
+
+            return;
+
+        }
 
     }
 
     resetUsername.readOnly = true;
 
-checkUsernameBtn.style.display = "none";
+    checkUsernameBtn.style.display = "none";
 
-newPasswordSection.style.display = "block";
+    newPasswordSection.style.display = "block";
 
 });
+    
 
     confirmResetBtn.addEventListener("click",()=>{
 
