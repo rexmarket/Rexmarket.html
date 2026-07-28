@@ -27,7 +27,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const notifTitle = document.getElementById("notifTitle");
     const notifText = document.getElementById("notifText");
     const usernameSuggestion = document.getElementById("usernameSuggestion");
-
+   
+    const resetOverlay = document.getElementById("resetOverlay");
+    const forgotPassword = document.getElementById("forgotPassword");
+    const closeReset = document.getElementById("closeReset");
+    const checkUsernameBtn = document.getElementById("checkUsernameBtn");
+    const resetUsername = document.getElementById("resetUsername");
+    const newPasswordSection = document.getElementById("newPasswordSection");
+    const newPassword = document.getElementById("newPassword");
+    const confirmPassword = document.getElementById("confirmPassword");
+    const confirmResetBtn = document.getElementById("confirmResetBtn");
+   
     let registerMode = false;
 
     /* =========================================
