@@ -8,7 +8,10 @@ import {
     where
 } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
-
+window.addEventListener("error", (e) => {
+    alert(e.message);
+    console.error(e.error);
+});
 
 /* =========================================
 AKUN PAGE
