@@ -541,37 +541,45 @@ mainBtn.addEventListener("click", async () => {
 
 
 const usernameInput = username.value.trim();
+try {
 
-const cekUser = query(
-    collection(db, "users"),
-    where("username", "==", usernameInput)
-);
+    const usernameInput = username.value.trim();
 
-const hasil = await getDocs(cekUser);
-
-
-if(!hasil.empty){
-
-    showNotification(
-        "Registrasi Gagal",
-        "Username sudah digunakan."
+    const cekUser = query(
+        collection(db, "users"),
+        where("username", "==", usernameInput)
     );
 
-    return;
+    const hasil = await getDocs(cekUser);
 
-}
+    if (!hasil.empty) {
 
+        showNotification(
+            "Registrasi Gagal",
+            "Username sudah digunakan."
+        );
 
-await addDoc(
-    collection(db, "users"),
-    {
-        username: usernameInput,
-        password: password.value,
-        role: "Member",
-        saldo: 0,
-        createdAt: new Date()
+        return;
     }
-);
+
+    await addDoc(
+        collection(db, "users"),
+        {
+            username: usernameInput,
+            password: password.value,
+            role: "Member",
+            saldo: 0,
+            createdAt: new Date()
+        }
+    );
+
+} catch (error) {
+
+    alert(error.message);
+    console.error(error);
+
+    return;
+}
         
 
         showNotification(
