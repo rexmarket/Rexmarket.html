@@ -651,3 +651,38 @@ USERNAME BOX
     z-index:100;
 
 }
+
+
+/* =========================================
+PASSWORD ACTION
+========================================= */
+
+.password-action{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin:-2px 0 18px;
+
+}
+
+.password-action a{
+
+    font-size:13px;
+
+    color:#8FA9D9;
+
+    text-decoration:none;
+
+    transition:.2s;
+
+}
+
+.password-action a:hover{
+
+    color:#3D8BFF;
+
+}
