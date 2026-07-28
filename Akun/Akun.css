@@ -610,3 +610,44 @@ USER ICON
     background:rgba(61,139,255,.15);
 
 }
+
+
+/* =========================================
+USERNAME BOX
+========================================= */
+
+.username-box{
+
+    position:relative;
+
+    width:100%;
+
+    margin-bottom:16px;
+
+}
+
+.username-suggestion{
+
+    position:absolute;
+
+    top:100%;
+
+    left:0;
+
+    width:100%;
+
+    background:#16284A;
+
+    border:1px solid rgba(61,139,255,.25);
+
+    border-radius:12px;
+
+    margin-top:6px;
+
+    overflow:hidden;
+
+    display:none;
+
+    z-index:100;
+
+}
