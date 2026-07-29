@@ -529,9 +529,9 @@ registerBtn.addEventListener("click", () => {
 
 mainBtn.addEventListener("click", async () => {
 
-    if(registerMode){
+    if (registerMode) {
 
-        if(username.value.trim() === "" || password.value.trim() === ""){
+        if (username.value.trim() === "" || password.value.trim() === "") {
 
             showNotification(
                 "Gagal",
@@ -539,116 +539,91 @@ mainBtn.addEventListener("click", async () => {
             );
 
             return;
-
         }
 
+        try {
 
-const usernameInput = username.value.trim();
-try {
+            const usernameInput = username.value.trim();
 
-    const usernameInput = username.value.trim();
+            console.log("Mulai register...");
 
-    const cekUser = query(
-        collection(db, "users"),
-        where("username", "==", usernameInput)
-    );
-
-    const hasil = await getDocs(cekUser);
-
-    if (!hasil.empty) {
-
-        showNotification(
-            "Registrasi Gagal",
-            "Username sudah digunakan."
-        );
-
-        return;
-    }
-
-    await addDoc(
-        collection(db, "users"),
-        {
-            username: usernameInput,
-            password: password.value,
-            role: "Member",
-            saldo: 0,
-            createdAt: new Date()
-        }
-    );
-
-} catch (error) {
-
-    alert(error.message);
-    console.error(error);
-
-    return;
-}
-        
-
-        showNotification(
-            "Berhasil",
-            "Akun berhasil dibuat. Silakan login."
-        );
-
-        registerMode = false;
-
-        formTitle.textContent = "Login";
-
-        username.value = "";
-        password.value = "";
-
-        username.placeholder = "Masukkan Username";
-        password.placeholder = "Masukkan Password";
-
-        password.type = "password";
-        eyeClosed();
-
-        mainBtn.textContent = "Login";
-
-        registerText.textContent = "Belum punya akun?";
-
-        registerBtn.textContent = "Register";
-
-        if(backBtn){
-
-            backBtn.style.display = "flex";
-
-        }
-
-    }else{
-
-        if(username.value.trim() === "" || password.value.trim() === ""){
-
-            showNotification(
-                "Login Gagal",
-                "Masukkan Username dan Password."
+            const cekUser = query(
+                collection(db, "users"),
+                where("username", "==", usernameInput)
             );
 
-            return;
+            const hasil = await getDocs(cekUser);
+
+            if (!hasil.empty) {
+
+                showNotification(
+                    "Registrasi Gagal",
+                    "Username sudah digunakan."
+                );
+
+                return;
+            }
+
+            await addDoc(collection(db, "users"), {
+                username: usernameInput,
+                password: password.value.trim(),
+                role: "Member",
+                saldo: 0,
+                createdAt: new Date()
+            });
+
+            console.log("Register berhasil");
+
+            showNotification(
+                "Berhasil",
+                "Akun berhasil dibuat. Silakan login."
+            );
+
+            registerMode = false;
+
+            formTitle.textContent = "Login";
+            username.value = "";
+            password.value = "";
+
+            username.placeholder = "Masukkan Username";
+            password.placeholder = "Masukkan Password";
+
+            password.type = "password";
+            eyeClosed();
+
+            mainBtn.textContent = "Login";
+            registerText.textContent = "Belum punya akun?";
+            registerBtn.textContent = "Register";
+
+            if (backBtn) {
+                backBtn.style.display = "flex";
+            }
+
+        } catch (error) {
+
+            console.error(error);
+            alert("ERROR: " + error.message);
 
         }
 
+    } else {
+
+        // sementara login biarkan seperti punyamu
         const accounts = JSON.parse(
             localStorage.getItem("rex_accounts")
         ) || [];
 
         const account = accounts.find(acc =>
-
             acc.username === username.value.trim() &&
             acc.password === password.value
-
         );
 
-        if(account){
+        if (account) {
 
-            sessionStorage.setItem(
-                "loginSuccess",
-                "true"
-            );
-
+            sessionStorage.setItem("loginSuccess", "true");
             window.location.href = "../Rexmarket.html";
 
-        }else{
+        } else {
 
             showNotification(
                 "Login Gagal",
@@ -657,8 +632,8 @@ try {
 
         }
 
+        });
+
     }
 
 });
-
-                          });
