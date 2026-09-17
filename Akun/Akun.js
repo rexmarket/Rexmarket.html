@@ -84,12 +84,14 @@ googleBtn.addEventListener("click", async () => {
 
     } catch (error) {
 
-        console.error("Google Login Error:", error);
+    console.error("Google Login Error:", error);
 
-        alert(
-            "Login Google gagal.\n\n" +
-            error.code
-        );
+    alert(
+        "TERJADI ERROR:\n\n" +
+        error.code +
+        "\n\n" +
+        error.message
+    );
 
     } finally {
 
