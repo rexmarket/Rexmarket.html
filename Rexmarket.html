@@ -1495,6 +1495,11 @@ centerBtn.onclick = () => {
 
 };
 
+ /* =========================================
+
+AKUN PAGE
+========================================= */
+    
 overlay.onclick = () => {
 
     overlay.classList.remove("show");
@@ -1503,9 +1508,6 @@ overlay.onclick = () => {
 
 };
 
-    /* =========================================
-AKUN PAGE
-========================================= */
 
 const akunBtn = document.getElementById("akunBtn");
 
@@ -1514,9 +1516,32 @@ akunBtn.addEventListener("click", () => {
     window.location.href = "Akun/Akun.html";
 
 });
-    
-    
+
+
+// =========================================
+// LOGIN TOAST
+// =========================================
+
+const loginNotif = sessionStorage.getItem("rexmarketLoginNotif");
+
+if (loginNotif) {
+
+    const toast = document.getElementById("loginToast");
+
+    toast.textContent = loginNotif;
+    toast.classList.add("show");
+
+    sessionStorage.removeItem("rexmarketLoginNotif");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 3500);
+
+}
+
 </script>
+
+<div id="loginToast" class="login-toast"></div>
 
 </body>
 
