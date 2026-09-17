@@ -1,42 +1,70 @@
 // =========================================
-// REXMARKET - FIREBASE TEST
+// REXMARKET - GOOGLE LOGIN
 // =========================================
 
-import { auth, db } from "./Firebase.js";
+import { auth } from "./Firebase.js";
+
+import {
+    GoogleAuthProvider,
+    signInWithPopup
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 
 // =========================================
 // ELEMENT
 // =========================================
 
-const mainBtn = document.getElementById("mainBtn");
-const registerBtn = document.getElementById("registerBtn");
+const googleBtn = document.getElementById("googleBtn");
 
 
 // =========================================
-// FIREBASE TEST
+// GOOGLE PROVIDER
 // =========================================
 
-console.log("REXMARKET FIREBASE BERHASIL TERHUBUNG");
-
-
-// =========================================
-// LOGIN BUTTON
-// =========================================
-
-mainBtn.addEventListener("click", () => {
-
-    alert("Firebase berhasil terhubung!");
-
-});
+const provider = new GoogleAuthProvider();
 
 
 // =========================================
-// REGISTER BUTTON
+// GOOGLE LOGIN
 // =========================================
 
-registerBtn.addEventListener("click", () => {
+googleBtn.addEventListener("click", async () => {
 
-    alert("Register siap dibuat!");
+    try {
+
+        googleBtn.disabled = true;
+        googleBtn.textContent = "Menghubungkan...";
+
+        const result = await signInWithPopup(auth, provider);
+
+        const user = result.user;
+
+        console.log("Google Login Berhasil");
+
+        console.log("Nama:", user.displayName);
+        console.log("Email:", user.email);
+        console.log("UID:", user.uid);
+
+        alert(`Login berhasil!\n\nSelamat datang, ${user.displayName || "User"}!`);
+
+    } catch (error) {
+
+        console.error("Google Login Error:", error);
+
+        alert(
+            "Login Google gagal.\n\n" +
+            error.code
+        );
+
+    } finally {
+
+        googleBtn.disabled = false;
+
+        googleBtn.innerHTML = `
+            <span class="google-icon">G</span>
+            Login dengan Google
+        `;
+
+    }
 
 });
