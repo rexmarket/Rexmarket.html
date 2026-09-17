@@ -1,13 +1,19 @@
 // =========================================
-// REXMARKET - GOOGLE LOGIN
+// REXMARKET - GOOGLE LOGIN + FIRESTORE
 // =========================================
 
-import { auth } from "./Firebase.js";
+import { auth, db } from "./Firebase.js";
 
 import {
     GoogleAuthProvider,
     signInWithPopup
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+import {
+    doc,
+    setDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
 // =========================================
@@ -40,12 +46,41 @@ googleBtn.addEventListener("click", async () => {
         const user = result.user;
 
         console.log("Google Login Berhasil");
-
         console.log("Nama:", user.displayName);
         console.log("Email:", user.email);
         console.log("UID:", user.uid);
 
-        alert(`Login berhasil!\n\nSelamat datang, ${user.displayName || "User"}!`);
+
+        // =========================================
+        // SIMPAN DATA USER KE FIRESTORE
+        // =========================================
+
+        await setDoc(
+            doc(db, "users", user.uid),
+            {
+                username: user.displayName || "User",
+                email: user.email || "",
+                role: "Member",
+                saldo: 0,
+                createdAt: serverTimestamp()
+            },
+            {
+                merge: true
+            }
+        );
+
+
+        console.log("Data user berhasil disimpan ke Firestore");
+
+
+        // =========================================
+        // NOTIF LOGIN
+        // =========================================
+
+        alert(
+            `Login berhasil!\n\nSelamat datang, ${user.displayName || "User"}!`
+        );
+
 
     } catch (error) {
 
