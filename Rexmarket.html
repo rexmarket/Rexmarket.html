@@ -1589,12 +1589,11 @@ BOTTOM NAV
 </div>
 
     <!-- =========================================
-     LOGIN NOTIFICATION
+     LOGIN NOTIFIKASI HTML
 ========================================= -->
 
 <div id="loginToast" class="login-toast">
 
-    <!-- ICON LONCENG -->
     <div class="login-toast-icon">
 
         <svg
@@ -1613,7 +1612,6 @@ BOTTOM NAV
 
     </div>
 
-    <!-- TEXT -->
     <div class="login-toast-content">
 
         <div class="login-toast-title">
@@ -1628,24 +1626,28 @@ BOTTOM NAV
 
 </div>
 
-    <script>
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+<script>
 
 /* =========================================
-   JAVASCRIPT
-========================================= */
-/* =========================================
-HEADER
+   HEADER
 ========================================= */
 
-window.addEventListener("scroll",function(){
+window.addEventListener("scroll", function(){
 
-    const header=document.getElementById("header");
+    const header = document.getElementById("header");
 
-    if(window.scrollY>650){
+    if (!header) return;
+
+    if (window.scrollY > 650){
 
         header.classList.add("scrolled");
 
-    }else{
+    } else {
 
         header.classList.remove("scrolled");
 
@@ -1653,63 +1655,91 @@ window.addEventListener("scroll",function(){
 
 });
 
+
 /* =========================================
-NAVBAR ACTIVE
+   NAVBAR ACTIVE
 ========================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-    const navItems = document.querySelectorAll(".nav-item");
+
+    const navItems =
+        document.querySelectorAll(".nav-item");
 
     navItems.forEach((item) => {
+
         item.addEventListener("click", function () {
-            navItems.forEach(i => i.classList.remove("active"));
+
+            navItems.forEach(i =>
+                i.classList.remove("active")
+            );
+
             this.classList.add("active");
+
         });
+
     });
+
 });
 
-    /* =========================================
-BANNER AUTO SLIDE
+
+/* =========================================
+   BANNER AUTO SLIDE
 ========================================= */
 
-const track = document.querySelector(".banner-track");
+const track =
+    document.querySelector(".banner-track");
 
-const dots = document.querySelectorAll(".banner-dots span");
+const dots =
+    document.querySelectorAll(".banner-dots span");
 
 let index = 0;
 
-function slideBanner(){
 
-    index++;
+if (track && dots.length > 0) {
 
-    if(index > 2){
+    function slideBanner(){
 
-        index = 0;
+        index++;
+
+        if (index > 2){
+
+            index = 0;
+
+        }
+
+        track.style.transform =
+            `translateX(-${index * 33.333}%)`;
+
+        dots.forEach(dot =>
+            dot.classList.remove("active")
+        );
+
+        if (dots[index]) {
+
+            dots[index].classList.add("active");
+
+        }
 
     }
 
-    track.style.transform = `translateX(-${index * 33.333}%)`;
-
-    dots.forEach(dot => dot.classList.remove("active"));
-
-    dots[index].classList.add("active");
+    setInterval(slideBanner, 4000);
 
 }
 
-setInterval(slideBanner,4000);
 
-
-    /* =========================================
-CATEGORY NAV
+/* =========================================
+   CATEGORY NAV
 ========================================= */
+
 const categoryItems =
-document.querySelectorAll(".category-item");
+    document.querySelectorAll(".category-item");
 
-categoryItems.forEach(item=>{
 
-    item.onclick=()=>{
+categoryItems.forEach(item => {
 
-        categoryItems.forEach(i=>
+    item.onclick = () => {
+
+        categoryItems.forEach(i =>
             i.classList.remove("active")
         );
 
@@ -1720,90 +1750,72 @@ categoryItems.forEach(item=>{
 });
 
 
-
-    /* =========================================
-MENU PANEL
+/* =========================================
+   MENU PANEL
 ========================================= */
 
-const centerBtn = document.querySelector(".center-btn");
+const centerBtn =
+    document.querySelector(".center-btn");
 
-const overlay = document.getElementById("overlay");
+const overlay =
+    document.getElementById("overlay");
 
-const menuPanel = document.getElementById("menuPanel");
+const menuPanel =
+    document.getElementById("menuPanel");
 
-centerBtn.onclick = () => {
 
-    overlay.classList.add("show");
+if (centerBtn && overlay && menuPanel) {
 
-    menuPanel.classList.add("show");
+    centerBtn.onclick = () => {
 
-};
+        overlay.classList.add("show");
 
- /* =========================================
+        menuPanel.classList.add("show");
 
-AKUN PAGE
+    };
+
+}
+
+
+/* =========================================
+   TUTUP MENU / OVERLAY
 ========================================= */
-    
-overlay.onclick = () => {
 
-    overlay.classList.remove("show");
+if (overlay && menuPanel) {
 
-    menuPanel.classList.remove("show");
+    overlay.onclick = () => {
 
-};
+        overlay.classList.remove("show");
 
+        menuPanel.classList.remove("show");
 
-const akunBtn = document.getElementById("akunBtn");
+    };
 
-akunBtn.addEventListener("click", () => {
-
-    window.location.href = "Akun/Akun.html";
-
-});
-
-  // =========================================
-// LOGIN notifikasi html
-// =========================================
-
-<div id="loginToast" class="login-toast">
-
-    <div class="login-toast-icon">
-
-        <svg
-            viewBox="0 0 24 24"
-            width="25"
-            height="25"
-            fill="none"
-            stroke="black"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-        >
-            <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
-            <path d="M10 21h4"/>
-        </svg>
-
-    </div>
-
-    <div class="login-toast-content">
-
-        <div class="login-toast-title">
-            Login Berhasil
-        </div>
-
-        <div class="login-toast-text">
-            Selamat datang!
-        </div>
-
-    </div>
-
-</div>
+}
 
 
-// =========================================
-// LOGIN SUCCESS TOAST + SOUND
-// =========================================
-                
+/* =========================================
+   AKUN PAGE
+========================================= */
+
+const akunBtn =
+    document.getElementById("akunBtn");
+
+
+if (akunBtn) {
+
+    akunBtn.addEventListener("click", () => {
+
+        window.location.href = "Akun/Akun.html";
+
+    });
+
+}
+
+
+/* =========================================
+   LOGIN SUCCESS TOAST + SOUND
+========================================= */
 
 const loginNotif =
     sessionStorage.getItem("rexmarketLoginNotif");
@@ -1821,19 +1833,23 @@ if (loginNotif) {
             toast.querySelector(".login-toast-text");
 
 
-        // Isi pesan
+        /* Isi pesan */
 
-        text.textContent = loginNotif;
+        if (text) {
+
+            text.textContent = loginNotif;
+
+        }
 
 
-        // Tampilkan notif
+        /* Tampilkan notif */
 
         toast.classList.add("show");
 
 
-        // =========================================
-        // SOUND EFFECT
-        // =========================================
+        /* =========================================
+           SOUND EFFECT
+        ========================================= */
 
         const AudioContext =
             window.AudioContext ||
@@ -1857,7 +1873,7 @@ if (loginNotif) {
             oscillator.type = "sine";
 
 
-            // Nada pertama
+            /* Nada pertama */
 
             oscillator.frequency.setValueAtTime(
                 660,
@@ -1865,7 +1881,7 @@ if (loginNotif) {
             );
 
 
-            // Nada kedua
+            /* Nada kedua */
 
             oscillator.frequency.setValueAtTime(
                 880,
@@ -1873,7 +1889,7 @@ if (loginNotif) {
             );
 
 
-            // Volume
+            /* Volume */
 
             gain.gain.setValueAtTime(
                 0.0001,
@@ -1908,18 +1924,18 @@ if (loginNotif) {
         }
 
 
-        // =========================================
-        // HAPUS SESSION
-        // =========================================
+        /* =========================================
+           HAPUS SESSION
+        ========================================= */
 
         sessionStorage.removeItem(
             "rexmarketLoginNotif"
         );
 
 
-        // =========================================
-        // HILANGKAN NOTIF
-        // =========================================
+        /* =========================================
+           HILANGKAN NOTIF
+        ========================================= */
 
         setTimeout(() => {
 
@@ -1935,5 +1951,6 @@ if (loginNotif) {
 
 </body>
 
-</html>          
+</html>
+
             
