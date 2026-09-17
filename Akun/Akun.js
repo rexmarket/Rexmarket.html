@@ -77,9 +77,12 @@ googleBtn.addEventListener("click", async () => {
         // NOTIF LOGIN
         // =========================================
 
-        alert(
-            `Login berhasil!\n\nSelamat datang, ${user.displayName || "User"}!`
-        );
+        sessionStorage.setItem(
+    "rexmarketLoginNotif",
+    `Login berhasil 👋 Selamat datang, ${user.displayName || "User"}!`
+);
+
+window.location.href = "rexmarket.html";
 
 
     } catch (error) {
