@@ -1405,6 +1405,8 @@ BOTTOM NAV
 
 </div>
 
+    <div id="loginToast" class="login-toast"></div>
+
     
 <script>
 
@@ -1541,7 +1543,7 @@ akunBtn.addEventListener("click", () => {
 
 
 // =========================================
-// LOGIN TOAST
+// LOGIN SUCCESS TOAST
 // =========================================
 
 const loginNotif = sessionStorage.getItem("rexmarketLoginNotif");
@@ -1550,16 +1552,20 @@ if (loginNotif) {
 
     const toast = document.getElementById("loginToast");
 
-    toast.textContent = loginNotif;
-    toast.classList.add("show");
+    if (toast) {
 
-    sessionStorage.removeItem("rexmarketLoginNotif");
+        toast.textContent = loginNotif;
+        toast.classList.add("show");
 
-    setTimeout(() => {
-        toast.classList.remove("show");
-    }, 3500);
+        sessionStorage.removeItem("rexmarketLoginNotif");
 
-}
+        setTimeout(() => {
+            toast.classList.remove("show");
+        }, 3500);
+
+    }
+
+    }
 
 </script>
 
