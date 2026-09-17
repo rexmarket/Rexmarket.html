@@ -1137,23 +1137,21 @@ MENU PANEL
 }
 
 
+
+
 /* =========================================
    LOGIN SUCCESS TOAST
 ========================================= */
 
 .login-toast {
-
     position: fixed;
 
     top: 20px;
     left: 50%;
 
-    transform: translateX(-50%) translateY(-120px);
-
     width: max-content;
-    max-width: calc(100% - 30px);
-
     min-width: 260px;
+    max-width: calc(100% - 30px);
 
     padding: 12px 18px;
 
@@ -1165,33 +1163,34 @@ MENU PANEL
 
     border-radius: 50px;
 
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
 
-    z-index: 99999;
+    z-index: 999999;
 
+    /* WAJIB tersembunyi sebelum login */
     opacity: 0;
+    visibility: hidden;
+
+    transform: translate(-50%, -100px);
 
     transition:
-        transform 0.45s ease,
-        opacity 0.45s ease;
+        opacity 0.4s ease,
+        transform 0.4s ease,
+        visibility 0.4s ease;
 
     pointer-events: none;
 }
 
 
 /* =========================================
-   SAAT NOTIF MUNCUL
+   NOTIF MUNCUL
 ========================================= */
 
 .login-toast.show {
-
-    transform:
-        translateX(-50%)
-        translateY(0);
-
     opacity: 1;
+    visibility: visible;
 
+    transform: translate(-50%, 0);
 }
 
 
@@ -1200,7 +1199,6 @@ MENU PANEL
 ========================================= */
 
 .login-toast-icon {
-
     width: 38px;
     height: 38px;
 
@@ -1213,7 +1211,6 @@ MENU PANEL
     background: #eeeeee;
 
     border-radius: 50%;
-
 }
 
 
@@ -1222,15 +1219,11 @@ MENU PANEL
 ========================================= */
 
 .login-toast-content {
-
     display: flex;
-
     flex-direction: column;
-
     justify-content: center;
 
     line-height: 1.2;
-
 }
 
 
@@ -1239,13 +1232,9 @@ MENU PANEL
 ========================================= */
 
 .login-toast-title {
-
     font-size: 14px;
-
     font-weight: 700;
-
     color: #111;
-
 }
 
 
@@ -1254,14 +1243,13 @@ MENU PANEL
 ========================================= */
 
 .login-toast-text {
-
     margin-top: 3px;
 
     font-size: 12px;
-
     color: #666;
-
 }
+
+
 
 
 
