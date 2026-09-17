@@ -1122,28 +1122,211 @@ MENU PANEL
     }
 
     
+/* =========================================
+   LOGIN NOTIFICATION
+   COMIC STYLE
+========================================= */
+
 .login-toast {
+
     position: fixed;
-    top: 20px;
-    right: 20px;
+
+    top: 50%;
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.75);
+
+    width: 280px;
+    min-height: 70px;
+
+    padding: 12px 15px;
+
+    box-sizing: border-box;
+
     background: #ffffff;
-    color: #222;
-    padding: 14px 18px;
-    border-radius: 12px;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.2);
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    z-index: 99999;
+
+    border: 4px solid #000000;
+
+    /* BAYANGAN HITAM TEBAL */
+
+    box-shadow:
+        9px 9px 0 #000000;
+
+    border-radius: 8px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
 
     opacity: 0;
-    transform: translateY(-20px);
+
     pointer-events: none;
-    transition: 0.3s ease;
+
+    z-index: 999999;
+
+    transition:
+        opacity 0.18s ease,
+        transform 0.22s
+        cubic-bezier(.17,.67,.35,1.4);
+
 }
 
+
+/* =========================================
+   NOTIF MUNCUL
+========================================= */
+
 .login-toast.show {
+
     opacity: 1;
-    transform: translateY(0);
+
+    transform:
+        translate(-50%, -50%)
+        scale(1);
+
+}
+
+
+/* =========================================
+   ICON LONCENG
+========================================= */
+
+.login-toast-icon {
+
+    width: 42px;
+    height: 42px;
+
+    min-width: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #ffffff;
+
+    border: 3px solid #000000;
+
+    border-radius: 6px;
+
+    box-shadow:
+        4px 4px 0 #000000;
+
+}
+
+
+/* =========================================
+   SVG
+========================================= */
+
+.login-toast-icon svg {
+
+    display: block;
+
+}
+
+
+/* =========================================
+   TEXT
+========================================= */
+
+.login-toast-content {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+
+    min-width: 0;
+
+}
+
+
+/* =========================================
+   JUDUL
+========================================= */
+
+.login-toast-title {
+
+    color: #000000;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 15px;
+
+    font-weight: 900;
+
+    line-height: 1.1;
+
+    text-transform: uppercase;
+
+}
+
+
+/* =========================================
+   PESAN
+========================================= */
+
+.login-toast-text {
+
+    color: #333333;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    line-height: 1.3;
+
+    word-break: break-word;
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .login-toast {
+
+        width: 270px;
+
+        min-height: 68px;
+
+        box-shadow:
+            8px 8px 0 #000000;
+
+    }
+
+    .login-toast-icon {
+
+        width: 40px;
+        height: 40px;
+
+        min-width: 40px;
+
+    }
+
+    .login-toast-title {
+
+        font-size: 14px;
+
+    }
+
+    .login-toast-text {
+
+        font-size: 11px;
+
+    }
+
 }
     
 
@@ -1405,10 +1588,47 @@ BOTTOM NAV
 
 </div>
 
-    <div id="loginToast" class="login-toast"></div>
+    <!-- =========================================
+     LOGIN NOTIFICATION
+========================================= -->
 
-    
-<script>
+<div id="loginToast" class="login-toast">
+
+    <!-- ICON LONCENG -->
+    <div class="login-toast-icon">
+
+        <svg
+            viewBox="0 0 24 24"
+            width="25"
+            height="25"
+            fill="none"
+            stroke="black"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        >
+            <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+            <path d="M10 21h4"/>
+        </svg>
+
+    </div>
+
+    <!-- TEXT -->
+    <div class="login-toast-content">
+
+        <div class="login-toast-title">
+            Login Berhasil
+        </div>
+
+        <div class="login-toast-text">
+            Selamat datang!
+        </div>
+
+    </div>
+
+</div>
+
+    <script>
 
 /* =========================================
    JAVASCRIPT
@@ -1541,36 +1761,180 @@ akunBtn.addEventListener("click", () => {
 
 });
 
+  // =========================================
+// LOGIN notifikasi html
+// =========================================
+
+<div id="loginToast" class="login-toast">
+
+    <div class="login-toast-icon">
+
+        <svg
+            viewBox="0 0 24 24"
+            width="25"
+            height="25"
+            fill="none"
+            stroke="black"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        >
+            <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+            <path d="M10 21h4"/>
+        </svg>
+
+    </div>
+
+    <div class="login-toast-content">
+
+        <div class="login-toast-title">
+            Login Berhasil
+        </div>
+
+        <div class="login-toast-text">
+            Selamat datang!
+        </div>
+
+    </div>
+
+</div>
+
 
 // =========================================
-// LOGIN SUCCESS TOAST
+// LOGIN SUCCESS TOAST + SOUND
 // =========================================
+                
+<script>
 
-const loginNotif = sessionStorage.getItem("rexmarketLoginNotif");
+const loginNotif =
+    sessionStorage.getItem("rexmarketLoginNotif");
+
 
 if (loginNotif) {
 
-    const toast = document.getElementById("loginToast");
+    const toast =
+        document.getElementById("loginToast");
+
 
     if (toast) {
 
-        toast.textContent = loginNotif;
+        const text =
+            toast.querySelector(".login-toast-text");
+
+
+        // Isi pesan
+
+        text.textContent = loginNotif;
+
+
+        // Tampilkan notif
+
         toast.classList.add("show");
 
-        sessionStorage.removeItem("rexmarketLoginNotif");
+
+        // =========================================
+        // SOUND EFFECT
+        // =========================================
+
+        const AudioContext =
+            window.AudioContext ||
+            window.webkitAudioContext;
+
+
+        if (AudioContext) {
+
+            const audioCtx =
+                new AudioContext();
+
+
+            const oscillator =
+                audioCtx.createOscillator();
+
+
+            const gain =
+                audioCtx.createGain();
+
+
+            oscillator.type = "sine";
+
+
+            // Nada pertama
+
+            oscillator.frequency.setValueAtTime(
+                660,
+                audioCtx.currentTime
+            );
+
+
+            // Nada kedua
+
+            oscillator.frequency.setValueAtTime(
+                880,
+                audioCtx.currentTime + 0.12
+            );
+
+
+            // Volume
+
+            gain.gain.setValueAtTime(
+                0.0001,
+                audioCtx.currentTime
+            );
+
+
+            gain.gain.exponentialRampToValueAtTime(
+                0.25,
+                audioCtx.currentTime + 0.02
+            );
+
+
+            gain.gain.exponentialRampToValueAtTime(
+                0.0001,
+                audioCtx.currentTime + 0.35
+            );
+
+
+            oscillator.connect(gain);
+
+            gain.connect(audioCtx.destination);
+
+
+            oscillator.start();
+
+
+            oscillator.stop(
+                audioCtx.currentTime + 0.35
+            );
+
+        }
+
+
+        // =========================================
+        // HAPUS SESSION
+        // =========================================
+
+        sessionStorage.removeItem(
+            "rexmarketLoginNotif"
+        );
+
+
+        // =========================================
+        // HILANGKAN NOTIF
+        // =========================================
 
         setTimeout(() => {
+
             toast.classList.remove("show");
+
         }, 3500);
 
     }
 
-    }
+}
 
 </script>
 
-<div id="loginToast" class="login-toast"></div>
-
 </body>
 
-</html>
+</html>          
+            
