@@ -82,8 +82,7 @@ googleBtn.addEventListener("click", async () => {
     `Login berhasil 👋 Selamat datang, ${user.displayName || "User"}!`
 );
 
-window.location.href = "Rexmarket.html";
-
+window.location.href = "../Rexmarket.html";
 
     } catch (error) {
 
