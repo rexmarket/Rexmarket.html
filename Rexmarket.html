@@ -1139,21 +1139,21 @@ MENU PANEL
 
 
 
-
-
 /* =========================================
    LOGIN TOAST
 ========================================= */
 
-.login-toast {
+#loginToast {
     position: fixed !important;
 
     top: 15px !important;
     left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
 
     width: auto !important;
     min-width: 270px !important;
-    max-width: calc(100% - 30px) !important;
+    max-width: calc(100vw - 30px) !important;
 
     box-sizing: border-box !important;
 
@@ -1176,12 +1176,12 @@ MENU PANEL
     opacity: 0 !important;
     visibility: hidden !important;
 
-    transform: translate(-50%, -100px) !important;
+    transform: translate3d(-50%, -120px, 0) !important;
 
     transition:
-        opacity 0.35s ease,
-        transform 0.35s ease,
-        visibility 0.35s ease !important;
+        opacity 0.4s ease,
+        transform 0.4s ease,
+        visibility 0.4s ease !important;
 
     pointer-events: none !important;
 }
@@ -1191,12 +1191,11 @@ MENU PANEL
    SAAT LOGIN BERHASIL
 ========================================= */
 
-.login-toast.show {
+#loginToast.show {
     opacity: 1 !important;
-
     visibility: visible !important;
 
-    transform: translate(-50%, 0) !important;
+    transform: translate3d(-50%, 0, 0) !important;
 }
 
 
@@ -1204,11 +1203,13 @@ MENU PANEL
    ICON
 ========================================= */
 
-.login-toast-icon {
+#loginToast .login-toast-icon {
     width: 38px !important;
     height: 38px !important;
 
     min-width: 38px !important;
+
+    margin: 0 !important;
 
     display: flex !important;
     align-items: center !important;
@@ -1224,7 +1225,7 @@ MENU PANEL
    CONTENT
 ========================================= */
 
-.login-toast-content {
+#loginToast .login-toast-content {
     display: flex !important;
 
     flex-direction: column !important;
@@ -1232,6 +1233,8 @@ MENU PANEL
     flex: 1 !important;
 
     min-width: 0 !important;
+
+    margin: 0 !important;
 }
 
 
@@ -1239,12 +1242,14 @@ MENU PANEL
    TITLE
 ========================================= */
 
-.login-toast-title {
+#loginToast .login-toast-title {
     margin: 0 !important;
 
     font-size: 14px !important;
 
     font-weight: 700 !important;
+
+    line-height: 1.2 !important;
 
     color: #111111 !important;
 }
@@ -1254,13 +1259,21 @@ MENU PANEL
    TEXT
 ========================================= */
 
-.login-toast-text {
+#loginToast .login-toast-text {
     margin: 3px 0 0 0 !important;
 
     font-size: 12px !important;
 
+    line-height: 1.2 !important;
+
     color: #666666 !important;
 }
+
+
+
+
+
+
 
 
 
@@ -1755,132 +1768,183 @@ if (akunBtn) {
 const loginNotif =
     sessionStorage.getItem("rexmarketLoginNotif");
 
-
-if (loginNotif) {
-
-    const toast =
-        document.getElementById("loginToast");
+const loginNotifTime =
+    sessionStorage.getItem("rexmarketLoginNotifTime");
 
 
-    if (toast) {
+/* =========================================
+   CEK NOTIF
+========================================= */
 
-        const text =
-            toast.querySelector(".login-toast-text");
+if (loginNotif && loginNotifTime) {
+
+    const age =
+        Date.now() - Number(loginNotifTime);
 
 
-        /* Isi pesan */
+    /*
+       Hanya tampilkan notif yang dibuat
+       maksimal 15 detik yang lalu.
+    */
 
-        if (text) {
+    if (age <= 15000) {
 
-            text.textContent = loginNotif;
+        const toast =
+            document.getElementById("loginToast");
+
+
+        if (toast) {
+
+            const text =
+                toast.querySelector(".login-toast-text");
+
+
+            /* Isi pesan */
+
+            if (text) {
+
+                text.textContent =
+                    loginNotif;
+
+            }
+
+
+            /* Tampilkan */
+
+            toast.classList.add("show");
+
+
+            /* =========================================
+               SOUND EFFECT
+            ========================================= */
+
+            const AudioContext =
+                window.AudioContext ||
+                window.webkitAudioContext;
+
+
+            if (AudioContext) {
+
+                const audioCtx =
+                    new AudioContext();
+
+
+                const oscillator =
+                    audioCtx.createOscillator();
+
+
+                const gain =
+                    audioCtx.createGain();
+
+
+                oscillator.type = "sine";
+
+
+                oscillator.frequency.setValueAtTime(
+                    660,
+                    audioCtx.currentTime
+                );
+
+
+                oscillator.frequency.setValueAtTime(
+                    880,
+                    audioCtx.currentTime + 0.12
+                );
+
+
+                gain.gain.setValueAtTime(
+                    0.0001,
+                    audioCtx.currentTime
+                );
+
+
+                gain.gain.exponentialRampToValueAtTime(
+                    0.25,
+                    audioCtx.currentTime + 0.02
+                );
+
+
+                gain.gain.exponentialRampToValueAtTime(
+                    0.0001,
+                    audioCtx.currentTime + 0.35
+                );
+
+
+                oscillator.connect(gain);
+
+                gain.connect(audioCtx.destination);
+
+
+                oscillator.start();
+
+                oscillator.stop(
+                    audioCtx.currentTime + 0.35
+                );
+
+            }
+
+
+            /* =========================================
+               HAPUS SESSION
+            ========================================= */
+
+            sessionStorage.removeItem(
+                "rexmarketLoginNotif"
+            );
+
+            sessionStorage.removeItem(
+                "rexmarketLoginNotifTime"
+            );
+
+
+            /* =========================================
+               HILANGKAN NOTIF
+            ========================================= */
+
+            setTimeout(() => {
+
+                toast.classList.remove("show");
+
+            }, 3500);
 
         }
 
+    } else {
 
-        /* Tampilkan notif */
-
-        toast.classList.add("show");
-
-
-        /* =========================================
-           SOUND EFFECT
-        ========================================= */
-
-        const AudioContext =
-            window.AudioContext ||
-            window.webkitAudioContext;
-
-
-        if (AudioContext) {
-
-            const audioCtx =
-                new AudioContext();
-
-
-            const oscillator =
-                audioCtx.createOscillator();
-
-
-            const gain =
-                audioCtx.createGain();
-
-
-            oscillator.type = "sine";
-
-
-            /* Nada pertama */
-
-            oscillator.frequency.setValueAtTime(
-                660,
-                audioCtx.currentTime
-            );
-
-
-            /* Nada kedua */
-
-            oscillator.frequency.setValueAtTime(
-                880,
-                audioCtx.currentTime + 0.12
-            );
-
-
-            /* Volume */
-
-            gain.gain.setValueAtTime(
-                0.0001,
-                audioCtx.currentTime
-            );
-
-
-            gain.gain.exponentialRampToValueAtTime(
-                0.25,
-                audioCtx.currentTime + 0.02
-            );
-
-
-            gain.gain.exponentialRampToValueAtTime(
-                0.0001,
-                audioCtx.currentTime + 0.35
-            );
-
-
-            oscillator.connect(gain);
-
-            gain.connect(audioCtx.destination);
-
-
-            oscillator.start();
-
-
-            oscillator.stop(
-                audioCtx.currentTime + 0.35
-            );
-
-        }
-
-
-        /* =========================================
-           HAPUS SESSION
-        ========================================= */
+        /* Notif sudah terlalu lama */
 
         sessionStorage.removeItem(
             "rexmarketLoginNotif"
         );
 
-
-        /* =========================================
-           HILANGKAN NOTIF
-        ========================================= */
-
-        setTimeout(() => {
-
-            toast.classList.remove("show");
-
-        }, 3500);
+        sessionStorage.removeItem(
+            "rexmarketLoginNotifTime"
+        );
 
     }
 
 }
+
+
+/* =========================================
+   BERSIHKAN NOTIF LAMA
+========================================= */
+
+/*
+   Kalau masih ada notif lama dari sistem
+   sebelum timestamp dibuat, hapus.
+*/
+
+if (
+    loginNotif &&
+    !loginNotifTime
+) {
+
+    sessionStorage.removeItem(
+        "rexmarketLoginNotif"
+    );
+
+            }
 
 </script>
 
