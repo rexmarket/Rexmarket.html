@@ -1135,67 +1135,79 @@ MENU PANEL
         4px 4px 0 #000000;
 
 }
-
-
-
-
 /* =========================================
    LOGIN TOAST
 ========================================= */
 
 #loginToast {
-    position: fixed !important;
+    position: fixed;
 
-    top: 15px !important;
-    left: 50% !important;
-    right: auto !important;
-    bottom: auto !important;
+    top: 15px;
+    left: 50%;
 
-    width: auto !important;
-    min-width: 270px !important;
-    max-width: calc(100vw - 30px) !important;
+    width: max-content;
+    min-width: 270px;
+    max-width: calc(100vw - 30px);
 
-    box-sizing: border-box !important;
+    box-sizing: border-box;
 
-    padding: 10px 18px !important;
+    padding: 10px 18px;
 
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
+    display: none;
 
-    gap: 11px !important;
+    align-items: center;
 
-    background: #ffffff !important;
+    gap: 11px;
 
-    border-radius: 999px !important;
+    background: #ffffff;
 
-    box-shadow: 0 6px 18px rgba(0,0,0,0.25) !important;
+    border-radius: 999px;
 
-    z-index: 999999 !important;
+    box-shadow: 0 6px 18px rgba(0,0,0,.25);
 
-    opacity: 0 !important;
-    visibility: hidden !important;
+    z-index: 999999;
 
-    transform: translate3d(-50%, -120px, 0) !important;
-
-    transition:
-        opacity 0.4s ease,
-        transform 0.4s ease,
-        visibility 0.4s ease !important;
-
-    pointer-events: none !important;
+    pointer-events: none;
 }
 
 
 /* =========================================
-   SAAT LOGIN BERHASIL
+   LOGIN BERHASIL
 ========================================= */
 
 #loginToast.show {
-    opacity: 1 !important;
-    visibility: visible !important;
 
-    transform: translate3d(-50%, 0, 0) !important;
+    display: flex;
+
+    animation: loginToastIn .4s ease forwards;
+
+}
+
+
+/* =========================================
+   ANIMASI DARI ATAS
+========================================= */
+
+@keyframes loginToastIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translate(-50%, -100px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translate(-50%, 0);
+
+    }
+
 }
 
 
@@ -1204,20 +1216,23 @@ MENU PANEL
 ========================================= */
 
 #loginToast .login-toast-icon {
-    width: 38px !important;
-    height: 38px !important;
 
-    min-width: 38px !important;
+    width: 38px;
 
-    margin: 0 !important;
+    height: 38px;
 
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+    min-width: 38px;
 
-    background: #eeeeee !important;
+    display: flex;
 
-    border-radius: 50% !important;
+    align-items: center;
+
+    justify-content: center;
+
+    background: #eeeeee;
+
+    border-radius: 50%;
+
 }
 
 
@@ -1226,15 +1241,15 @@ MENU PANEL
 ========================================= */
 
 #loginToast .login-toast-content {
-    display: flex !important;
 
-    flex-direction: column !important;
+    display: flex;
 
-    flex: 1 !important;
+    flex-direction: column;
 
-    min-width: 0 !important;
+    margin: 0;
 
-    margin: 0 !important;
+    padding: 0;
+
 }
 
 
@@ -1243,15 +1258,15 @@ MENU PANEL
 ========================================= */
 
 #loginToast .login-toast-title {
-    margin: 0 !important;
 
-    font-size: 14px !important;
+    margin: 0;
 
-    font-weight: 700 !important;
+    font-size: 14px;
 
-    line-height: 1.2 !important;
+    font-weight: 700;
 
-    color: #111111 !important;
+    color: #111;
+
 }
 
 
@@ -1260,22 +1275,14 @@ MENU PANEL
 ========================================= */
 
 #loginToast .login-toast-text {
-    margin: 3px 0 0 0 !important;
 
-    font-size: 12px !important;
+    margin: 3px 0 0;
 
-    line-height: 1.2 !important;
+    font-size: 12px;
 
-    color: #666666 !important;
-}
+    color: #666;
 
-
-
-
-
-
-
-
+    }
 
 
 
@@ -1540,7 +1547,7 @@ BOTTOM NAV
      LOGIN NOTIFIKASI HTML
 ========================================= -->
 
-<div id="loginToast" class="login-toast">
+<div id="loginToast" hidden>
 
     <div class="login-toast-icon">
 
@@ -1773,7 +1780,7 @@ const loginNotifTime =
 
 
 /* =========================================
-   CEK NOTIF
+   CEK NOTIF LOGIN
 ========================================= */
 
 if (loginNotif && loginNotifTime) {
@@ -1782,10 +1789,7 @@ if (loginNotif && loginNotifTime) {
         Date.now() - Number(loginNotifTime);
 
 
-    /*
-       Hanya tampilkan notif yang dibuat
-       maksimal 15 detik yang lalu.
-    */
+    /* Hanya notif maksimal 15 detik */
 
     if (age <= 15000) {
 
@@ -1795,21 +1799,28 @@ if (loginNotif && loginNotifTime) {
 
         if (toast) {
 
+            /* =========================================
+               TAMPILKAN ELEMENT
+            ========================================= */
+
+            toast.hidden = false;
+
+
+            /* =========================================
+               ISI PESAN
+            ========================================= */
+
             const text =
                 toast.querySelector(".login-toast-text");
 
-
-            /* Isi pesan */
-
             if (text) {
-
-                text.textContent =
-                    loginNotif;
-
+                text.textContent = loginNotif;
             }
 
 
-            /* Tampilkan */
+            /* =========================================
+               TAMPILKAN NOTIF
+            ========================================= */
 
             toast.classList.add("show");
 
@@ -1828,10 +1839,8 @@ if (loginNotif && loginNotifTime) {
                 const audioCtx =
                     new AudioContext();
 
-
                 const oscillator =
                     audioCtx.createOscillator();
-
 
                 const gain =
                     audioCtx.createGain();
@@ -1845,7 +1854,6 @@ if (loginNotif && loginNotifTime) {
                     audioCtx.currentTime
                 );
 
-
                 oscillator.frequency.setValueAtTime(
                     880,
                     audioCtx.currentTime + 0.12
@@ -1857,12 +1865,10 @@ if (loginNotif && loginNotifTime) {
                     audioCtx.currentTime
                 );
 
-
                 gain.gain.exponentialRampToValueAtTime(
                     0.25,
                     audioCtx.currentTime + 0.02
                 );
-
 
                 gain.gain.exponentialRampToValueAtTime(
                     0.0001,
@@ -1871,7 +1877,6 @@ if (loginNotif && loginNotifTime) {
 
 
                 oscillator.connect(gain);
-
                 gain.connect(audioCtx.destination);
 
 
@@ -1905,13 +1910,25 @@ if (loginNotif && loginNotifTime) {
 
                 toast.classList.remove("show");
 
+
+                /* Tunggu animasi selesai */
+
+                setTimeout(() => {
+
+                    toast.hidden = true;
+
+                }, 400);
+
+
             }, 3500);
 
         }
 
     } else {
 
-        /* Notif sudah terlalu lama */
+        /* =========================================
+           NOTIF SUDAH KADALUARSA
+        ========================================= */
 
         sessionStorage.removeItem(
             "rexmarketLoginNotif"
@@ -1930,11 +1947,6 @@ if (loginNotif && loginNotifTime) {
    BERSIHKAN NOTIF LAMA
 ========================================= */
 
-/*
-   Kalau masih ada notif lama dari sistem
-   sebelum timestamp dibuat, hapus.
-*/
-
 if (
     loginNotif &&
     !loginNotifTime
@@ -1944,7 +1956,9 @@ if (
         "rexmarketLoginNotif"
     );
 
-            }
+                    }
+                
+
 
 </script>
 
