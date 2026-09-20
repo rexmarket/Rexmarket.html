@@ -73,13 +73,18 @@ googleBtn.addEventListener("click", async () => {
         console.log("Data user berhasil disimpan ke Firestore");
 
 
-        // =========================================
-        // NOTIF LOGIN
-        // =========================================
+        /* =========================================
+   NOTIF LOGIN BERHASIL
+========================================= */
 
-        sessionStorage.setItem(
+sessionStorage.setItem(
     "rexmarketLoginNotif",
     `Login berhasil 👋 Selamat datang, ${user.displayName || "User"}!`
+);
+
+sessionStorage.setItem(
+    "rexmarketLoginNotifTime",
+    Date.now().toString()
 );
 
 window.location.href = "../Rexmarket.html";
