@@ -215,9 +215,11 @@ html{
     scroll-behavior:smooth;
 }
 
+
+
 /* =========================================
    BACKGROUND REXMARKET
-   PUTIH + 3 GARIS KIRI & KANAN
+   WHITE + SOFT TEXTURE + 3 CHEVRON
 ========================================= */
 
 body {
@@ -234,12 +236,83 @@ body {
 
     position: relative;
 
-    background: #f7f7f7;
+    /* putih + tekstur abu-abu tipis */
+    background:
+        radial-gradient(
+            ellipse at 20% 15%,
+            rgba(180,180,180,.18) 0%,
+            transparent 25%
+        ),
+
+        radial-gradient(
+            ellipse at 80% 30%,
+            rgba(190,190,190,.14) 0%,
+            transparent 28%
+        ),
+
+        radial-gradient(
+            ellipse at 30% 55%,
+            rgba(170,170,170,.12) 0%,
+            transparent 30%
+        ),
+
+        radial-gradient(
+            ellipse at 75% 75%,
+            rgba(185,185,185,.15) 0%,
+            transparent 30%
+        ),
+
+        #f8f8f8;
 }
 
 
 /* =========================================
-   GARIS GEOMETRIS
+   TEKSTUR PUTIH / ABU-ABU LEMBUT
+========================================= */
+
+body::after {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -2;
+
+    pointer-events: none;
+
+    opacity: .55;
+
+    background:
+
+        radial-gradient(
+            circle at 15% 25%,
+            rgba(150,150,150,.12),
+            transparent 18%
+        ),
+
+        radial-gradient(
+            circle at 85% 18%,
+            rgba(160,160,160,.10),
+            transparent 20%
+        ),
+
+        radial-gradient(
+            circle at 45% 50%,
+            rgba(180,180,180,.08),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            circle at 80% 85%,
+            rgba(150,150,150,.10),
+            transparent 22%
+        );
+}
+
+
+/* =========================================
+   3 CHEVRON KIRI & KANAN
 ========================================= */
 
 body::before {
@@ -255,88 +328,157 @@ body::before {
 
     background:
 
-        /* KIRI ATAS */
+        /* ==============================
+           KIRI ATAS - GARIS LUAR
+        ============================== */
+
         linear-gradient(
             35deg,
-            transparent 0 47%,
-            #173b91 48% 50%,
-            transparent 51%
+            transparent 0 48%,
+            #173b91 48.5% 50%,
+            transparent 50.5%
         )
-        left -35px top 120px / 150px 100px no-repeat,
+        left -35px top 150px /
+        135px 95px
+        no-repeat,
 
-        /* KIRI TENGAH */
+        /* KIRI ATAS - GARIS DALAM */
+
         linear-gradient(
             35deg,
-            transparent 0 47%,
-            #173b91 48% 50%,
-            transparent 51%
+            transparent 0 48%,
+            #173b91 48.5% 50%,
+            transparent 50.5%
         )
-        left -35px center / 150px 100px no-repeat,
+        left -35px top 160px /
+        135px 95px
+        no-repeat,
 
-        /* KIRI BAWAH */
+
+        /* ==============================
+           KIRI TENGAH
+        ============================== */
+
         linear-gradient(
             35deg,
-            transparent 0 47%,
-            #173b91 48% 50%,
-            transparent 51%
+            transparent 0 48%,
+            #173b91 48.5% 50%,
+            transparent 50.5%
         )
-        left -35px bottom 120px / 150px 100px no-repeat,
+        left -35px center /
+        135px 95px
+        no-repeat,
+
+        linear-gradient(
+            35deg,
+            transparent 0 48%,
+            #173b91 48.5% 50%,
+            transparent 50.5%
+        )
+        left -35px calc(50% + 10px) /
+        135px 95px
+        no-repeat,
 
 
-        /* KANAN ATAS */
+        /* ==============================
+           KIRI BAWAH
+        ============================== */
+
+        linear-gradient(
+            35deg,
+            transparent 0 48%,
+            #173b91 48.5% 50%,
+            transparent 50.5%
+        )
+        left -35px bottom 150px /
+        135px 95px
+        no-repeat,
+
+        linear-gradient(
+            35deg,
+            transparent 0 48%,
+            #173b91 48.5% 50%,
+            transparent 50.5%
+        )
+        left -35px bottom 140px /
+        135px 95px
+        no-repeat,
+
+
+        /* ==============================
+           KANAN ATAS
+        ============================== */
+
         linear-gradient(
             145deg,
-            transparent 0 47%,
-            #173b91 48% 50%,
-            transparent 51%
+            transparent 0 48%,
+            #173b91 48.5% 50%,
+            transparent 50.5%
         )
-        right -35px top 120px / 150px 100px no-repeat,
+        right -35px top 150px /
+        135px 95px
+        no-repeat,
 
-        /* KANAN TENGAH */
         linear-gradient(
             145deg,
-            transparent 0 47%,
-            #173b91 48% 50%,
-            transparent 51%
+            transparent 0 48%,
+            #173b91 48.5% 50%,
+            transparent 50.5%
         )
-        right -35px center / 150px 100px no-repeat,
+        right -35px top 160px /
+        135px 95px
+        no-repeat,
 
-        /* KANAN BAWAH */
+
+        /* ==============================
+           KANAN TENGAH
+        ============================== */
+
         linear-gradient(
             145deg,
-            transparent 0 47%,
-            #173b91 48% 50%,
-            transparent 51%
+            transparent 0 48%,
+            #173b91 48.5% 50%,
+            transparent 50.5%
         )
-        right -35px bottom 120px / 150px 100px no-repeat;
+        right -35px center /
+        135px 95px
+        no-repeat,
 
-    opacity: .9;
-}
+        linear-gradient(
+            145deg,
+            transparent 0 48%,
+            #173b91 48.5% 50%,
+            transparent 50.5%
+        )
+        right -35px calc(50% + 10px) /
+        135px 95px
+        no-repeat,
 
 
-/* =========================================
-   EFEK ABU-ABU LEMBUT
-========================================= */
+        /* ==============================
+           KANAN BAWAH
+        ============================== */
 
-body::after {
-    content: "";
+        linear-gradient(
+            145deg,
+            transparent 0 48%,
+            #173b91 48.5% 50%,
+            transparent 50.5%
+        )
+        right -35px bottom 150px /
+        135px 95px
+        no-repeat,
 
-    position: fixed;
-
-    inset: 0;
-
-    z-index: -2;
-
-    pointer-events: none;
-
-    background:
-        radial-gradient(
-            ellipse at center,
-            rgba(255,255,255,0) 35%,
-            rgba(190,190,190,.18) 100%
-        );
-
-}
+        linear-gradient(
+            145deg,
+            transparent 0 48%,
+            #173b91 48.5% 50%,
+            transparent 50.5%
+        )
+        right -35px bottom 140px /
+        135px 95px
+        no-repeat;
+        }
     
 
 /* =========================================
