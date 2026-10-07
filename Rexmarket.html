@@ -221,29 +221,189 @@ html{
    BACKGROUND REXMARKET
    WHITE + SOFT TEXTURE + 3 CHEVRON
 ========================================= */
+/* =========================================
+   BACKGROUND REXMARKET
+========================================= */
+
 body {
     margin: 0;
     padding-top: 75px;
-
-    font-family: 'Poppins', sans-serif;
-
-    color: #fff;
-
-    overflow-x: hidden;
-
     min-height: 100vh;
-
+    overflow-x: hidden;
     position: relative;
 
-    background: linear-gradient(
-        180deg,
-        #5b5b5b 0%,
-        #4b4b4b 25%,
-        #3a3a3a 50%,
-        #292929 75%,
-        #181818 100%
-    );
+    font-family: 'Poppins', sans-serif;
+    color: #111;
+
+    background: #fff;
 }
+
+
+/* =========================================
+   KARAKTER ABU-ABU BLUR
+========================================= */
+
+body::before {
+    content: "";
+
+    position: fixed;
+    z-index: -2;
+
+    width: 620px;
+    height: 780px;
+
+    left: 50%;
+    top: 54%;
+
+    transform: translate(-50%, -50%);
+
+    opacity: 0.22;
+    filter: blur(22px);
+
+    background:
+
+        /* KEPALA */
+        radial-gradient(
+            ellipse at 50% 25%,
+            #9d9d9d 0%,
+            #bdbdbd 18%,
+            transparent 20%
+        ),
+
+        /* TELINGA / SAMPING KEPALA */
+        radial-gradient(
+            ellipse at 22% 27%,
+            #a5a5a5 0%,
+            transparent 12%
+        ),
+
+        radial-gradient(
+            ellipse at 78% 27%,
+            #a5a5a5 0%,
+            transparent 12%
+        ),
+
+        /* MATA */
+        radial-gradient(
+            ellipse at 40% 30%,
+            #888 0%,
+            transparent 5%
+        ),
+
+        radial-gradient(
+            ellipse at 60% 30%,
+            #888 0%,
+            transparent 5%
+        ),
+
+        /* BADAN */
+        radial-gradient(
+            ellipse at 50% 63%,
+            #999 0%,
+            #b5b5b5 35%,
+            transparent 50%
+        ),
+
+        /* BAHU KIRI */
+        radial-gradient(
+            ellipse at 25% 58%,
+            #aaa 0%,
+            transparent 25%
+        ),
+
+        /* BAHU KANAN */
+        radial-gradient(
+            ellipse at 75% 58%,
+            #aaa 0%,
+            transparent 25%
+        ),
+
+        /* KAKI KIRI */
+        radial-gradient(
+            ellipse at 38% 85%,
+            #a0a0a0 0%,
+            transparent 20%
+        ),
+
+        /* KAKI KANAN */
+        radial-gradient(
+            ellipse at 62% 85%,
+            #a0a0a0 0%,
+            transparent 20%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   CHEVRON BIRU KIRI & KANAN
+========================================= */
+
+body::after {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    z-index: -1;
+    pointer-events: none;
+
+    background:
+
+    /* ================= KIRI ================= */
+
+    linear-gradient(
+        40deg,
+        transparent 0 47%,
+        #173f91 47.3% 48.3%,
+        transparent 48.6%
+    )
+    left -5px top 40% / 150px 150px no-repeat,
+
+    linear-gradient(
+        40deg,
+        transparent 0 47%,
+        #173f91 47.3% 48.3%,
+        transparent 48.6%
+    )
+    left -5px top 53% / 150px 150px no-repeat,
+
+    linear-gradient(
+        40deg,
+        transparent 0 47%,
+        #173f91 47.3% 48.3%,
+        transparent 48.6%
+    )
+    left -5px top 66% / 150px 150px no-repeat,
+
+
+    /* ================= KANAN ================= */
+
+    linear-gradient(
+        -40deg,
+        transparent 0 47%,
+        #173f91 47.3% 48.3%,
+        transparent 48.6%
+    )
+    right -5px top 20% / 150px 150px no-repeat,
+
+    linear-gradient(
+        -40deg,
+        transparent 0 47%,
+        #173f91 47.3% 48.3%,
+        transparent 48.6%
+    )
+    right -5px top 33% / 150px 150px no-repeat,
+
+    linear-gradient(
+        -40deg,
+        transparent 0 47%,
+        #173f91 47.3% 48.3%,
+        transparent 48.6%
+    )
+    right -5px top 46% / 150px 150px no-repeat;
+            }
         
         
         
