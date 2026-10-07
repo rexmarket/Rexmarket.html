@@ -216,206 +216,128 @@ html{
 }
 
 /* =========================================
-BACKGROUND
+   BACKGROUND REXMARKET
+   PUTIH + 3 GARIS KIRI & KANAN
 ========================================= */
-body{
-    margin:0;
-    padding-top:75px; /* sama dengan tinggi header */
 
-    font-family:'Poppins',sans-serif;
+body {
+    margin: 0;
+    padding-top: 75px;
 
-    color:#fff;
+    font-family: 'Poppins', sans-serif;
 
-    overflow-x:hidden;
+    color: #111;
 
-    min-height:100vh;
+    overflow-x: hidden;
 
-    position:relative;
+    min-height: 100vh;
 
-    background:linear-gradient(
-        180deg,
-        #0A1B36 0%,
-        #07162B 20%,
-        #05101F 40%,
-        #1A0B17 65%,
-        #3A0C16 82%,
-        #541018 100%
-    );
+    position: relative;
+
+    background: #f7f7f7;
 }
 
 
 /* =========================================
-GRID
+   GARIS GEOMETRIS
 ========================================= */
 
-body::before{
+body::before {
+    content: "";
 
-    content:"";
+    position: fixed;
 
-    position:fixed;
+    inset: 0;
 
-    inset:0;
+    z-index: -1;
 
-    z-index:-2;
+    pointer-events: none;
 
-    pointer-events:none;
+    background:
 
-    background-image:
-
+        /* KIRI ATAS */
         linear-gradient(
-            rgba(255,255,255,.04) 1px,
-            transparent 1px
-        ),
+            35deg,
+            transparent 0 47%,
+            #173b91 48% 50%,
+            transparent 51%
+        )
+        left -35px top 120px / 150px 100px no-repeat,
 
+        /* KIRI TENGAH */
         linear-gradient(
-            90deg,
-            rgba(255,255,255,.04) 1px,
-            transparent 1px
+            35deg,
+            transparent 0 47%,
+            #173b91 48% 50%,
+            transparent 51%
+        )
+        left -35px center / 150px 100px no-repeat,
+
+        /* KIRI BAWAH */
+        linear-gradient(
+            35deg,
+            transparent 0 47%,
+            #173b91 48% 50%,
+            transparent 51%
+        )
+        left -35px bottom 120px / 150px 100px no-repeat,
+
+
+        /* KANAN ATAS */
+        linear-gradient(
+            145deg,
+            transparent 0 47%,
+            #173b91 48% 50%,
+            transparent 51%
+        )
+        right -35px top 120px / 150px 100px no-repeat,
+
+        /* KANAN TENGAH */
+        linear-gradient(
+            145deg,
+            transparent 0 47%,
+            #173b91 48% 50%,
+            transparent 51%
+        )
+        right -35px center / 150px 100px no-repeat,
+
+        /* KANAN BAWAH */
+        linear-gradient(
+            145deg,
+            transparent 0 47%,
+            #173b91 48% 50%,
+            transparent 51%
+        )
+        right -35px bottom 120px / 150px 100px no-repeat;
+
+    opacity: .9;
+}
+
+
+/* =========================================
+   EFEK ABU-ABU LEMBUT
+========================================= */
+
+body::after {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -2;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(255,255,255,0) 35%,
+            rgba(190,190,190,.18) 100%
         );
 
-    background-size:40px 40px;
-
-    animation:gridMove 12s linear infinite;
-
-    opacity:.25;
-
 }
-
-/* =========================================
-GLOW
-========================================= */
-
-body::after{
-
-    content:"";
-
-    position:fixed;
-
-    inset:0;
-
-    z-index:-1;
-
-    pointer-events:none;
-
-    background:
-
-        radial-gradient(circle at 15% 10%,rgba(40,90,180,.15),transparent 30%),
-
-        radial-gradient(circle at 80% 25%,rgba(25,60,130,.12),transparent 35%),
-
-        radial-gradient(circle at 50% 75%,rgba(150,25,35,.10),transparent 40%),
-
-        radial-gradient(circle at 20% 100%,rgba(110,15,25,.14),transparent 35%);
-
-    animation:glowMove 10s ease-in-out infinite alternate;
-
-}
-
-/* =========================================
-ANIMATION
-========================================= */
-
-@keyframes gridMove{
-
-    from{
-
-        background-position:0 0;
-
-    }
-
-    to{
-
-        background-position:40px 40px;
-
-    }
-
-}
-
-@keyframes glowMove{
-
-    from{
-
-        transform:translateY(0) scale(1);
-
-    }
-
-    to{
-
-        transform:translateY(-30px) scale(1.08);
-
-    }
-
-    }
-
-
-
-
-/* =========================================
-   GLOW
-========================================= */
-
-body::after{
-
-    content:"";
-
-    position:fixed;
-
-    inset:0;
-
-    pointer-events:none;
-
-    background:
-
-        radial-gradient(circle at 15% 10%,rgba(0,180,255,.25),transparent 28%),
-
-        radial-gradient(circle at 85% 25%,rgba(40,120,255,.18),transparent 30%),
-
-        radial-gradient(circle at 50% 75%,rgba(255,0,0,.12),transparent 35%),
-
-        radial-gradient(circle at 20% 95%,rgba(255,60,60,.15),transparent 30%);
-
-    animation:glowMove 10s ease-in-out infinite alternate;
-
-    z-index:-1;
-
-}
-
-/* =========================================
-   ANIMASI
-========================================= */
-
-@keyframes gridMove{
-
-    from{
-
-        background-position:0 0;
-
-    }
-
-    to{
-
-        background-position:40px 40px;
-
-    }
-
-}
-
-@keyframes glowMove{
-
-    from{
-
-        transform:translateY(0) scale(1);
-
-    }
-
-    to{
-
-        transform:translateY(-30px) scale(1.08);
-
-    }
-
-}
-
+    
 
 /* =========================================
 BOTTOM NAV
