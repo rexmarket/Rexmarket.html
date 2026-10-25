@@ -1,6 +1,8 @@
-// =========================================
-// REXMARKET - GOOGLE LOGIN + FIRESTORE
-// =========================================
+
+/* =========================================
+   REXMARKET - GOOGLE LOGIN + FIRESTORE
+   + LOGIN NOTIFICATION
+========================================= */
 
 import { auth, db } from "./Firebase.js";
 
@@ -31,84 +33,94 @@ const provider = new GoogleAuthProvider();
 
 
 // =========================================
+// LOGIN ERROR MESSAGE
+// =========================================
+
+function getLoginErrorMessage(error) {
+    switch (error.code) {
+        case "auth/popup-closed-by-user":
+            return "Jendela login ditutup sebelum selesai.";
+
+        case "auth/popup-blocked":
+            return "Popup login diblokir browser.";
+
+        case "auth/cancelled-popup-request":
+            return "Proses login dibatalkan.";
+
+        case "auth/network-request-failed":
+            return "Koneksi bermasalah. Coba lagi.";
+
+        case "auth/unauthorized-domain":
+            return "Domain website belum diizinkan Firebase.";
+
+        default:
+            return "Login gagal. Silakan coba lagi.";
+    }
+}
+
+
+// =========================================
 // GOOGLE LOGIN
 // =========================================
 
-googleBtn.addEventListener("click", async () => {
+if (googleBtn) {
+    googleBtn.addEventListener("click", async () => {
+        try {
+            googleBtn.disabled = true;
+            googleBtn.textContent = "Menghubungkan...";
 
-    try {
+            const result = await signInWithPopup(auth, provider);
+            const user = result.user;
 
-        googleBtn.disabled = true;
-        googleBtn.textContent = "Menghubungkan...";
+            // Simpan data user tanpa menimpa saldo
+            // atau data akun yang sudah tersedia.
+            await setDoc(
+                doc(db, "users", user.uid),
+                {
+                    username: user.displayName || "User",
+                    email: user.email || "",
+                    role: "Member"
+                },
+                { merge: true }
+            );
 
-        const result = await signInWithPopup(auth, provider);
+            // Tandai login berhasil untuk halaman tujuan.
+            sessionStorage.setItem(
+                "rexmarketLoginNotif",
+                JSON.stringify({
+                    type: "success",
+                    title: "Login berhasil!",
+                    message:
+                        `Selamat datang, ${user.displayName || "User"}!`,
+                    time: Date.now()
+                })
+            );
 
-        const user = result.user;
+            // Pertahankan tujuan navigasi website.
+            window.location.href = "../Rexmarket.html";
 
-        console.log("Google Login Berhasil");
-        console.log("Nama:", user.displayName);
-        console.log("Email:", user.email);
-        console.log("UID:", user.uid);
+        } catch (error) {
+            console.error("Google Login Error:", error);
 
-
-        // =========================================
-        // SIMPAN DATA USER KE FIRESTORE
-        // =========================================
-
-        await setDoc(
-            doc(db, "users", user.uid),
-            {
-                username: user.displayName || "User",
-                email: user.email || "",
-                role: "Member",
-                saldo: 0,
-                createdAt: serverTimestamp()
-            },
-            {
-                merge: true
+            // Simpan pesan gagal agar dapat ditampilkan
+            // di halaman login yang sedang terbuka.
+            if (window.RexNotify) {
+                window.RexNotify.show({
+                    type: "error",
+                    title: "Login gagal!",
+                    message: getLoginErrorMessage(error)
+                });
+            } else {
+                alert(getLoginErrorMessage(error));
             }
-        );
 
+        } finally {
+            googleBtn.disabled = false;
 
-        console.log("Data user berhasil disimpan ke Firestore");
-
-
-        /* =========================================
-   NOTIF LOGIN BERHASIL
-========================================= */
-
-sessionStorage.setItem(
-    "rexmarketLoginNotif",
-    `Login berhasil 👋 Selamat datang, ${user.displayName || "User"}!`
-);
-
-sessionStorage.setItem(
-    "rexmarketLoginNotifTime",
-    Date.now().toString()
-);
-
-window.location.href = "../Rexmarket.html";
-
-    } catch (error) {
-
-    console.error("Google Login Error:", error);
-
-    alert(
-        "TERJADI ERROR:\n\n" +
-        error.code +
-        "\n\n" +
-        error.message
-    );
-
-    } finally {
-
-        googleBtn.disabled = false;
-
-        googleBtn.innerHTML = `
-            <span class="google-icon">G</span>
-            Login dengan Google
-        `;
-
+            googleBtn.innerHTML = `
+                <span class="google-icon">G</span>
+                Login dengan Google
+            `;
+        }
+    });
     }
-
-});
