@@ -1,6 +1,6 @@
 
 /* =========================================
-   REXMARKET NOTIFICATION
+   REXMARKET NOTIFICATION SYSTEM
 ========================================= */
 
 (() => {
@@ -11,37 +11,22 @@
     const root = document.getElementById("rexNotifyRoot");
 
     if (!root) {
-        console.warn("Wadah notifikasi Rexmarket tidak ditemukan.");
+        console.warn("[Rexmarket] rexNotifyRoot tidak ditemukan.");
         return;
     }
 
-    const icons = {
-        success: `
-            <path d="m5 12 4 4L19 6"/>
-        `,
-        error: `
-            <circle cx="12" cy="12" r="9"/>
-            <path d="m9 9 6 6m0-6-6 6"/>
-        `,
-        info: `
-            <path d="M12 16v-4m0-4h.01"/>
-            <circle cx="12" cy="12" r="9"/>
-        `
-    };
-
-    let notificationId = 0;
-
     function show({
-        type = "info",
-        title = "Informasi Rexmarket",
-        message = "",
+        type = "success",
+        title = "Login berhasil!",
+        message = "Selamat datang di Rexmarket.",
         duration = 5000
     } = {}) {
-        const itemId = ++notificationId;
-
         const card = document.createElement("div");
         card.className = "rex-notify";
-        card.setAttribute("role", "status");
+        card.setAttribute(
+            "role",
+            type === "error" ? "alert" : "status"
+        );
 
         const icon = document.createElement("div");
         icon.className = "rex-notify-icon";
@@ -54,87 +39,63 @@
         svg.setAttribute("viewBox", "0 0 24 24");
         svg.setAttribute("fill", "none");
         svg.setAttribute("stroke", "currentColor");
-        svg.setAttribute("stroke-width", "2.3");
+        svg.setAttribute("stroke-width", "2.2");
         svg.setAttribute("stroke-linecap", "round");
         svg.setAttribute("stroke-linejoin", "round");
 
-        const group = document.createElementNS(
+        const path = document.createElementNS(
             "http://www.w3.org/2000/svg",
-            "g"
+            "path"
         );
 
-        group.innerHTML = icons[type] || icons.info;
-        svg.appendChild(group);
+        if (type === "error") {
+            path.setAttribute("d", "M18 6 6 18 M6 6l12 12");
+        } else {
+            path.setAttribute("d", "M20 7 10 17l-5-5");
+        }
+
+        svg.appendChild(path);
         icon.appendChild(svg);
 
         const content = document.createElement("div");
         content.className = "rex-notify-content";
 
-        const heading = document.createElement("div");
-        heading.className = "rex-notify-heading";
-
-        const brand = document.createElement("span");
+        const brand = document.createElement("div");
         brand.className = "rex-notify-brand";
         brand.textContent = "REXMARKET";
 
-        const time = document.createElement("span");
-        time.className = "rex-notify-time";
-        time.textContent = "sekarang";
+        const heading = document.createElement("div");
+        heading.className = "rex-notify-title";
+        heading.textContent = title;
 
-        heading.append(brand, time);
+        const text = document.createElement("div");
+        text.className = "rex-notify-message";
+        text.textContent = message;
 
-        const titleElement = document.createElement("p");
-        titleElement.className = "rex-notify-title";
-        titleElement.textContent = title;
+        content.append(brand, heading, text);
+        card.append(icon, content);
 
-        const messageElement = document.createElement("p");
-        messageElement.className = "rex-notify-message";
-        messageElement.textContent = message;
-
-        content.append(heading, titleElement, messageElement);
-
-        const close = document.createElement("button");
-        close.className = "rex-notify-close";
-        close.type = "button";
-        close.textContent = "×";
-        close.setAttribute("aria-label", "Tutup notifikasi");
-
-        let removed = false;
-        let timer;
-
-        function dismiss() {
-            if (removed) return;
-            removed = true;
-
-            clearTimeout(timer);
-
-            card.classList.remove("rex-notify-show");
-            card.classList.add("rex-notify-hide");
-
-            setTimeout(() => card.remove(), 450);
-        }
-
-        close.addEventListener("click", dismiss);
-
-        card.append(icon, content, close);
         root.appendChild(card);
 
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {
-                if (card.isConnected) {
-                    card.classList.add("rex-notify-show");
-                }
+                card.classList.add("rex-notify-show");
             });
         });
 
-        timer = setTimeout(dismiss, duration);
+        const timeout = Math.max(0, Number(duration) || 5000);
 
-        return itemId;
+        setTimeout(() => {
+            card.classList.remove("rex-notify-show");
+            card.classList.add("rex-notify-hide");
+
+            setTimeout(() => card.remove(), 450);
+        }, timeout);
     }
 
     window.RexNotify = { show };
 
-    // Tampilkan pesan login setelah berpindah halaman.
+    // Ambil notifikasi login setelah pindah halaman.
     try {
         const raw = sessionStorage.getItem("rexmarketLoginNotif");
 
@@ -160,7 +121,7 @@
             }
         }
     } catch (error) {
-        console.warn("Notifikasi login tidak dapat ditampilkan.", error);
+        console.warn("[Rexmarket] Data notifikasi tidak valid.");
     }
 })();
-                  
+   
