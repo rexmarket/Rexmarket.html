@@ -1046,6 +1046,211 @@ MENU PANEL
 
 }
 
+    
+/* =========================================
+   REXMARKET NOTIFICATION - FINAL CSS
+========================================= */
+
+#rexNotifyRoot {
+    position: fixed;
+    top: 14px;
+    left: 0;
+    right: 0;
+    z-index: 99999;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    width: 100%;
+    padding: 0 12px;
+    box-sizing: border-box;
+
+    pointer-events: none;
+}
+
+/* Kapsul notifikasi */
+.rex-notify {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: min(100%, 460px);
+    min-height: 76px;
+    padding: 12px 17px;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    color: #ffffff;
+    background: linear-gradient(
+        125deg,
+        #087ee5 0%,
+        #0754b8 48%,
+        #102b70 100%
+    );
+
+    border: 3px solid #ffffff;
+    border-radius: 999px;
+
+    box-shadow:
+        0 5px 0 rgba(0, 0, 0, 0.24),
+        0 8px 18px rgba(0, 0, 0, 0.22);
+
+    font-family: Arial, sans-serif;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-140%);
+    transition:
+        transform 0.4s cubic-bezier(.2, .8, .2, 1),
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+
+    pointer-events: auto;
+    isolation: isolate;
+}
+
+/* Grid biru khas Rexmarket */
+.rex-notify::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background-image:
+        linear-gradient(
+            rgba(255, 255, 255, 0.15) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.15) 1px,
+            transparent 1px
+        );
+
+    background-size: 24px 24px;
+    pointer-events: none;
+}
+
+/* Animasi masuk */
+.rex-notify.rex-notify-show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Animasi keluar */
+.rex-notify.rex-notify-hide {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-140%);
+    pointer-events: none;
+}
+
+/* Lingkaran ikon */
+.rex-notify-icon {
+    flex: 0 0 43px;
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #0754b8;
+    background: #ffffff;
+    border-radius: 50%;
+}
+
+.rex-notify-icon svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+}
+
+/* Bagian teks */
+.rex-notify-content {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.rex-notify-brand {
+    margin-bottom: 3px;
+    color: #e3efff;
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+}
+
+.rex-notify-title {
+    margin: 0;
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.3;
+
+    overflow-wrap: anywhere;
+}
+
+.rex-notify-message {
+    margin-top: 3px;
+    color: #edf5ff;
+
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.4;
+
+    overflow-wrap: anywhere;
+}
+
+/* Tampilan HP */
+@media (max-width: 380px) {
+    #rexNotifyRoot {
+        top: 10px;
+        padding: 0 8px;
+    }
+
+    .rex-notify {
+        min-height: 66px;
+        padding: 10px 12px;
+        gap: 9px;
+        border-width: 2px;
+    }
+
+    .rex-notify-icon {
+        flex-basis: 36px;
+        width: 36px;
+        height: 36px;
+    }
+
+    .rex-notify-icon svg {
+        width: 21px;
+        height: 21px;
+    }
+
+    .rex-notify-title {
+        font-size: 13px;
+    }
+
+    .rex-notify-message {
+        font-size: 11px;
+    }
+}
+
+/* Menghormati pengaturan animasi perangkat */
+@media (prefers-reduced-motion: reduce) {
+    .rex-notify {
+        transition: opacity 0.15s ease;
+    }
+    }
+    
+
 
 
 
@@ -1342,9 +1547,8 @@ BOTTOM NAV
 
     </div>
 
-</div>
-    <div id="rexNotifyRoot" aria-live="polite"></div>
-
+<div id="rexNotifyRoot" aria-live="polite"></div>
+<script src="Rexnotif.js"></script>
 
 <!-- =========================================
      JAVASCRIPT
