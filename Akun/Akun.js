@@ -85,42 +85,55 @@ if (googleBtn) {
             );
 
             // Tandai login berhasil untuk halaman tujuan.
-            sessionStorage.setItem(
-                "rexmarketLoginNotif",
-                JSON.stringify({
-                    type: "success",
-                    title: "Login berhasil!",
-                    message:
-                        `Selamat datang, ${user.displayName || "User"}!`,
-                    time: Date.now()
-                })
-            );
+            
+sessionStorage.setItem(
+    "rexmarketLoginNotif",
+    JSON.stringify({
+        type: "success",
+        title: "Login berhasil!",
+        message: `Selamat datang, ${user.displayName || "User"}!`,
+        time: Date.now()
+    })
+);
+
+window.location.href = "../Rexmarket.html";
+           
 
             // Pertahankan tujuan navigasi website.
             window.location.href = "../Rexmarket.html";
 
         } catch (error) {
-            console.error("Google Login Error:", error);
+    console.error("Google Login Error:", error);
 
-            // Simpan pesan gagal agar dapat ditampilkan
-            // di halaman login yang sedang terbuka.
-            if (window.RexNotify) {
-                window.RexNotify.show({
-                    type: "error",
-                    title: "Login gagal!",
-                    message: getLoginErrorMessage(error)
-                });
-            } else {
-                alert(getLoginErrorMessage(error));
-            }
+    let message = "Login gagal. Silakan coba lagi.";
 
-        } finally {
-            googleBtn.disabled = false;
+    switch (error.code) {
+        case "auth/popup-closed-by-user":
+            message = "Jendela login ditutup sebelum selesai.";
+            break;
 
-            googleBtn.innerHTML = `
-                <span class="google-icon">G</span>
-                Login dengan Google
-            `;
-        }
-    });
+        case "auth/popup-blocked":
+            message = "Popup login diblokir browser.";
+            break;
+
+        case "auth/network-request-failed":
+            message = "Koneksi bermasalah. Coba lagi.";
+            break;
+
+        case "auth/unauthorized-domain":
+            message = "Domain website belum diizinkan Firebase.";
+            break;
     }
+
+    if (window.RexNotify) {
+        window.RexNotify.show({
+            type: "error",
+            title: "Login gagal!",
+            message: message,
+            duration: 5000
+        });
+    } else {
+        alert(message);
+    }
+
+} finally {
